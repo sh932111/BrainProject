@@ -1,0 +1,46 @@
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\bin\Debug\Stu.exe
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\bin\Debug\Stu.pdb
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.exe
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.pdb
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Debug\Stu.Main.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.exe
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.pdb
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\Stu.exe
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\Stu.pdb
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\NCalc.dll
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.exe
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.pdb
+C:\Users\sh932_000\Desktop\StuProject2\Stu\bin\Debug\Stu.exe
+C:\Users\sh932_000\Desktop\StuProject2\Stu\bin\Debug\Stu.pdb
+C:\Users\sh932_000\Desktop\StuProject2\Stu\bin\Debug\NCalc.dll
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.Main.resources
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.RangeDialog.resources
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
+C:\Users\sh932_000\Desktop\StuProject2\Stu\obj\x86\Debug\Stu.Computer.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Computer.resources
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.exe
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.pdb
+Z:\winData\Stu\Stu\bin\Debug\Stu.exe
+Z:\winData\Stu\Stu\bin\Debug\Stu.pdb
+Z:\winData\Stu\Stu\bin\Debug\NCalc.dll
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.Computer.resources
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.Main.resources
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
+Z:\winData\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Main.resources
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\InTheHand.Net.Personal.dll
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\InTheHand.Net.Personal.xml
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Demo.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BluetoothList.resources

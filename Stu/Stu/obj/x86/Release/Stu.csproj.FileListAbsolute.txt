@@ -1,0 +1,7 @@
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\bin\Release\Stu.exe
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\bin\Release\Stu.pdb
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Release\Stu.Form1.resources
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Release\Stu.Properties.Resources.resources
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Release\Stu.csproj.GenerateResource.Cache
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Release\Stu.exe
+C:\Users\Yoga\documents\visual studio 2010\Projects\Stu\Stu\obj\x86\Release\Stu.pdb
