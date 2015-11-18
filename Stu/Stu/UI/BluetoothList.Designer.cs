@@ -49,12 +49,12 @@
             // 
             // bluetoothListView
             // 
+            this.bluetoothListView.CheckBoxes = true;
             this.bluetoothListView.Location = new System.Drawing.Point(12, 36);
             this.bluetoothListView.Name = "bluetoothListView";
             this.bluetoothListView.Size = new System.Drawing.Size(277, 117);
             this.bluetoothListView.TabIndex = 1;
             this.bluetoothListView.UseCompatibleStateImageBehavior = false;
-            this.bluetoothListView.SelectedIndexChanged += new System.EventHandler(this.bluetoothListView_SelectedIndexChanged);
             // 
             // loaderImage
             // 
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(301, 193);
+            this.ClientSize = new System.Drawing.Size(300, 200);
             this.ControlBox = false;
             this.Controls.Add(this.connectBtn);
             this.Controls.Add(this.loaderImage);

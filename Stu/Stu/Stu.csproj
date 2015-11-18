@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\BlueController.cs" />
+    <Compile Include="Class\BrainReciver.cs" />
     <Compile Include="Class\Calculate.cs" />
     <Compile Include="Class\DSP.cs" />
     <Compile Include="Class\OutputFile.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manager\BluetoothDeviceManager.cs" />
+    <Compile Include="Manager\BrainManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeDialog.cs">
@@ -92,6 +95,12 @@
     </Compile>
     <Compile Include="UI\BluetoothList.Designer.cs">
       <DependentUpon>BluetoothList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FolderController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FolderController.Designer.cs">
+      <DependentUpon>FolderController.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\FileListUtils.cs" />
     <Compile Include="Utils\OpenFileDialogUtils.cs" />
@@ -121,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BluetoothList.resx">
       <DependentUpon>BluetoothList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FolderController.resx">
+      <DependentUpon>FolderController.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

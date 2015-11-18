@@ -21,9 +21,15 @@ namespace Stu
         private void reloadBlockUI()
         {
             BluetoothList bluetooth_list = new BluetoothList();
+            bluetooth_list.Location = new Point(0, 0);
             bluetooth_list.TopLevel = false;
             this.Controls.Add(bluetooth_list);
             bluetooth_list.Show();
+            FolderController folder_controller = new FolderController();
+            folder_controller.Location = new Point(300, 0);
+            folder_controller.TopLevel = false;
+            this.Controls.Add(folder_controller);
+            folder_controller.Show();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Stu.Class;
 using System.Collections;
+using Stu.Manager;
 
 namespace Stu.UI
 {
@@ -17,7 +18,6 @@ namespace Stu.UI
         private BluetoothController bluetoothController;
         private ListView bluetoothList = null;
         private ArrayList resultList;
-        private int selectIndex;
         public BluetoothList()
         {
             InitializeComponent();
@@ -30,7 +30,6 @@ namespace Stu.UI
             bgBluetooth.RunWorkerAsync();
             /*ListView UI*/
             this.resultList = new ArrayList();
-            this.selectIndex = -1;
             this.bluetoothList = bluetoothListView;
             bluetoothList.BeginUpdate();
             bluetoothList.View = View.Details;
@@ -52,25 +51,25 @@ namespace Stu.UI
             reloadList();
         }
 
+        #region 增加Item的標題，共有三個列
         private void loadListTitle()
         {
-            #region 增加Item的標題，共有三個列
             bluetoothList.Columns.Add("裝置名稱");
             bluetoothList.Columns.Add("裝置位置");
             bluetoothList.Columns.Add("COM PORT");
-            #endregion
         }
+        #endregion
     
         private void reloadList()
         {
             bluetoothList.BeginUpdate();
             bluetoothList.Clear();
             loadListTitle();
-            foreach (Dictionary<string, string> item in resultList)
+            foreach (BluetoothDeviceManager manager in resultList)
             {
-                ListViewItem i1 = new ListViewItem(item["DeviceName"]);
-                i1.SubItems.Add(item["DeviceAddress"]);
-                i1.SubItems.Add(item["COM"]);               
+                ListViewItem i1 = new ListViewItem(manager.getDeviceName());
+                i1.SubItems.Add(manager.getDeviceAddress());
+                i1.SubItems.Add(manager.getCOM());
                 bluetoothList.Items.Add(i1);
             }
             bluetoothList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -78,23 +77,13 @@ namespace Stu.UI
             bluetoothList.EndUpdate();
         }
 
-        private void bluetoothListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (bluetoothList.SelectedItems.Count > 0)
-            {
-                ListView.SelectedListViewItemCollection selected = bluetoothList.SelectedItems;
-                selectIndex = selected[0].Index;
-            }
-        }
-
         private void connectBtn_Click(object sender, EventArgs e)
         {
-            if (selectIndex != -1)
+            for (int i = 0; i < bluetoothList.Items.Count; i++)
             {
-                if (resultList.Count > selectIndex)
+                if (bluetoothList.Items[i].Checked)
                 {
-                    Dictionary<string, string> item =  (Dictionary<string, string>)resultList[selectIndex];
-                    MessageBox.Show(item["COM"]);
+
                 }
             }
         }

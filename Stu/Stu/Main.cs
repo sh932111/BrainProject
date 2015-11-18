@@ -172,10 +172,9 @@ namespace Stu
                 BluetoothConnection1.BaudRate = 115200;
                 BluetoothConnection1.Open();
                 _thread1 = new Thread(() => customRun(BluetoothConnection1));
-
                 _thread1.Start();
 
-                this.BluetoothConnection2.PortName = "COM6";
+                this.BluetoothConnection2.PortName = "COM8";
                 BluetoothConnection2.BaudRate = 115200;
                 BluetoothConnection2.Open();
                 _thread2 = new Thread(() => customRun(BluetoothConnection2));
@@ -208,7 +207,7 @@ namespace Stu
             while (isRun)
             {
                 String Value = BluetoothConnection.ReadByte().ToString("X2");
-                String res = Value;//Convert.ToInt32(Value, 16) + "";
+                String res = Value;
                 if (Value.Equals("AA") && check == 0 )
                 {
                     check = 1;
@@ -281,7 +280,7 @@ namespace Stu
                             for (int i = 0; i < item.Count; i++)
                             {
                                 if (i == 0) refresh_item.Add(item[i]);
-                                else if (i < 7 && i > 0) continue;//refresh_item.Add(item[i]);
+                                else if (i < 7 && i > 0) continue;
                                 else if (datalog < 8)
                                 {
                                     code = code + item[i];
@@ -318,10 +317,8 @@ namespace Stu
                             ArrayList refresh_item = new ArrayList();
                             refresh_item.Add(item[0]);
                             String code = (String)item[6] + (String)item[7];
-                            // Console.WriteLine(code);
                             String code_result = Calculate.run16To2(code);
                             refresh_item.Add(code_result);
-                            // Console.WriteLine(code_result);
                             nothinglist.Add(refresh_item);
 
                             ArrayList fft_item = new ArrayList();
@@ -333,8 +330,6 @@ namespace Stu
                     if (init == 1) 
                     {
                         init = 2;
-                        //brashlist.Add(brashTitleItem());
-                        //nothinglist.Add(fftTitleItem());
                     }
                     temp.Clear();
                     temp = (ArrayList)newItem.Clone();

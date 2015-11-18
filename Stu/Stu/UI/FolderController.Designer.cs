@@ -1,6 +1,6 @@
-﻿namespace Stu
+﻿namespace Stu.UI
 {
-    partial class Demo
+    partial class FolderController
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // Demo
+            // FolderController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 192);
-            this.Name = "Demo";
-            this.Text = "Demo";
+            this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.ClientSize = new System.Drawing.Size(200, 200);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "FolderController";
+            this.Text = "FolderController";
             this.ResumeLayout(false);
 
         }
