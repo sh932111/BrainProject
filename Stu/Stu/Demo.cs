@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Stu.UI;
+using System.Collections;
 
 namespace Stu
 {
     public partial class Demo : Form
     {
+        private FolderController folder_controller;
         public Demo()
         {
             InitializeComponent();
@@ -20,16 +22,23 @@ namespace Stu
 
         private void reloadBlockUI()
         {
-            BluetoothList bluetooth_list = new BluetoothList();
+            BluetoothList bluetooth_list = new BluetoothList(bluetoothCallback);
             bluetooth_list.Location = new Point(0, 0);
             bluetooth_list.TopLevel = false;
             this.Controls.Add(bluetooth_list);
             bluetooth_list.Show();
-            FolderController folder_controller = new FolderController();
+            this.folder_controller = new FolderController();
             folder_controller.Location = new Point(300, 0);
             folder_controller.TopLevel = false;
             this.Controls.Add(folder_controller);
             folder_controller.Show();
+            //folder_controller.Hide();
+        }
+
+        private void bluetoothCallback(ArrayList bluetoothCheckedList)
+        {
+            //folder_controller.Show();
+            folder_controller.reloadData(bluetoothCheckedList);
         }
     }
 }

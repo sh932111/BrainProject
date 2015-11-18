@@ -162,7 +162,6 @@ namespace Stu.Class
                             String code_result = Calculate.run16To2(code);
                             refresh_item.Add(code_result);
                             dataLogList.Add(refresh_item);
-
                             ArrayList fft_item = new ArrayList();
                             fft_item.Add(code_result);
                             fftList.Add(fft_item);

@@ -14,13 +14,17 @@ namespace Stu.UI
 {
     public partial class BluetoothList : Form
     {
+        public delegate void BrainListCallback(ArrayList bluetoothCheckedList);
+
         private BackgroundWorker bgBluetooth;
         private BluetoothController bluetoothController;
         private ListView bluetoothList = null;
         private ArrayList resultList;
-        public BluetoothList()
+        private BrainListCallback aCallback = null;
+        public BluetoothList(BrainListCallback acb)
         {
             InitializeComponent();
+            this.aCallback = acb;
             /*搜尋很久放在BackgroundWorker*/
             bgBluetooth = new BackgroundWorker();
             bgBluetooth.WorkerReportsProgress = true;
@@ -79,13 +83,15 @@ namespace Stu.UI
 
         private void connectBtn_Click(object sender, EventArgs e)
         {
+            ArrayList result_list = new ArrayList();
             for (int i = 0; i < bluetoothList.Items.Count; i++)
             {
                 if (bluetoothList.Items[i].Checked)
                 {
-
+                    result_list.Add(resultList[i]);
                 }
             }
+            if (aCallback != null) aCallback(result_list);
         }
     }
 }
