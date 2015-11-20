@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Stu.Manager
 {
-    class BluetoothDeviceManager
+    public class BluetoothDeviceManager
     {
         private Dictionary<string, string> deviceData = null;
         public BluetoothDeviceManager(string DeviceName, string DeviceAddress)

@@ -31,13 +31,12 @@ namespace Stu
             folder_controller.Location = new Point(300, 0);
             folder_controller.TopLevel = false;
             this.Controls.Add(folder_controller);
-            folder_controller.Show();
-            //folder_controller.Hide();
+            folder_controller.Hide();
         }
 
         private void bluetoothCallback(ArrayList bluetoothCheckedList)
         {
-            //folder_controller.Show();
+            folder_controller.Show();
             folder_controller.reloadData(bluetoothCheckedList);
         }
     }

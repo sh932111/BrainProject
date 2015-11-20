@@ -70,7 +70,7 @@
             // runBtn
             // 
             this.runBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.runBtn.Location = new System.Drawing.Point(92, 152);
+            this.runBtn.Location = new System.Drawing.Point(92, 157);
             this.runBtn.Name = "runBtn";
             this.runBtn.Size = new System.Drawing.Size(85, 31);
             this.runBtn.TabIndex = 3;
@@ -95,8 +95,9 @@
             this.outputText.Enabled = false;
             this.outputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputText.Location = new System.Drawing.Point(5, 94);
+            this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
-            this.outputText.Size = new System.Drawing.Size(171, 22);
+            this.outputText.Size = new System.Drawing.Size(171, 52);
             this.outputText.TabIndex = 5;
             // 
             // FolderController

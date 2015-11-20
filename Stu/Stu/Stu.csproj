@@ -59,6 +59,7 @@
     <Compile Include="Class\BrainReciver.cs" />
     <Compile Include="Class\Calculate.cs" />
     <Compile Include="Class\DSP.cs" />
+    <Compile Include="Class\FloderUtils.cs" />
     <Compile Include="Class\OutputFile.cs" />
     <Compile Include="Class\Rules.cs" />
     <Compile Include="Class\Think.cs" />
@@ -96,6 +97,12 @@
     <Compile Include="UI\BluetoothList.Designer.cs">
       <DependentUpon>BluetoothList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\BrainWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BrainWorker.Designer.cs">
+      <DependentUpon>BrainWorker.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FolderController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BluetoothList.resx">
       <DependentUpon>BluetoothList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BrainWorker.resx">
+      <DependentUpon>BrainWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FolderController.resx">
       <DependentUpon>FolderController.cs</DependentUpon>
