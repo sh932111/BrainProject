@@ -210,11 +210,10 @@ namespace Stu.Class
                     tempList.Add(res);
                 }
             }
-            bluetoothConnection.Close();
-            bluetoothThread.Abort();
-            Console.WriteLine("STOP");
             BrainManager manager = new BrainManager(streamLogList,dataLogList,brainList,fftList);
             if (aCallback != null) aCallback(manager);
+            bluetoothConnection.Close();
+            bluetoothThread.Abort();
         }
 
         public void stop()

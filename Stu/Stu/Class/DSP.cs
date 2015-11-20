@@ -117,9 +117,10 @@ namespace Stu.Class
         public static ArrayList getArrayWithDivision(float fs, float loopStart, float loopStop)
         {
             ArrayList list = new ArrayList();
+            float freqStep = fs / 2048;
             for (float i = loopStart; i < loopStop; i++)
             {
-                float result = i / fs;
+                float result = freqStep * i;
                 list.Add(result);
             }
             return list;
@@ -147,42 +148,4 @@ namespace Stu.Class
             return list;
         }
     }
-       // public static void runFFT(ArrayList Input_data)
-       // {
-       //     float N = 2048;// 點數2^n
-       //     float fs = 512;// 取樣頻率
-       //     float freqStep = fs / N;
-       //     float f = 10 * freqStep;
-       //     ArrayList time = getArrayWithDivision(fs, 0, N - 1);
-       //     ArrayList freq = getArrayWithMultiplication(freqStep , 0 , N / 2);
-       //     int row_len = Input_data.Count;
-       //     int column_len = 1;
-       //     ArrayList data_out = (ArrayList)freq.Clone();
-       //     ArrayList data_out_norm = (ArrayList)freq.Clone();
-       //     ArrayList data_out_time = (ArrayList)time.Clone();
-       //     ArrayList m_zero = zeros(N / 2 + 1);
-       //     for (int i = 1; i <= column_len; i++)
-       //     {
-       //         if ((float)Input_data[(int)(row_len - N)] == 0)
-       //         {
-       //             data_out = arrayMagic(data_out, m_zero);
-       //             continue;
-       //         }
-       //     }
-            
-       //}
-       
-      
-       // private static ArrayList zeros(float m)
-       // {
-       //     ArrayList list = new ArrayList();
-       //     for (int i = 0; i <= m; i++)
-       //     {
-       //         list.Add(0);
-       //     }
-       //     return list;
-       // }
-
-       
-    //}
 }

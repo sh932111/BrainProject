@@ -88,13 +88,15 @@ namespace Stu.UI
 
         private void brainReiverCallback(BrainManager manager)
         {
-            MessageBox.Show("Finish");
             string over_time = DateTime.Now.ToString("yyyy/MM/dd/ HH:mm:ss");
             int numRow = manager.getStreamLog().Count / 513;
-            writeCode(runPath + "/" + "streamLog", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
-            writeCode(runPath + "/" + "dataLog", startTime, over_time, manager.getDataLog(), 512, numRow, null);
-            writeCode(runPath + "/" + "Brain", startTime, over_time, manager.getBrainList(), 1, numRow, brashTitleItem());
-            writeCode(runPath + "/" + "LastFFT", startTime, over_time, manager.getFFTList(), 512, numRow, fftTitleItem());
+            writeCode(runPath + "/" + "streamLog.csv", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
+            writeCode(runPath + "/" + "dataLog.csv", startTime, over_time, manager.getDataLog(), 512, numRow, fftTitleItem());
+            writeCode(runPath + "/" + "Brain.csv", startTime, over_time, manager.getBrainList(), 1, numRow, brashTitleItem());
+            writeCode(runPath + "/" + "NoFFT.csv", "","" , manager.getFFTList(), 512, numRow, null);
+            ArrayList fft_resource = FFTList(manager.getFFTList());
+            writeCode(runPath + "/" + "FFT.csv", "", "", fft_resource, 512, numRow, null);
+            MessageBox.Show(deviceManager.getDeviceName() + " is Finish");
             System.Diagnostics.Process.Start(runPath);
         }
 
@@ -103,6 +105,24 @@ namespace Stu.UI
             stopTimer();
             buttonStop.Hide();
             buttonRun.Show();
+        }
+        /*2048目前為寫死*/
+        private ArrayList FFTList(ArrayList lfft)
+        {
+            complex[] res = new complex[2048];
+            int x = 0;
+            foreach (ArrayList fft in lfft)
+            {
+                if (x == 2048) break;
+                string f = (string)fft[0];
+                complex item = new complex(float.Parse(f), 0);
+                res[x] = item;
+                x++;
+            }
+            ArrayList time_out = DSP.getArrayWithDivision(512.0f, 0.0f, 2048.0f);
+            complex[] fft_res = DSP.FFT(res);
+            ArrayList result = DSP.arrayMagic(time_out, fft_res, 2048);
+            return result;
         }
 
         private ArrayList brashTitleItem()
@@ -146,27 +166,36 @@ namespace Stu.UI
                     if (i == titleItem.Count - 1) sw.WriteLine(row);
                 }
             }
-            foreach (ArrayList item in list)
+            for (int i = 0; i < list.Count; i++) 
             {
-                if (index == 0)
+                if (list[i] is ArrayList)
                 {
-                    num_max++;
-                    if (num_max > numRow) break;
+                    ArrayList item = (ArrayList)list[i];
+                    if (index == 0)
+                    {
+                        num_max++;
+                        if (num_max > numRow) break;
+                    }
+                    String row = "";
+                    for (int x = 0; x < item.Count; x++)
+                    {
+                        if (row.Length == 0) row = (String)item[x];
+                        else row = row + "," + (String)item[x];
+                        if (x == item.Count - 1) sw.WriteLine(row);
+                    }
+                    if (index == numMax - 1)
+                    {
+                        index = 0;
+                    }
+                    else
+                    {
+                        index++;
+                    }
                 }
-                String row = "";
-                for (int i = 0; i < item.Count; i++)
+                else if (list[i] is string)
                 {
-                    if (row.Length == 0) row = (String)item[i];
-                    else row = row + "," + (String)item[i];
-                    if (i == item.Count - 1) sw.WriteLine(row);
-                }
-                if (index == numMax - 1)
-                {
-                    index = 0;
-                }
-                else
-                {
-                    index++;
+                    string item = (string)list[i];
+                    sw.WriteLine(item);
                 }
             }
             sw.Close();
