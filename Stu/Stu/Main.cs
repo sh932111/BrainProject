@@ -647,11 +647,8 @@ namespace Stu
         private void setRange(ArrayList fr, ArrayList lr)
         {
             ArrayList list = fileListUtils.getFiles();
-
             String create_file_name = outputPath + "/" + DateTime.Now.ToString("MMddyyyyHHmmss") + ".csv";
-
             StreamWriter sw = new StreamWriter(create_file_name);
-
             /*寫入標準*/
             String row0 = " ,";
             for (int i = 0; i < fr.Count; i++)
@@ -673,11 +670,11 @@ namespace Stu
             /*將判斷後增加的資料寫入*/
             foreach (String file_path in list)
             {
+                Console.WriteLine(file_path);
                 String file_name = file_path.Substring(file_path.LastIndexOf("\\") + 1);
                 String row_more = "";
                 row_more = file_name + ",";
                 double num = 0.0f;
-
                 for (int i = 0; i < fr.Count; i++)
                 {
                     double frange = double.Parse((String)fr[i]);
@@ -707,7 +704,6 @@ namespace Stu
                 sw.WriteLine(row_more);
             }
             /*將判斷後增加的資料寫入*/
-
             sw.Close();
             MessageBox.Show("執行成功！");
             System.Diagnostics.Process.Start(outputPath);

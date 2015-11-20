@@ -118,7 +118,7 @@ namespace Stu.Class
         {
             ArrayList list = new ArrayList();
             float freqStep = fs / 2048;
-            for (float i = loopStart; i < loopStop; i++)
+            for (float i = loopStart; i <= loopStop; i++)
             {
                 float result = freqStep * i;
                 list.Add(result);

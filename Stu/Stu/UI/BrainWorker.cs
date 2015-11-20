@@ -10,6 +10,7 @@ using Stu.Manager;
 using Stu.Class;
 using System.Collections;
 using System.IO;
+using Stu.Utils;
 
 namespace Stu.UI
 {
@@ -23,7 +24,8 @@ namespace Stu.UI
         private int time;
         private int overTime;
         private string startTime = null;
-
+        private ArrayList lastRange = null;
+        private ArrayList firstRange = null;
         public BrainWorker(string run_path,BluetoothDeviceManager device_manager)
         {
             InitializeComponent();
@@ -74,6 +76,29 @@ namespace Stu.UI
                 MessageBox.Show("請填入時間!");
                 return;
             }
+            switch (this.runType)
+            {
+                case 0:
+                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
+                    break;
+                case 1:
+                    RangeDialog.show(setRange);
+                    break;
+                default:
+                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
+                    break;
+            }
+        }
+
+        private void setRange(ArrayList fr, ArrayList lr)
+        {
+            this.firstRange = fr;
+            this.lastRange = lr;
+            brainReciverRun();
+        }
+
+        private void brainReciverRun()
+        {
             buttonStop.Show();
             buttonRun.Hide();
             overTime = int.Parse(textBoxSecond.Text);
@@ -96,8 +121,64 @@ namespace Stu.UI
             writeCode(runPath + "/" + "NoFFT.csv", "","" , manager.getFFTList(), 512, numRow, null);
             ArrayList fft_resource = FFTList(manager.getFFTList());
             writeCode(runPath + "/" + "FFT.csv", "", "", fft_resource, 512, numRow, null);
+            writeFFTResult(firstRange, lastRange, runPath + "/" + "FFTResult.csv");
             MessageBox.Show(deviceManager.getDeviceName() + " is Finish");
             System.Diagnostics.Process.Start(runPath);
+        }
+
+        private void writeFFTResult(ArrayList fr, ArrayList lr , string write_file_name)
+        {
+            StreamWriter sw = new StreamWriter(write_file_name);
+            /*寫入標準*/
+            String row0 = "";
+            for (int i = 0; i < fr.Count; i++)
+            {
+                double frange = double.Parse((String)fr[i]);
+                double lrange = double.Parse((String)lr[i]);
+                if (i != fr.Count - 1)
+                {
+                    row0 = row0 + frange + "~" + lrange + ",";
+                }
+                else
+                {
+                    row0 = row0 + frange + "~" + lrange;
+                }
+            }
+            sw.WriteLine(row0);
+            /*寫入標準*/
+            /*將判斷後增加的資料寫入*/
+            string file_path = runPath + "/" + "FFT.csv";
+            String row_more = "";
+            double num = 0.0f;
+            for (int i = 0; i < fr.Count; i++)
+            {
+                double frange = double.Parse((String)fr[i]);
+                double lrange = double.Parse((String)lr[i]);
+
+                StreamReader SR = new StreamReader(file_path);
+                string Line;
+                while ((Line = SR.ReadLine()) != null)/*讓使用者選擇第幾筆到第幾筆(1:512)*/
+                {
+                    string[] ReadLine_Array = Line.Split(',');
+
+                    String row_a = ReadLine_Array[0];
+                    String row_b = ReadLine_Array[1];
+
+                    double f_row_a = double.Parse(row_a);
+                    double f_row_b = double.Parse(row_b);
+
+                    if (frange <= f_row_a && lrange >= f_row_a) /*參考論文邊界怎麼做*/
+                    {
+                        num = num + f_row_b;
+                    }
+                }
+                row_more = row_more + num;
+                if (i != fr.Count - 1) row_more = row_more + ",";
+                num = 0.0f;
+            }
+            sw.WriteLine(row_more);
+            /*將判斷後增加的資料寫入*/
+            sw.Close();
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
@@ -119,9 +200,9 @@ namespace Stu.UI
                 res[x] = item;
                 x++;
             }
-            ArrayList time_out = DSP.getArrayWithDivision(512.0f, 0.0f, 2048.0f);
+            ArrayList time_out = DSP.getArrayWithDivision(512.0f, 0.0f, 1024.0f);
             complex[] fft_res = DSP.FFT(res);
-            ArrayList result = DSP.arrayMagic(time_out, fft_res, 2048);
+            ArrayList result = DSP.arrayMagic(time_out, fft_res, 1025);
             return result;
         }
 
@@ -200,5 +281,12 @@ namespace Stu.UI
             }
             sw.Close();
         }
+
+        private void runTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.runType = runTypeCombo.SelectedIndex;
+        }
+    
+        
     }
 }

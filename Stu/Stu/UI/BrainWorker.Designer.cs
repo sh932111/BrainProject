@@ -161,6 +161,7 @@
             this.runTypeCombo.Name = "runTypeCombo";
             this.runTypeCombo.Size = new System.Drawing.Size(121, 21);
             this.runTypeCombo.TabIndex = 11;
+            this.runTypeCombo.SelectedIndexChanged += new System.EventHandler(this.runTypeCombo_SelectedIndexChanged);
             // 
             // buttonStop
             // 
