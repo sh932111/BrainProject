@@ -45,7 +45,6 @@ namespace Stu.Class
             ArrayList tempList = new ArrayList();
             int check = 0;
             int init = 0;
-            String startTime = DateTime.Now.ToString("yyyy/MM/dd/ HH:mm:ss");
             while (isRun)
             {
                 String Value = BluetoothConnection.ReadByte().ToString("X2");
@@ -213,6 +212,7 @@ namespace Stu.Class
             }
             bluetoothConnection.Close();
             bluetoothThread.Abort();
+            Console.WriteLine("STOP");
             BrainManager manager = new BrainManager(streamLogList,dataLogList,brainList,fftList);
             if (aCallback != null) aCallback(manager);
         }
