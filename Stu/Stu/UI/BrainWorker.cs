@@ -20,13 +20,14 @@ namespace Stu.UI
         private string runPath = null;
         private BluetoothDeviceManager deviceManager = null;
         private BrainReceiver brainReceiver;
-        private System.Windows.Forms.Timer theTimer = null;
         private int time;
         private int overTime;
         private string startTime = null;
         private ArrayList lastRange = null;
         private ArrayList firstRange = null;
         private BrainCharts brainCharts = null;
+        private BackgroundWorker bgBluetooth;
+        private int serviceTime;
         public BrainWorker(string run_path,BluetoothDeviceManager device_manager)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace Stu.UI
             setComboBox();
             setValue();
             buttonStop.Hide();
+            serviceTime = -1;
         }
 
         private void setComboBox()
@@ -50,9 +52,8 @@ namespace Stu.UI
             textBoxSecond.Text = "10";
         }
 
-        private void addTime(object sender, System.EventArgs e)
+        private void addTime()
         {
-            time = time + 1;
             labelTimer.Text = time + "s";
             if (time == overTime)
             {
@@ -60,12 +61,12 @@ namespace Stu.UI
                 buttonStop.Hide();
                 buttonRun.Show();
             }
+            else runWorker();
         }
 
         private void stopTimer()
         {
-            theTimer.Enabled = false;
-            theTimer = null;
+            stopWorker();
             time = 0;
             brainReceiver.stop();
         }
@@ -97,7 +98,7 @@ namespace Stu.UI
             this.lastRange = lr;
             brainReciverRun();
         }
-        delegate void ChgLabelHandler(ArrayList list);
+        delegate void ChartUIHabdler(ArrayList list);
         private void sectionReciver(ArrayList sectionList)
         {
             string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
@@ -109,7 +110,7 @@ namespace Stu.UI
             writeCode(dir + "/" + "FFT.csv", "", "", fft_resource, 1025, 1, null);
             ArrayList chartSource = writeFFTResult(firstRange, lastRange, dir + "/" + "FFTResult.csv", dir + "/" + "FFT.csv");
             /*存資料後，更新圖表*/
-            this.Invoke(new ChgLabelHandler(brainCharts.drawLine), chartSource);
+            this.Invoke(new ChartUIHabdler(brainCharts.drawLine), chartSource);
         }
 
         private void brainReciverRun()
@@ -124,11 +125,45 @@ namespace Stu.UI
             overTime = int.Parse(textBoxSecond.Text);
             this.time = 0;
             this.startTime = DateTime.Now.ToString("yyyy/MM/dd/ HH:mm:ss");
-            theTimer = new System.Windows.Forms.Timer();
-            theTimer.Interval = 1000;
-            theTimer.Tick += new System.EventHandler(this.addTime);
-            theTimer.Enabled = true;
+            runWorker();
             brainReceiver.run();
+        }
+
+        private void runWorker()
+        {
+            bgBluetooth = new BackgroundWorker();
+            bgBluetooth.WorkerReportsProgress = true;
+            bgBluetooth.WorkerSupportsCancellation = true;
+            bgBluetooth.DoWork += new DoWorkEventHandler(background_DoWork);
+            bgBluetooth.RunWorkerCompleted += new RunWorkerCompletedEventHandler(background_Finish);
+            bgBluetooth.RunWorkerAsync();
+        }
+
+        private void stopWorker()
+        {
+            if (bgBluetooth != null)
+            {
+                bgBluetooth.CancelAsync();
+                bgBluetooth = null;
+            }
+        }
+
+        private void background_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int now = serviceTime; 
+            while(now == serviceTime)
+            {
+                string ss = DateTime.Now.ToString("ss");
+                now = int.Parse(ss);
+            }
+            serviceTime = now;
+            time = time + 1;
+        }
+
+        private void background_Finish(object sender, RunWorkerCompletedEventArgs e)
+        {
+            stopWorker();
+            addTime();
         }
 
         private void brainReiverCallback(BrainManager manager)
