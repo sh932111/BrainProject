@@ -45,3 +45,5 @@ C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Demo.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BluetoothList.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.FolderController.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BrainWorker.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BrainCharts.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.TestForm.resources

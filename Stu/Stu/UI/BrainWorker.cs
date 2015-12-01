@@ -26,6 +26,7 @@ namespace Stu.UI
         private string startTime = null;
         private ArrayList lastRange = null;
         private ArrayList firstRange = null;
+        private BrainCharts brainCharts = null;
         public BrainWorker(string run_path,BluetoothDeviceManager device_manager)
         {
             InitializeComponent();
@@ -96,7 +97,7 @@ namespace Stu.UI
             this.lastRange = lr;
             brainReciverRun();
         }
-
+        delegate void ChgLabelHandler(ArrayList list);
         private void sectionReciver(ArrayList sectionList)
         {
             string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
@@ -106,11 +107,18 @@ namespace Stu.UI
             writeCode(dir + "/" + "NoFFT.csv", "", "", sectionList, 2048, 1, null);
             ArrayList fft_resource = FFTList(sectionList);
             writeCode(dir + "/" + "FFT.csv", "", "", fft_resource, 1025, 1, null);
-            writeFFTResult(firstRange, lastRange, dir + "/" + "FFTResult.csv", dir + "/" + "FFT.csv");
+            ArrayList chartSource = writeFFTResult(firstRange, lastRange, dir + "/" + "FFTResult.csv", dir + "/" + "FFT.csv");
+            /*存資料後，更新圖表*/
+            this.Invoke(new ChgLabelHandler(brainCharts.drawLine), chartSource);
         }
 
         private void brainReciverRun()
         {
+            if (brainCharts == null)
+            {
+                brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), firstRange, lastRange);
+                brainCharts.Show();
+            }
             buttonStop.Show();
             buttonRun.Hide();
             overTime = int.Parse(textBoxSecond.Text);
@@ -134,7 +142,7 @@ namespace Stu.UI
             System.Diagnostics.Process.Start(runPath);
         }
 
-        private void writeFFTResult(ArrayList fr, ArrayList lr , string write_file_name, string fft_path)
+        private ArrayList writeFFTResult(ArrayList fr, ArrayList lr, string write_file_name, string fft_path)
         {
             StreamWriter sw = new StreamWriter(write_file_name);
             /*寫入標準*/
@@ -156,12 +164,12 @@ namespace Stu.UI
             /*寫入標準*/
             /*將判斷後增加的資料寫入*/
             String row_more = "";
-            double num = 0.0f;
+            ArrayList Classified = new ArrayList();
             for (int i = 0; i < fr.Count; i++)
             {
+                double num = 0.0f;
                 double frange = double.Parse((String)fr[i]);
                 double lrange = double.Parse((String)lr[i]);
-
                 StreamReader SR = new StreamReader(fft_path);
                 string Line;
                 while ((Line = SR.ReadLine()) != null)/*讓使用者選擇第幾筆到第幾筆(1:512)*/
@@ -181,11 +189,12 @@ namespace Stu.UI
                 }
                 row_more = row_more + num;
                 if (i != fr.Count - 1) row_more = row_more + ",";
-                num = 0.0f;
+                Classified.Add(num);
             }
             sw.WriteLine(row_more);
             /*將判斷後增加的資料寫入*/
             sw.Close();
+            return Classified;
         }
 
         private void buttonStop_Click(object sender, EventArgs e)

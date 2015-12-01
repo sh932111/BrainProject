@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,6 +85,18 @@
     </Compile>
     <Compile Include="RangeDialog.Designer.cs">
       <DependentUpon>RangeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BluetoothChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BluetoothChart.Designer.cs">
+      <DependentUpon>BluetoothChart.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BluetoothList.cs">
       <SubType>Form</SubType>
@@ -125,6 +138,12 @@
     </Compile>
     <EmbeddedResource Include="RangeDialog.resx">
       <DependentUpon>RangeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BluetoothChart.resx">
+      <DependentUpon>BluetoothChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BluetoothList.resx">
       <DependentUpon>BluetoothList.cs</DependentUpon>

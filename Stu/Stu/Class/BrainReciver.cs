@@ -160,16 +160,19 @@ namespace Stu.Class
                         {
                             ArrayList refresh_item = new ArrayList();
                             refresh_item.Add(item[0]);
-                            String code = (String)item[6] + (String)item[7];
-                            String code_result = Calculate.run16To2(code);
-                            refresh_item.Add(code_result);
-                            dataLogList.Add(refresh_item);
-                            fftList.Add(code_result);
-                            if (fftList.Count == 2048)
+                            if (item.Count > 5)
                             {
-                                ArrayList fft = (ArrayList)fftList.Clone();
-                                if (aSectionCallback != null) aSectionCallback(fft);
-                                fftList.Clear();
+                                String code = (String)item[6] + (String)item[7];
+                                String code_result = Calculate.run16To2(code);
+                                refresh_item.Add(code_result);
+                                dataLogList.Add(refresh_item);
+                                fftList.Add(code_result);
+                                if (fftList.Count == 2048)
+                                {
+                                    ArrayList fft = (ArrayList)fftList.Clone();
+                                    if (aSectionCallback != null) aSectionCallback(fft);
+                                    fftList.Clear();
+                                }
                             }
                         }
                     }

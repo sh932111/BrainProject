@@ -410,10 +410,7 @@ namespace Stu.Class
                     info.Attributes = FileAttributes.Hidden;
                     return true;
                 }
-                else
-                    return true;
-
-                return false;
+                else return false;
             }
 
         }
