@@ -31,7 +31,7 @@ namespace Stu.UI
             InitializeComponent();
             this.runPath = run_path;
             this.deviceManager = device_manager;
-            this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback);
+            this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback, sectionReciver);
             setComboBox();
             setValue();
             buttonStop.Hide();
@@ -97,6 +97,18 @@ namespace Stu.UI
             brainReciverRun();
         }
 
+        private void sectionReciver(ArrayList sectionList)
+        {
+            string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
+            string dir = runPath + "/" + time;
+            FloderUtils folder = new FloderUtils();
+            folder.createFolder(dir);
+            writeCode(dir + "/" + "NoFFT.csv", "", "", sectionList, 2048, 1, null);
+            ArrayList fft_resource = FFTList(sectionList);
+            writeCode(dir + "/" + "FFT.csv", "", "", fft_resource, 1025, 1, null);
+            writeFFTResult(firstRange, lastRange, dir + "/" + "FFTResult.csv", dir + "/" + "FFT.csv");
+        }
+
         private void brainReciverRun()
         {
             buttonStop.Show();
@@ -118,15 +130,11 @@ namespace Stu.UI
             writeCode(runPath + "/" + "streamLog.csv", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
             writeCode(runPath + "/" + "dataLog.csv", startTime, over_time, manager.getDataLog(), 512, numRow, fftTitleItem());
             writeCode(runPath + "/" + "Brain.csv", startTime, over_time, manager.getBrainList(), 1, numRow, brashTitleItem());
-            writeCode(runPath + "/" + "NoFFT.csv", "","" , manager.getFFTList(), 512, numRow, null);
-            ArrayList fft_resource = FFTList(manager.getFFTList());
-            writeCode(runPath + "/" + "FFT.csv", "", "", fft_resource, 512, numRow, null);
-            writeFFTResult(firstRange, lastRange, runPath + "/" + "FFTResult.csv");
             MessageBox.Show(deviceManager.getDeviceName() + " is Finish");
             System.Diagnostics.Process.Start(runPath);
         }
 
-        private void writeFFTResult(ArrayList fr, ArrayList lr , string write_file_name)
+        private void writeFFTResult(ArrayList fr, ArrayList lr , string write_file_name, string fft_path)
         {
             StreamWriter sw = new StreamWriter(write_file_name);
             /*寫入標準*/
@@ -147,7 +155,6 @@ namespace Stu.UI
             sw.WriteLine(row0);
             /*寫入標準*/
             /*將判斷後增加的資料寫入*/
-            string file_path = runPath + "/" + "FFT.csv";
             String row_more = "";
             double num = 0.0f;
             for (int i = 0; i < fr.Count; i++)
@@ -155,7 +162,7 @@ namespace Stu.UI
                 double frange = double.Parse((String)fr[i]);
                 double lrange = double.Parse((String)lr[i]);
 
-                StreamReader SR = new StreamReader(file_path);
+                StreamReader SR = new StreamReader(fft_path);
                 string Line;
                 while ((Line = SR.ReadLine()) != null)/*讓使用者選擇第幾筆到第幾筆(1:512)*/
                 {
@@ -188,22 +195,28 @@ namespace Stu.UI
             buttonRun.Show();
         }
         /*2048目前為寫死*/
+        int max = 2048;
         private ArrayList FFTList(ArrayList lfft)
         {
-            complex[] res = new complex[2048];
+            float[] resource = new float[max];
             int x = 0;
-            foreach (ArrayList fft in lfft)
+            foreach (string fft in lfft)
             {
-                if (x == 2048) break;
-                string f = (string)fft[0];
-                complex item = new complex(float.Parse(f), 0);
-                res[x] = item;
+                if (x == max) break;
+                float f = float.Parse(fft);
+                resource[x] = f;
                 x++;
             }
-            ArrayList time_out = DSP.getArrayWithDivision(512.0f, 0.0f, 1024.0f);
-            complex[] fft_res = DSP.FFT(res);
-            ArrayList result = DSP.arrayMagic(time_out, fft_res, 1025);
+            ArrayList time_out = TWFFT.getArrayWithDivision(512.0f, 0.0f, 1024.0f);
+            ArrayList result = TWFFT.FFTMagic(time_out, TWFFT.FFTAbs(TWFFT.FFT(resource, getZero())), 1025);
             return result;
+        }
+
+        private float[] getZero()
+        {
+            float[] res = new float[max];
+            for (int i = 0; i < max; i++) res[i] = 0.0f;
+            return res;
         }
 
         private ArrayList brashTitleItem()
@@ -286,7 +299,5 @@ namespace Stu.UI
         {
             this.runType = runTypeCombo.SelectedIndex;
         }
-    
-        
     }
 }

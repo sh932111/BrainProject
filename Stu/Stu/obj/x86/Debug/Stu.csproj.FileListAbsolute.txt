@@ -39,7 +39,6 @@ Z:\winData\Stu\Stu\obj\x86\Debug\Stu.Main.resources
 Z:\winData\Stu\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
 Z:\winData\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
 Z:\winData\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Main.resources
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\InTheHand.Net.Personal.dll
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\InTheHand.Net.Personal.xml
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Demo.resources

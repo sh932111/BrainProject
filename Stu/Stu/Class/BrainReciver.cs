@@ -12,16 +12,19 @@ namespace Stu.Class
     class BrainReceiver
     {
         public delegate void BrainReceiverCallback(BrainManager manager);
+        public delegate void SectionCallback(ArrayList sectionList);
 
         private string COM = null;
         private SerialPort bluetoothConnection = null;
         private Thread bluetoothThread = null;
         private Boolean isRun = false;
         private BrainReceiverCallback aCallback;
+        private SectionCallback aSectionCallback;
 
-        public BrainReceiver(string com,BrainReceiverCallback cb)
+        public BrainReceiver(string com, BrainReceiverCallback cb, SectionCallback scb)
         {
             this.aCallback = cb;
+            this.aSectionCallback = scb;
             this.COM = com;
             this.bluetoothConnection = new SerialPort();
             bluetoothConnection.PortName = com;
@@ -161,9 +164,13 @@ namespace Stu.Class
                             String code_result = Calculate.run16To2(code);
                             refresh_item.Add(code_result);
                             dataLogList.Add(refresh_item);
-                            ArrayList fft_item = new ArrayList();
-                            fft_item.Add(code_result);
-                            fftList.Add(fft_item);
+                            fftList.Add(code_result);
+                            if (fftList.Count == 2048)
+                            {
+                                ArrayList fft = (ArrayList)fftList.Clone();
+                                if (aSectionCallback != null) aSectionCallback(fft);
+                                fftList.Clear();
+                            }
                         }
                     }
                     if (init == 1)
@@ -210,7 +217,7 @@ namespace Stu.Class
                     tempList.Add(res);
                 }
             }
-            BrainManager manager = new BrainManager(streamLogList,dataLogList,brainList,fftList);
+            BrainManager manager = new BrainManager(streamLogList,dataLogList,brainList);
             if (aCallback != null) aCallback(manager);
             bluetoothConnection.Close();
             bluetoothThread.Abort();

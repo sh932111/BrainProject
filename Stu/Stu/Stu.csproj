@@ -58,11 +58,11 @@
     <Compile Include="Class\BlueController.cs" />
     <Compile Include="Class\BrainReciver.cs" />
     <Compile Include="Class\Calculate.cs" />
-    <Compile Include="Class\DSP.cs" />
     <Compile Include="Class\FloderUtils.cs" />
     <Compile Include="Class\OutputFile.cs" />
     <Compile Include="Class\Rules.cs" />
     <Compile Include="Class\Think.cs" />
+    <Compile Include="Class\TWFFT.cs" />
     <Compile Include="Computer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,12 +74,6 @@
     </Compile>
     <Compile Include="Demo.Designer.cs">
       <DependentUpon>Demo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Manager\BluetoothDeviceManager.cs" />
     <Compile Include="Manager\BrainManager.cs" />
@@ -118,9 +112,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Demo.resx">
       <DependentUpon>Demo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -11,14 +11,12 @@ namespace Stu.Manager
         private ArrayList streamLogList = null;
         private ArrayList dataLogList = null;
         private ArrayList brainList = null;
-        private ArrayList fftList = null;
 
-        public BrainManager(ArrayList stream_log_list, ArrayList data_log_list, ArrayList brain_list, ArrayList fft_list)
+        public BrainManager(ArrayList stream_log_list, ArrayList data_log_list, ArrayList brain_list)
         {
             this.streamLogList = stream_log_list;
             this.dataLogList = data_log_list;
             this.brainList = brain_list;
-            this.fftList = fft_list;
         }
 
         public ArrayList getStreamLog()
@@ -34,11 +32,6 @@ namespace Stu.Manager
         public ArrayList getBrainList()
         {
             return brainList;
-        }
-
-        public ArrayList getFFTList()
-        {
-            return fftList;
         }
     }
 }
