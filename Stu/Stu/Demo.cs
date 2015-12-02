@@ -22,7 +22,7 @@ namespace Stu
 
         private void reloadBlockUI()
         {
-            BluetoothList bluetooth_list = new BluetoothList(bluetoothCallback);
+            BluetoothList bluetooth_list = new BluetoothList(bluetoothCallback, bluetoothOnClickCallback);
             bluetooth_list.Location = new Point(0, 0);
             bluetooth_list.TopLevel = false;
             this.Controls.Add(bluetooth_list);
@@ -38,6 +38,10 @@ namespace Stu
         {
             folder_controller.Show();
             folder_controller.reloadData(bluetoothCheckedList);
+        }
+        private void bluetoothOnClickCallback()
+        {
+            folder_controller.Hide();
         }
     }
 }

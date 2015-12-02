@@ -42,9 +42,9 @@
             this.brainChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.brainChart.Legends.Add(legend1);
-            this.brainChart.Location = new System.Drawing.Point(0, 67);
+            this.brainChart.Location = new System.Drawing.Point(2, 60);
             this.brainChart.Name = "brainChart";
-            this.brainChart.Size = new System.Drawing.Size(656, 314);
+            this.brainChart.Size = new System.Drawing.Size(330, 180);
             this.brainChart.TabIndex = 0;
             this.brainChart.Text = "chart1";
             // 
@@ -73,12 +73,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(654, 381);
+            this.ClientSize = new System.Drawing.Size(334, 242);
             this.Controls.Add(this.labelMac);
             this.Controls.Add(this.labelDeviceName);
             this.Controls.Add(this.brainChart);
             this.Name = "BrainCharts";
             this.Text = "BluetoothChart";
+            this.ResizeEnd += new System.EventHandler(this.BrainCharts_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.brainChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

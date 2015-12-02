@@ -38,6 +38,11 @@ namespace Stu.UI
             setValue();
             buttonStop.Hide();
             serviceTime = -1;
+            if (brainCharts == null)
+            {
+                brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress());
+                brainCharts.Show();
+            }
         }
 
         private void setComboBox()
@@ -96,30 +101,30 @@ namespace Stu.UI
         {
             this.firstRange = fr;
             this.lastRange = lr;
+            brainCharts.setChartLine(fr, lr);
             brainReciverRun();
         }
         delegate void ChartUIHabdler(ArrayList list);
         private void sectionReciver(ArrayList sectionList)
         {
-            string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
-            string dir = runPath + "/" + time;
+            string file = DateTime.Now.ToString("yyyyMMddHHmmssfffff") + ".csv";
             FloderUtils folder = new FloderUtils();
-            folder.createFolder(dir);
-            writeCode(dir + "/" + "NoFFT.csv", "", "", sectionList, 2048, 1, null);
+            string dir_nofft = runPath + "/NoFFT";
+            string dir_fft = runPath + "/FFT";
+            string dir_fft_result = runPath + "/FFTResult";
+            folder.createFolder(dir_nofft);
+            folder.createFolder(dir_fft);
+            folder.createFolder(dir_fft_result);
+            writeCode(dir_nofft + "/" + file, "", "", sectionList, 2048, 1, null);
             ArrayList fft_resource = FFTList(sectionList);
-            writeCode(dir + "/" + "FFT.csv", "", "", fft_resource, 1025, 1, null);
-            ArrayList chartSource = writeFFTResult(firstRange, lastRange, dir + "/" + "FFTResult.csv", dir + "/" + "FFT.csv");
+            writeCode(dir_fft + "/" + file, "", "", fft_resource, 1025, 1, null);
+            ArrayList chartSource = writeFFTResult(firstRange, lastRange, dir_fft_result + "/" + file, dir_fft + "/" + file);
             /*存資料後，更新圖表*/
             this.Invoke(new ChartUIHabdler(brainCharts.drawLine), chartSource);
         }
 
         private void brainReciverRun()
         {
-            if (brainCharts == null)
-            {
-                brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), firstRange, lastRange);
-                brainCharts.Show();
-            }
             buttonStop.Show();
             buttonRun.Hide();
             overTime = int.Parse(textBoxSecond.Text);

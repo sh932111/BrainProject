@@ -1,4 +1,5 @@
-﻿namespace Stu.UI
+﻿using System.Windows.Forms;
+namespace Stu.UI
 {
     partial class BluetoothList
     {
@@ -33,6 +34,7 @@
             this.bluetoothListView = new System.Windows.Forms.ListView();
             this.loaderImage = new System.Windows.Forms.PictureBox();
             this.connectBtn = new System.Windows.Forms.Button();
+            this.btnSearchDevice = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.loaderImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +77,16 @@
             this.connectBtn.UseVisualStyleBackColor = true;
             this.connectBtn.Click += new System.EventHandler(this.connectBtn_Click);
             // 
+            // btnSearchDevice
+            // 
+            this.btnSearchDevice.Location = new System.Drawing.Point(12, 159);
+            this.btnSearchDevice.Name = "btnSearchDevice";
+            this.btnSearchDevice.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchDevice.TabIndex = 4;
+            this.btnSearchDevice.Text = "搜尋裝置";
+            this.btnSearchDevice.UseVisualStyleBackColor = true;
+            this.btnSearchDevice.Click += new System.EventHandler(this.btnSearchDevice_Click);
+            // 
             // BluetoothList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,6 +94,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(300, 200);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSearchDevice);
             this.Controls.Add(this.connectBtn);
             this.Controls.Add(this.loaderImage);
             this.Controls.Add(this.bluetoothListView);
@@ -101,5 +114,6 @@
         private System.Windows.Forms.ListView bluetoothListView;
         private System.Windows.Forms.PictureBox loaderImage;
         private System.Windows.Forms.Button connectBtn;
+        private Button btnSearchDevice;
     }
 }

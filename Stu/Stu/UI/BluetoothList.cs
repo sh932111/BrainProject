@@ -15,30 +15,42 @@ namespace Stu.UI
     public partial class BluetoothList : Form
     {
         public delegate void BrainListCallback(ArrayList bluetoothCheckedList);
+        public delegate void BrainOnClickListCallback();
 
         private BackgroundWorker bgBluetooth;
         private BluetoothController bluetoothController;
         private ListView bluetoothList = null;
         private ArrayList resultList;
         private BrainListCallback aCallback = null;
-        public BluetoothList(BrainListCallback acb)
+        private BrainOnClickListCallback aOnClickCallback = null;
+        public BluetoothList(BrainListCallback acb , BrainOnClickListCallback onCb)
         {
             InitializeComponent();
             this.aCallback = acb;
+            this.aOnClickCallback = onCb;
+            /*ListView UI*/
+            this.resultList = new ArrayList();
+            this.bluetoothList = bluetoothListView;
+            bluetoothList.BeginUpdate();
+            bluetoothList.View = View.Details;
+            bluetoothList.ItemChecked += new ItemCheckedEventHandler(CheckedState);
+            loadListTitle();
+            bluetoothList.EndUpdate();
             /*搜尋很久放在BackgroundWorker*/
+            runSearchDevice();
+        }
+
+        private void runSearchDevice()
+        {
+            bluetoothList.Clear();
+            loaderImage.Show();
+            btnSearchDevice.Enabled = false;
             bgBluetooth = new BackgroundWorker();
             bgBluetooth.WorkerReportsProgress = true;
             bgBluetooth.WorkerSupportsCancellation = true;
             bgBluetooth.DoWork += new DoWorkEventHandler(background_DoWork);
             bgBluetooth.RunWorkerCompleted += new RunWorkerCompletedEventHandler(background_Finish);
             bgBluetooth.RunWorkerAsync();
-            /*ListView UI*/
-            this.resultList = new ArrayList();
-            this.bluetoothList = bluetoothListView;
-            bluetoothList.BeginUpdate();
-            bluetoothList.View = View.Details;
-            loadListTitle();
-            bluetoothList.EndUpdate();
         }
 
         private void background_DoWork(object sender, DoWorkEventArgs e)
@@ -49,9 +61,14 @@ namespace Stu.UI
 
         private void background_Finish(object sender, RunWorkerCompletedEventArgs e)
         {
+            btnSearchDevice.Enabled = true;
             loaderImage.Hide();
             resultList = bluetoothController.getBluetoothList();
-            bgBluetooth.CancelAsync();
+            if (bgBluetooth != null)
+            {
+                bgBluetooth.CancelAsync();
+                bgBluetooth = null;
+            }
             reloadList();
         }
 
@@ -92,6 +109,16 @@ namespace Stu.UI
                 }
             }
             if (aCallback != null) aCallback(result_list);
+        }
+        private void CheckedState(object sender, System.Windows.Forms.ItemCheckedEventArgs e)
+        {
+            if (aOnClickCallback != null) aOnClickCallback();
+        }
+
+        private void btnSearchDevice_Click(object sender, EventArgs e)
+        {
+            if (aOnClickCallback != null) aOnClickCallback();
+            runSearchDevice();
         }
     }
 }

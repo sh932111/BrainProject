@@ -14,13 +14,17 @@ namespace Stu.UI
     public partial class BrainCharts : Form
     {
         private ArrayList chartCollection = null;
-        public BrainCharts(string device_name , string device_mac ,ArrayList chart_fnames, ArrayList chart_lnames)
+        public BrainCharts(string device_name , string device_mac)
         {
-            int max = 1000000;
             InitializeComponent();
             this.labelDeviceName.Text = device_name;
             this.labelMac.Text = device_mac;
             chartCollection = new ArrayList();
+        }
+
+        public void setChartLine(ArrayList chart_fnames, ArrayList chart_lnames)
+        {
+            int max = 1000000;
             for (int i = 0; i < chart_fnames.Count; i++)
             {
                 string fn = (string)chart_fnames[i];
@@ -34,6 +38,7 @@ namespace Stu.UI
             }
             brainChart.ChartAreas[0].AxisX.IsMarginVisible = false;
         }
+
         public void drawLine(ArrayList chartSource)
         {
             string time = DateTime.Now.ToString("HH:mm:ss");
@@ -43,6 +48,12 @@ namespace Stu.UI
                 Series series = (Series)chartCollection[i];
                 series.Points.AddXY(time, data);
             }
+        }
+
+        private void BrainCharts_ResizeEnd(object sender, EventArgs e)
+        {
+            brainChart.Width = this.Width - 20;
+            brainChart.Height = this.Height - 100;
         }
     }
 }
