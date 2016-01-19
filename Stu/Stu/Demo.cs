@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Stu.UI;
 using System.Collections;
+using Stu.Class;
 
 namespace Stu
 {

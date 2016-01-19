@@ -64,6 +64,7 @@
     <Compile Include="Class\Rules.cs" />
     <Compile Include="Class\Think.cs" />
     <Compile Include="Class\TWFFT.cs" />
+    <Compile Include="Class\WriteFile.cs" />
     <Compile Include="Computer.cs">
       <SubType>Form</SubType>
     </Compile>

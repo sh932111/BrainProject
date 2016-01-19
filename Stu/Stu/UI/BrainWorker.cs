@@ -25,7 +25,7 @@ namespace Stu.UI
         private string startTime = null;
         private ArrayList lastRange = null;
         private ArrayList firstRange = null;
-        private BrainCharts brainCharts = null;
+        //private BrainCharts brainCharts = null;
         private BackgroundWorker bgBluetooth;
         private int serviceTime;
         public BrainWorker(string run_path,BluetoothDeviceManager device_manager)
@@ -38,11 +38,11 @@ namespace Stu.UI
             setValue();
             buttonStop.Hide();
             serviceTime = -1;
-            if (brainCharts == null)
-            {
-                brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress());
-                brainCharts.Show();
-            }
+            //if (brainCharts == null)
+            //{
+            //    brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress());
+            //    brainCharts.Show();
+            //}
         }
 
         private void setComboBox()
@@ -74,6 +74,8 @@ namespace Stu.UI
             stopWorker();
             time = 0;
             brainReceiver.stop();
+            BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress());
+            brainCharts.Show();
         }
 
         private void buttonRun_Click(object sender, EventArgs e)
@@ -101,13 +103,14 @@ namespace Stu.UI
         {
             this.firstRange = fr;
             this.lastRange = lr;
-            brainCharts.setChartLine(fr, lr);
+            //brainCharts.setChartLine(fr, lr);
             brainReciverRun();
         }
         delegate void ChartUIHabdler(ArrayList list);
         private void sectionReciver(ArrayList sectionList)
         {
-            string file = DateTime.Now.ToString("yyyyMMddHHmmssfffff") + ".csv";
+            string time = DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fffff");
+            string file = time + ".csv";
             FloderUtils folder = new FloderUtils();
             string dir_nofft = runPath + "/NoFFT";
             string dir_fft = runPath + "/FFT";
@@ -115,14 +118,19 @@ namespace Stu.UI
             folder.createFolder(dir_nofft);
             folder.createFolder(dir_fft);
             folder.createFolder(dir_fft_result);
+
             writeCode(dir_nofft + "/" + file, "", "", sectionList, 2048, 1, null);
             ArrayList fft_resource = FFTList(sectionList);
             writeCode(dir_fft + "/" + file, "", "", fft_resource, 1025, 1, null);
-            ArrayList chartSource = writeFFTResult(firstRange, lastRange, dir_fft_result + "/" + file, dir_fft + "/" + file);
+            
+            WriteFile writeFile = new WriteFile(runPath);
+            writeFile.FFTResult(firstRange, lastRange, time, dir_fft + "/" + file);
             /*存資料後，更新圖表*/
-            this.Invoke(new ChartUIHabdler(brainCharts.drawLine), chartSource);
+            //ArrayList chartSource = writeFFTResult(firstRange, lastRange, dir_fft_result + "/" + file, dir_fft + "/" + file);
+            //this.Invoke(new ChartUIHabdler(brainCharts.drawLine), chartSource);
         }
 
+        
         private void brainReciverRun()
         {
             buttonStop.Show();

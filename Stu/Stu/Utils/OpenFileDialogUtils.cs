@@ -18,7 +18,7 @@ namespace Stu.Utils
             this.callback = call_back;
 
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = true;
+            //dialog.Multiselect = true;
             dialog.Title = "Select file";
             dialog.InitialDirectory = ".\\";
             //dialog.Filter = "xls files (*.*)|*.xls";

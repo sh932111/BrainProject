@@ -27,7 +27,7 @@ namespace Stu
                 brainCharts = new BrainCharts("deviceName", "deviceAddress");
                 brainCharts.Show();
             }
-            brainCharts.drawLine(getTestData(RangeDefinition.getFirstRange().Count));
+            //brainCharts.drawLine(getTestData(RangeDefinition.getFirstRange().Count));
         }
         private ArrayList getTestData(int num)
         {
