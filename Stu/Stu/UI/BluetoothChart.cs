@@ -19,6 +19,7 @@ namespace Stu.UI
         private ArrayList chartDataes = null;
         private ArrayList chartCombos = null;
         private int comboIndex;
+        private int colorIndex;
         /*Chart Value*/
         public BrainCharts(string device_name , string device_mac)
         {
@@ -28,6 +29,7 @@ namespace Stu.UI
             this.chartCombos = new ArrayList();
             this.chartDataes = new ArrayList();
             this.comboIndex = 0;
+            this.colorIndex = 0;
         }
 
         public void parseResultFile(string file_path)
@@ -82,6 +84,7 @@ namespace Stu.UI
             int value = int.Parse(item1);
             int index = (int)indexCombo.SelectedItem;
             Series series = brainChart.Series[0];
+            series.Points.Clear();
             int start = (index - 1) * value;
             for (int i = start; i < chartDataes.Count; i++)
             {
@@ -103,8 +106,19 @@ namespace Stu.UI
             Series series = new Series(name, max);
             series.Font = new System.Drawing.Font("新細明體", 10);
             series.ChartType = SeriesChartType.Line;
+            series.Color = getColorWithIndex();
             this.brainChart.Series.Add(series);
             brainChart.ChartAreas[0].AxisX.IsMarginVisible = false;
+            colorIndex++;
+        }
+
+        private Color getColorWithIndex()
+        {
+            if (colorIndex % 5 == 0) return Color.Red;
+            else if (colorIndex % 5 == 1) return Color.Blue;
+            else if (colorIndex % 5 == 2) return Color.Yellow;
+            else if (colorIndex % 5 == 3) return Color.Purple;
+            else return Color.Green;
         }
 
         public void drawLine(Series series , string time , string data)

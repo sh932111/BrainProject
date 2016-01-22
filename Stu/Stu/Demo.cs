@@ -19,6 +19,8 @@ namespace Stu
         {
             InitializeComponent();
             reloadBlockUI();
+            BrainCharts brainCharts = new BrainCharts("", "");
+            brainCharts.Show();
         }
 
         private void reloadBlockUI()
