@@ -15,9 +15,8 @@ namespace Stu.Utils
             fr.Add("0.1");
             fr.Add("4");
             fr.Add("8");
-            fr.Add("12");
-            fr.Add("16");
-            fr.Add("21");
+            fr.Add("13");
+            fr.Add("30");
 
             return fr;
         }
@@ -25,12 +24,11 @@ namespace Stu.Utils
         {
             ArrayList lr = new ArrayList();
 
-            lr.Add("3");
-            lr.Add("7");
-            lr.Add("12");
-            lr.Add("15");
-            lr.Add("20");
+            lr.Add("4");
+            lr.Add("7.5");
+            lr.Add("13");
             lr.Add("30");
+            lr.Add("70");
 
             return lr;
         }

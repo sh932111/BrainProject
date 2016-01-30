@@ -18,10 +18,12 @@ namespace Stu.UI
         /*Chart Value*/
         private ArrayList chartDataes = null;
         private ArrayList chartCombos = null;
+        private ArrayList maxRange = null;
         private int comboIndex;
         private int colorIndex;
+        private string parseTimeForrmat = null;
         /*Chart Value*/
-        public BrainCharts(string device_name , string device_mac)
+        public BrainCharts(string device_name , string device_mac , ArrayList max_range , string time_forrmat)
         {
             InitializeComponent();
             this.labelDeviceName.Text = device_name;
@@ -30,6 +32,8 @@ namespace Stu.UI
             this.chartDataes = new ArrayList();
             this.comboIndex = 0;
             this.colorIndex = 0;
+            this.parseTimeForrmat = time_forrmat;
+            this.maxRange = max_range;
         }
 
         public void parseResultFile(string file_path)
@@ -88,11 +92,11 @@ namespace Stu.UI
             int start = (index - 1) * value;
             for (int i = start; i < chartDataes.Count; i++)
             {
-                if (i == value) break;
+                if (i == value * index - 1) break;
                 string line = (string)chartDataes[i];
                 string[] ReadLine_Array = line.Split(',');
                 string time = ReadLine_Array[0];
-                DateTime myDate = DateTime.ParseExact(time, "yyyy_MM_dd_HH_mm_ss_fffff",  System.Globalization.CultureInfo.InvariantCulture);
+                DateTime myDate = DateTime.ParseExact(time,parseTimeForrmat,  System.Globalization.CultureInfo.InvariantCulture);
                 time = myDate.ToString("HH:mm:ss");
                 string chartCode = ReadLine_Array[comboIndex + 1];
                 drawLine(series, time, chartCode);
@@ -102,13 +106,15 @@ namespace Stu.UI
         private void setChartLayout(string name)
         {
             this.brainChart.Series.Clear();
-            int max = 1000000;
-            Series series = new Series(name, max);
+            int max = 5000000;
+            if (maxRange != null) max = (int)maxRange[comboIndex];
+            Series series = new Series(name);
             series.Font = new System.Drawing.Font("新細明體", 10);
             series.ChartType = SeriesChartType.Line;
             series.Color = getColorWithIndex();
             this.brainChart.Series.Add(series);
             brainChart.ChartAreas[0].AxisX.IsMarginVisible = false;
+            brainChart.ChartAreas[0].AxisY.Maximum = max;
             colorIndex++;
         }
 
@@ -116,7 +122,7 @@ namespace Stu.UI
         {
             if (colorIndex % 5 == 0) return Color.Red;
             else if (colorIndex % 5 == 1) return Color.Blue;
-            else if (colorIndex % 5 == 2) return Color.Yellow;
+            else if (colorIndex % 5 == 2) return Color.Black;
             else if (colorIndex % 5 == 3) return Color.Purple;
             else return Color.Green;
         }

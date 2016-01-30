@@ -17,7 +17,7 @@ namespace Stu.Class
         private string COM = null;
         private SerialPort bluetoothConnection = null;
         private Thread bluetoothThread = null;
-        private Boolean isRun = false;
+        public  Boolean isRun = false;
         private BrainReceiverCallback aCallback;
         private SectionCallback aSectionCallback;
 

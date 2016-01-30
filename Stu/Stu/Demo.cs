@@ -17,9 +17,22 @@ namespace Stu
         private FolderController folder_controller;
         public Demo()
         {
+            ArrayList list = new ArrayList();
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 8 || i == 9)
+                {
+                    list.Add(100);
+                }
+                else
+                {
+                    list.Add(20000000);
+                }
+            }
+
             InitializeComponent();
             reloadBlockUI();
-            BrainCharts brainCharts = new BrainCharts("", "");
+            BrainCharts brainCharts = new BrainCharts("", "", list, "yyyy/MM/dd/ HH:mm:ss.fffff");
             brainCharts.Show();
         }
 

@@ -24,8 +24,7 @@ namespace Stu
         {
             if (brainCharts == null)
             {
-                brainCharts = new BrainCharts("deviceName", "deviceAddress");
-                brainCharts.Show();
+               
             }
             //brainCharts.drawLine(getTestData(RangeDefinition.getFirstRange().Count));
         }

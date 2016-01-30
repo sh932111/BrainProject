@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.brainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelDeviceName = new System.Windows.Forms.Label();
             this.labelMac = new System.Windows.Forms.Label();
@@ -42,10 +42,10 @@
             // 
             // brainChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.brainChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.brainChart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.brainChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.brainChart.Legends.Add(legend1);
             this.brainChart.Location = new System.Drawing.Point(2, 60);
             this.brainChart.Name = "brainChart";
             this.brainChart.Size = new System.Drawing.Size(574, 306);
@@ -95,6 +95,9 @@
             // 
             this.showNumCombo.FormattingEnabled = true;
             this.showNumCombo.Items.AddRange(new object[] {
+            "200",
+            "500",
+            "1000",
             "100",
             "50",
             "30",

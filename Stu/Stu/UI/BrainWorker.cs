@@ -59,6 +59,7 @@ namespace Stu.UI
 
         private void addTime()
         {
+            if (!brainReceiver.isRun) return;
             labelTimer.Text = time + "s";
             if (time == overTime)
             {
@@ -74,8 +75,28 @@ namespace Stu.UI
             stopWorker();
             time = 0;
             brainReceiver.stop();
-            BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress());
+
+            BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(),null, "yyyy_MM_dd_HH_mm_ss_fffff");
             brainCharts.Show();
+            brainCharts.parseResultFile(runPath + "/ResultFile.csv");
+
+            ArrayList list = new ArrayList();
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 8 || i == 9)
+                {
+                    list.Add(100);
+                }
+                else
+                {
+                    list.Add(20000000);
+                }
+            }
+
+            BrainCharts brainCharts2 = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), list, "yyyy/MM/dd/ HH:mm:ss.fffff");
+            brainCharts2.Show();
+            brainCharts2.parseResultFile(runPath + "/Brain.csv");
+
         }
 
         private void buttonRun_Click(object sender, EventArgs e)
@@ -114,10 +135,8 @@ namespace Stu.UI
             FloderUtils folder = new FloderUtils();
             string dir_nofft = runPath + "/NoFFT";
             string dir_fft = runPath + "/FFT";
-            string dir_fft_result = runPath + "/FFTResult";
             folder.createFolder(dir_nofft);
             folder.createFolder(dir_fft);
-            folder.createFolder(dir_fft_result);
 
             writeCode(dir_nofft + "/" + file, "", "", sectionList, 2048, 1, null);
             ArrayList fft_resource = FFTList(sectionList);
@@ -185,7 +204,7 @@ namespace Stu.UI
             int numRow = manager.getStreamLog().Count / 513;
             writeCode(runPath + "/" + "streamLog.csv", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
             writeCode(runPath + "/" + "dataLog.csv", startTime, over_time, manager.getDataLog(), 512, numRow, fftTitleItem());
-            writeCode(runPath + "/" + "Brain.csv", startTime, over_time, manager.getBrainList(), 1, numRow, brashTitleItem());
+            writeCode(runPath + "/" + "Brain.csv", "", "", manager.getBrainList(), 1, numRow, brashTitleItem());
             MessageBox.Show(deviceManager.getDeviceName() + " is Finish");
             System.Diagnostics.Process.Start(runPath);
         }
