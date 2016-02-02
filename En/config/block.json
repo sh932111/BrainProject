@@ -1,0 +1,20 @@
+{
+	"editWord": {
+		"path" : "/index/editWord"
+	},
+	"wordManager": {
+		"path" : "/index/wordManager"
+	},
+	"typeManager": {
+		"path" : "/index/typeManager"
+	},
+	"left": {
+		"path" : "/plug/left"
+	},
+	"footer": {
+		"path" : "/plug/footer"
+	},
+	"header": {
+		"path" : "/plug/header"
+	}
+}
