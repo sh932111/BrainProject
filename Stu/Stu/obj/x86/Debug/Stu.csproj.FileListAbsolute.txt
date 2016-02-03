@@ -65,3 +65,5 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.BluetoothLi
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.BrainWorker.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.FolderController.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.dll
+C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.xml

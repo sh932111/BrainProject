@@ -15,7 +15,7 @@ namespace Stu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Demo());
+            Application.Run(new TestForm());
         }
     }
 }
