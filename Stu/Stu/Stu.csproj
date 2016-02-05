@@ -65,6 +65,8 @@
     <Compile Include="Class\Calculate.cs" />
     <Compile Include="Class\FloderUtils.cs" />
     <Compile Include="Class\HttpWorker.cs" />
+    <Compile Include="Class\JSONArray.cs" />
+    <Compile Include="Class\JSONObject.cs" />
     <Compile Include="Class\OutputFile.cs" />
     <Compile Include="Class\Rules.cs" />
     <Compile Include="Class\Think.cs" />
@@ -84,7 +86,7 @@
     </Compile>
     <Compile Include="Manager\BluetoothDeviceManager.cs" />
     <Compile Include="Manager\BrainManager.cs" />
-    <Compile Include="Manager\Word.cs" />
+    <Compile Include="Manager\WordManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeDialog.cs">

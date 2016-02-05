@@ -14,11 +14,11 @@ namespace Stu.Class
         public static string wordList = "http://shared.tw/En/api/module/en/word/list.php";
 
         private string requestURL = null;
-        private Dictionary<string, string> requestForm = null;
+        private JSONObject requestForm = null;
         private BackgroundWorker bgBluetooth;
         private string reponse = null;
 
-        public delegate void responseCallback(Dictionary<string, object> dataResponse);
+        public delegate void responseCallback(JSONObject dataResponse);
         private responseCallback aCb;
 
         public HttpWorker(string url , responseCallback cb)
@@ -26,7 +26,7 @@ namespace Stu.Class
             this.requestURL = url;
             this.aCb = cb;
         }
-        public void setData(Dictionary<string, string> form)
+        public void setData(JSONObject form)
         {
             this.requestForm = form;
         }
@@ -34,8 +34,7 @@ namespace Stu.Class
         private void post()
         {
             /*data*/
-            string json = JsonConvert.SerializeObject(this.requestForm, Formatting.Indented);
-            Console.WriteLine(json);
+            string json = requestForm.toString();
             Encoding enc = new UTF8Encoding(true, true);
             byte[] bytes = enc.GetBytes(json);
             string encode = "data=" + enc.GetString(bytes);
@@ -94,9 +93,8 @@ namespace Stu.Class
 
         private void background_Finish(object sender, RunWorkerCompletedEventArgs e)
         {
-            Dictionary<string, object> values = JsonConvert.DeserializeObject<Dictionary<string, object>>(reponse);
-            string dataDiry = values["data"].ToString();
-            Dictionary<string, object> data = JsonConvert.DeserializeObject<Dictionary<string, object>>(dataDiry);
+            JSONObject values = new JSONObject(reponse);
+            JSONObject data = values.getJSONObject("data");
             if (aCb != null) aCb(data);
             stopWorker();
         }
