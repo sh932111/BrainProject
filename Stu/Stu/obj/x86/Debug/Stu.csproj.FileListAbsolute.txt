@@ -67,3 +67,4 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.FolderContr
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.dll
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.xml
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.ConfigTest.resources

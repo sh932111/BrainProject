@@ -119,6 +119,12 @@
     <Compile Include="UI\BrainWorker.Designer.cs">
       <DependentUpon>BrainWorker.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ConfigTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ConfigTest.Designer.cs">
+      <DependentUpon>ConfigTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FolderController.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrainWorker.resx">
       <DependentUpon>BrainWorker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ConfigTest.resx">
+      <DependentUpon>ConfigTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FolderController.resx">
       <DependentUpon>FolderController.cs</DependentUpon>

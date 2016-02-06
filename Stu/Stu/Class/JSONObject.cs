@@ -44,6 +44,11 @@ namespace Stu.Class
         {
             return resource[key].ToString();
         }
+        public int getInt(string key)
+        {
+            string code = resource[key].ToString();
+            return int.Parse(code);
+        }
         /*GET*/
         /*SET*/
         public void setString(string key , string value)

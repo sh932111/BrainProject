@@ -12,6 +12,7 @@ namespace Stu.Class
     class HttpWorker
     {
         public static string wordList = "http://shared.tw/En/api/module/en/word/list.php";
+        public static string orderCreate = "http://shared.tw/En/api/module/order/create.php";
 
         private string requestURL = null;
         private JSONObject requestForm = null;
