@@ -209,7 +209,6 @@ function wordManagerBlockMain(bkID) {
 	wordManagerBk = new wordManagerBlock(bkID);
 	var manager = ctrlManagerList[bkID];
 	var api = manager.getAPI();
-	console.log(api);
 	var get = manager.getGET();
 	if (get) {
 		wordManagerBk.initWord(get);

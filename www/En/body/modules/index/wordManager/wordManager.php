@@ -3,11 +3,15 @@ $Project = split("/body/pages",$_SERVER[PHP_SELF])[0];
 include $Project . "/base/HttpWorker.php";
 class wordManagerModules {
     public static function run($GET_value) {
-        $httpWorkerForType = new HttpWorker("http://shared.tw/En/api/module/en/type/list.php");
+        $typeListAPI = "http://localhost:8888/www/En/api/module/en/type/list.php";
+        // $typeListAPI = "http://shared.tw/En/api/module/en/type/list.php";
+        $httpWorkerForType = new HttpWorker($typeListAPI);
         $typeResult = $httpWorkerForType->post(array());
         $typeObj = json_decode($typeResult,true);
         $type = $typeObj["data"];
-        $httpWorkerForWord = new HttpWorker("http://shared.tw/En/api/module/en/word/list.php");
+        $wordListAPI = "http://localhost:8888/www/En/api/module/en/word/list.php";
+        // $wordListAPI = "http://shared.tw/En/api/module/en/word/list.php";
+        $httpWorkerForWord = new HttpWorker($wordListAPI);
         $post = array();
         if (!empty($GET_value)) {
             $data = array(

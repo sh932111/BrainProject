@@ -359,6 +359,32 @@ public function createWordExampleTable($link) {
 		`update_time` 		DATETIME 	 	NOT NULL );" ;
 return mysql_query($action, $link);
 }
+public function createOrderTable($link) {
+	$table_name = TableName::getOrderTable;
+	$action = "CREATE TABLE `$table_name`(
+		`orderID`   		VARCHAR(100)  	NOT NULL PRIMARY KEY ,
+		`userName`   		VARCHAR(100)  	NOT NULL ,
+		`userYearOld`   	INT NOT NULL ,
+		`wordNum`   		INT NOT NULL ,
+		`testTime`   		INT NOT NULL , /*秒數*/
+		`status`   			INT NOT NULL ,
+		`testResult`   		INT NOT NULL ,
+		`create_time` 		DATETIME 		NOT NULL ,
+		`update_time` 		DATETIME 	 	NOT NULL );" ;
+return mysql_query($action, $link);
+}
+public function createOrderDetailTable($link) {
+	$table_name = TableName::getOrderDetailTable;
+	$action = "CREATE TABLE `$table_name`(
+		`detailID`   		VARCHAR(100)  	NOT NULL PRIMARY KEY ,
+		`orderID`   		VARCHAR(100)  	NOT NULL ,
+		`enWordID`   		VARCHAR(100)  	NOT NULL ,
+		`test`   			VARCHAR(100)  	NOT NULL ,/*考生寫的答案*/
+		`testResult`   		INT 			NOT NULL ,/*1.true 2.false*/
+		`create_time` 		DATETIME 		NOT NULL ,
+		`update_time` 		DATETIME 	 	NOT NULL );" ;
+return mysql_query($action, $link);
+}
 /*Create*/
 
 /*Insert*/
@@ -422,7 +448,36 @@ public function addWordExampleTable($link,$obj) {
 	$obj["update_time"]);
 	return mysql_query($action,$link);
 }
-
+public function addOrderTable($link,$obj,$status,$testResult) {
+	$table_name = TableName::getOrderTable;
+	$action = sprintf("INSERT INTO `$table_name`(
+		`orderID`,`userName`,`userYearOld`,`wordNum`,`testTime`,`status`,`testResult`,`create_time`,`update_time`)
+	VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+	$obj["orderID"],
+	$obj["userName"],
+	$obj["userYearOld"],
+	$obj["wordNum"],
+	$obj["testTime"],
+	$status,
+	$testResult,
+	$obj["create_time"],
+	$obj["update_time"]);
+	return mysql_query($action,$link);
+}
+public function addOrderDetailTable($link,$obj,$test,$testResult) {
+	$table_name = TableName::getOrderDetailTable;
+	$action = sprintf("INSERT INTO `$table_name`(
+		`detailID`,`orderID`,`enWordID`,`test`,`testResult`,`create_time`,`update_time`)
+	VALUES ('%s','%s','%s','%s','%s','%s','%s')",
+	$obj["detailID"],
+	$obj["orderID"],
+	$obj["enWordID"],
+	$test,
+	$testResult,
+	$obj["create_time"],
+	$obj["update_time"]);
+	return mysql_query($action,$link);
+}
 /*Insert*/
 }
 
@@ -436,6 +491,8 @@ class TableName {
 	const getWordDefinitionTable  = "WordDefinition_Table";
 	const getWordTranslateTable   = "WordTranslate_Table";
 	const getWordExampleTable     = "WordExample_Table";
+	const getOrderTable    	  	  = "Order_Table";
+	const getOrderDetailTable     = "OrderDetail_Table";
 }
 
 ?>

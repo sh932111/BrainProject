@@ -3,7 +3,9 @@ $Project = split("/body/pages",$_SERVER[PHP_SELF])[0];
 include $Project . "/base/HttpWorker.php";
 class editWordModules {
 	public static function run($GET_value) {
-		$httpWorkerForWord = new HttpWorker("http://shared.tw/En/api/module/en/word/view.php");
+		$wordView = "http://localhost:8888/www/En/api/module/en/word/view.php";
+		// $wordView = "http://shared.tw/En/api/module/en/word/view.php";
+		$httpWorkerForWord = new HttpWorker($wordView);
 		$post = array();
 		$data = array(
 			"enWordID" => $GET_value
