@@ -1,0 +1,18 @@
+.custom-card-panel {
+	position: relative;
+	padding: 10px;
+}
+
+.custom-card-panel a {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+}
+
+.custom-title-font-size {
+	font-size: 1.24rem;
+}
+
+.custom-font-size {
+	font-size: 1.14rem;
+}

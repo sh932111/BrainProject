@@ -1,0 +1,19 @@
+.word-input {
+	font-size: 1.24rem !important;
+}
+
+.custom-font-size {
+	font-size: 1.14rem;
+	margin-bottom: 20px;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0px !important;
+}
+
+.btn-large {
+	font-size: 20px;
+	width: 80px !important;
+	height: 80px !important;
+	line-height: 80px;
+}

@@ -1,4 +1,16 @@
 {
+	"testPage": {
+		"path" : "/test/test"
+	},
+	"chooseHeader": {
+		"path" : "/test/chooseHeader"
+	},
+	"choose": {
+		"path" : "/test/choose"
+	},
+	"testHeader": {
+		"path" : "/test/header"
+	},
 	"editWord": {
 		"path" : "/index/editWord"
 	},

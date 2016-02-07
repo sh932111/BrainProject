@@ -13,14 +13,18 @@ else{
 	$data = $_POST['data'];
 }
 $obj = json_decode($data,true);
-$detailID 		= $obj["detailID"];
+$list 			= $obj["list"];
 $db_utils 		= new DatabaseUtils();
 $update_time 	= TimeUtils::getNowTime();
 $start_time 	= TimeUtils::getNowTime();
 $user_link = $db_utils -> initUserDatabase();
 if (mysql_select_db(DBName::getUserDB)) {
-	if(!$db_utils -> updateData($user_link , TableName::getOrderDetailTable , $obj , "detailID" , $detailID)){
-		$db_utils -> responseError($start_time ,mysql_error() , mysql_errno() , $user_link);
+	for ($i=0; $i < count($list); $i++) { 
+		$item = $list[$i];
+		$detailID = $item["detailID"];
+		if(!$db_utils -> updateData($user_link , TableName::getOrderDetailTable , $item , "detailID" , $detailID)){
+			$db_utils -> responseError($start_time ,mysql_error() , mysql_errno() , $user_link);
+		}
 	}
 	$res["message"]  = "更新資料成功！";
 	$db_utils -> response($start_time ,$res , $user_link);

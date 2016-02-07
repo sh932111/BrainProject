@@ -9,7 +9,8 @@
     "httpJs": [
     ] ,
     "css" : [
-    "/resource/lib/materialize/css/materialize.min.css"
+    "/resource/lib/materialize/css/materialize.min.css",
+    "/resource/lib/css/yglib.css"
     ] ,
     "httpCss": [
     "https://fonts.googleapis.com/icon?family=Material+Icons"
