@@ -1,0 +1,16 @@
+#pgContainer {
+	margin: 0px auto;
+	width: 960px;
+}
+
+#pgHeader {
+	width: 100%;
+}
+
+#pgContent {
+	height: auto;
+}
+
+#pgFooter {
+	height: 50px;
+}
