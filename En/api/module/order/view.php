@@ -14,6 +14,9 @@ else{
 }
 $obj = json_decode($data,true);
 $orderID 		= $obj["orderID"];
+if (!$orderID) {
+	$db_utils -> responseError($start_time ,"get not found" , 302, $user_link);
+}
 $showTranslate 	= $obj["showTranslate"];
 $db_utils 		= new DatabaseUtils();
 $update_time 	= TimeUtils::getNowTime();

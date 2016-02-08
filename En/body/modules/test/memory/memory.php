@@ -2,7 +2,7 @@
 $Project = split("/body/pages",$_SERVER[PHP_SELF])[0];
 include $Project . "/base/HttpWorker.php";
 class memoryModules {
-    public static function run($GET_value) {
+    public static function run($orderID) {
     	$orderPost = array(
         	"orderID" => $orderID,
             "showTranslate" => true
