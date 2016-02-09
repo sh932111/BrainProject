@@ -54,14 +54,14 @@ namespace Stu.UI
             this.bluetoothListView.CheckBoxes = true;
             this.bluetoothListView.Location = new System.Drawing.Point(12, 36);
             this.bluetoothListView.Name = "bluetoothListView";
-            this.bluetoothListView.Size = new System.Drawing.Size(277, 117);
+            this.bluetoothListView.Size = new System.Drawing.Size(277, 100);
             this.bluetoothListView.TabIndex = 1;
             this.bluetoothListView.UseCompatibleStateImageBehavior = false;
             // 
             // loaderImage
             // 
             this.loaderImage.Image = ((System.Drawing.Image)(resources.GetObject("loaderImage.Image")));
-            this.loaderImage.Location = new System.Drawing.Point(129, 80);
+            this.loaderImage.Location = new System.Drawing.Point(132, 68);
             this.loaderImage.Name = "loaderImage";
             this.loaderImage.Size = new System.Drawing.Size(42, 42);
             this.loaderImage.TabIndex = 2;
@@ -69,7 +69,7 @@ namespace Stu.UI
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(214, 159);
+            this.connectBtn.Location = new System.Drawing.Point(214, 142);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(75, 23);
             this.connectBtn.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace Stu.UI
             // 
             // btnSearchDevice
             // 
-            this.btnSearchDevice.Location = new System.Drawing.Point(12, 159);
+            this.btnSearchDevice.Location = new System.Drawing.Point(12, 142);
             this.btnSearchDevice.Name = "btnSearchDevice";
             this.btnSearchDevice.Size = new System.Drawing.Size(75, 23);
             this.btnSearchDevice.TabIndex = 4;
@@ -91,8 +91,8 @@ namespace Stu.UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(300, 200);
+            this.BackColor = System.Drawing.Color.SeaShell;
+            this.ClientSize = new System.Drawing.Size(300, 176);
             this.ControlBox = false;
             this.Controls.Add(this.btnSearchDevice);
             this.Controls.Add(this.connectBtn);

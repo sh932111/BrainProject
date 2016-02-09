@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Manager\BluetoothDeviceManager.cs" />
     <Compile Include="Manager\BrainManager.cs" />
+    <Compile Include="Manager\ConfigManager.cs" />
     <Compile Include="Manager\WordManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,11 +120,11 @@
     <Compile Include="UI\BrainWorker.Designer.cs">
       <DependentUpon>BrainWorker.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ConfigTest.cs">
+    <Compile Include="UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ConfigTest.Designer.cs">
-      <DependentUpon>ConfigTest.cs</DependentUpon>
+    <Compile Include="UI\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FolderController.cs">
       <SubType>Form</SubType>
@@ -135,6 +136,12 @@
     <Compile Include="Utils\OpenFileDialogUtils.cs" />
     <Compile Include="Utils\RangeDefinition.cs" />
     <Compile Include="Utils\RangeListUtils.cs" />
+    <Compile Include="WaitDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitDialog.Designer.cs">
+      <DependentUpon>WaitDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Computer.resx">
       <DependentUpon>Computer.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,11 +173,14 @@
     <EmbeddedResource Include="UI\BrainWorker.resx">
       <DependentUpon>BrainWorker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ConfigTest.resx">
-      <DependentUpon>ConfigTest.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FolderController.resx">
       <DependentUpon>FolderController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitDialog.resx">
+      <DependentUpon>WaitDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

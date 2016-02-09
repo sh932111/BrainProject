@@ -11,7 +11,6 @@ C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.exe
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.pdb
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Stu.exe
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Stu.pdb
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
@@ -67,4 +66,6 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.FolderContr
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.dll
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.xml
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.ConfigTest.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.WaitDialog.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.Main.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache

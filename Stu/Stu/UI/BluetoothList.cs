@@ -23,6 +23,20 @@ namespace Stu.UI
         private ArrayList resultList;
         private BrainListCallback aCallback = null;
         private BrainOnClickListCallback aOnClickCallback = null;
+        public BluetoothList()
+        {
+            InitializeComponent();
+            /*ListView UI*/
+            this.resultList = new ArrayList();
+            this.bluetoothList = bluetoothListView;
+            bluetoothList.BeginUpdate();
+            bluetoothList.View = View.Details;
+            bluetoothList.ItemChecked += new ItemCheckedEventHandler(CheckedState);
+            loadListTitle();
+            bluetoothList.EndUpdate();
+            /*搜尋很久放在BackgroundWorker*/
+            runSearchDevice();
+        }
         public BluetoothList(BrainListCallback acb , BrainOnClickListCallback onCb)
         {
             InitializeComponent();
@@ -100,15 +114,7 @@ namespace Stu.UI
 
         private void connectBtn_Click(object sender, EventArgs e)
         {
-            ArrayList result_list = new ArrayList();
-            for (int i = 0; i < bluetoothList.Items.Count; i++)
-            {
-                if (bluetoothList.Items[i].Checked)
-                {
-                    result_list.Add(resultList[i]);
-                }
-            }
-            if (aCallback != null) aCallback(result_list);
+            if (aCallback != null) aCallback(getResult());
         }
         private void CheckedState(object sender, System.Windows.Forms.ItemCheckedEventArgs e)
         {
@@ -119,6 +125,25 @@ namespace Stu.UI
         {
             if (aOnClickCallback != null) aOnClickCallback();
             runSearchDevice();
+        }
+
+        public void hideButton()
+        {
+            connectBtn.Hide();
+            btnSearchDevice.Width = 278;
+        }
+
+        public ArrayList getResult()
+        {
+            ArrayList result_list = new ArrayList();
+            for (int i = 0; i < bluetoothList.Items.Count; i++)
+            {
+                if (bluetoothList.Items[i].Checked)
+                {
+                    result_list.Add(resultList[i]);
+                }
+            }
+            return result_list;
         }
     }
 }

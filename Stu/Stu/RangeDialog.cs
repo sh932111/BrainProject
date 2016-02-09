@@ -24,7 +24,7 @@ namespace Stu
         public RangeDialog(rangeDialogCallback _callback)
         {
             InitializeComponent();
-
+            this.FormClosing += Form1_FormClosing;
             this.callback = _callback;
 
             setListView();
@@ -81,6 +81,20 @@ namespace Stu
             else 
             {
                 MessageBox.Show("至少需要一筆判斷值!");
+            }
+        }
+
+        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            //In case windows is trying to shut down, don't hold the process up
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            if (this.DialogResult == DialogResult.Cancel)
+            {
+                // Assume that X has been clicked and act accordingly.
+                // Confirm user wants to close
+                if (callback != null)
+                    callback(null, null);
             }
         }
     }

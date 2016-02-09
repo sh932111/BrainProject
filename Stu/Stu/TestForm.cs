@@ -21,7 +21,7 @@ namespace Stu
         public TestForm()
         {
             InitializeComponent();
-            ConfigTest config = new ConfigTest();
+            Main config = new Main();
             config.Show();
         }
 
