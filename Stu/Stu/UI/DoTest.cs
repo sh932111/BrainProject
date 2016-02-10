@@ -12,27 +12,32 @@ using Stu.Class;
 
 namespace Stu.UI
 {
-    public partial class Choose : Form
+    public partial class DoTest : Form
     {
         ConfigManager configManager = null;
-        public Choose(ConfigManager manager )
+
+        public DoTest(ConfigManager manager)
         {
             InitializeComponent();
             this.configManager = manager;
             this.TopMost = true;
         }
 
-        private void chooseFinishBtn_Click(object sender, EventArgs e)
+        private void finishBtn_Click(object sender, EventArgs e)
         {
-            HttpWorker httpWorker = new HttpWorker(HttpWorker.orderCheckout, httpResponse);
-            JSONObject form = new JSONObject();
-            form.setString("orderID", configManager.getOrderID());
-            httpWorker.setData(form);
-            httpWorker.httpWorker();
-            WaitDialog.show();
+            DialogResult myResult = MessageBox.Show("確定答題完成", "正要交卷，確定已經上傳答案了嗎??", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if ( myResult  == DialogResult.Yes)
+            {
+                HttpWorker httpWorker = new HttpWorker(HttpWorker.orderFinish, httpResponse);
+                JSONObject form = new JSONObject();
+                form.setString("orderID", configManager.getOrderID());
+                httpWorker.setData(form);
+                httpWorker.httpWorker();
+                WaitDialog.show();
+            }
         }
         private void httpResponse(JSONObject response)
-        { 
+        {
             WaitDialog.close();
             int error_code = response.getInt("error_code");
             if (error_code == 0)
@@ -43,10 +48,8 @@ namespace Stu.UI
                 {
                     p.CloseMainWindow();
                 }
-                Memory choose = new Memory(configManager);
-                choose.DesktopLocation = new Point(0, 0);
-                choose.Show();
-                Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/memoryWord/?orderID=" + configManager.getOrderID());
+                OrderView view = new OrderView(configManager.getOrderID());
+                view.Show();
                 this.Close();
             }
             else

@@ -30,8 +30,10 @@ namespace Stu.UI
             InitializeComponent();
             this.configManager = manager;
             this.TopMost = true;
-            this.runPath = manager.getPath();
             BluetoothDeviceManager deviceManager = manager.getDeviceManager();
+            FloderUtils folder = new FloderUtils(manager.getPath());
+            folder.createRoot();
+            this.runPath = folder.createDeviceFolder(deviceManager.getDeviceAddress(), manager.getOrderID());
             this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback, sectionReciver);
             labelDeviceName.Text = deviceManager.getDeviceName() + "(" + deviceManager.getCOM() + ")";
             labelMac.Text = deviceManager.getDeviceAddress();
@@ -57,10 +59,15 @@ namespace Stu.UI
                 p.CloseMainWindow();
             }
 
-            BluetoothDeviceManager deviceManager = configManager.getDeviceManager();
-            BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), null, "yyyy_MM_dd_HH_mm_ss_fffff");
-            brainCharts.Show();
-            brainCharts.parseResultFile(runPath + "/ResultFile.csv");
+            //BluetoothDeviceManager deviceManager = configManager.getDeviceManager();
+            //BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), null, "yyyy_MM_dd_HH_mm_ss_fffff");
+            //brainCharts.Show();
+            //brainCharts.parseResultFile(runPath + "/ResultFile.csv");
+
+            DoTest doTest = new DoTest(configManager);
+            doTest.DesktopLocation = new Point(0, 0);
+            doTest.Show();
+
             Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/testWord/?orderID=" + configManager.getOrderID());
             this.Close();
             //ArrayList list = new ArrayList();

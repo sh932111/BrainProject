@@ -30,6 +30,7 @@ if (mysql_select_db(DBName::getUserDB)) {
 	$selectOrder = $db_utils -> selectTableAnd($user_link , TableName::getOrderTable,$select_array);
 	$orderRecord = mysql_fetch_array($selectOrder);
 	$res["orderID"] = $orderRecord['orderID'];
+	$res["deviceAddress"] = $orderRecord['deviceAddress'];
 	$res["userName"] = $orderRecord['userName'];
 	$res["userYearOld"] = (int)$orderRecord['userYearOld'];
 	$res["testTime"] = (int)$orderRecord['testTime'];

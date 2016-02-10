@@ -19,6 +19,23 @@ $update_time 	= TimeUtils::getNowTime();
 $start_time 	= TimeUtils::getNowTime();
 $user_link = $db_utils -> initUserDatabase();
 if (mysql_select_db(DBName::getUserDB)) {
+	$select_array = array(
+		"orderID" => $orderID
+		);
+	$selectOrder = $db_utils -> selectTableAnd($user_link , TableName::getOrderTable,$select_array);
+	$orderRecord = mysql_fetch_array($selectOrder);
+	$wordNum = (int)$orderRecord['wordNum'];
+	$selectDetail = $db_utils -> selectTableAnd($user_link , TableName::getOrderDetailTable,$select_array);
+	if (!$selectDetail) {
+		$db_utils -> responseError($start_time ,mysql_error() , mysql_errno() , $user_link);
+	}
+	$code = 0;
+	while ($record = mysql_fetch_array($selectDetail)) {
+		$code ++;
+	}
+	if ($code != $wordNum ) {
+		$db_utils -> responseError($start_time ,"單字尚未選滿！要選好選滿R！" , 209 , $user_link);
+	}
 	$obj["status"] = 2;
 	if(!$db_utils -> updateData($user_link , TableName::getOrderTable , $obj , "orderID" , $orderID)){
 		$db_utils -> responseError($start_time ,mysql_error() , mysql_errno() , $user_link);

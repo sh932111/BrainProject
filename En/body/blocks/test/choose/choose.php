@@ -27,11 +27,11 @@
 				<h5 class="red-text text-lighten-1 custom-font-size">
 					已選擇：<?php echo $alreadyWord?>個單字
 					<?php
-						if ($alreadyWord == $value["wordNum"]) {
-					?>
+					if ($alreadyWord == $value["wordNum"]) {
+						?>
 						，如已經確認完畢，請按下上方送出按鈕！
-					<?php	
-						}
+						<?php	
+					}
 					?>
 				</h5>
 			</div>
@@ -79,9 +79,22 @@
 								狀態：已選擇
 							</h6>
 						</div>
-						<a class="btn-floating btn-large waves-effect waves-light red lighten-1" href="javascript: chooseBk.removeWord('<?php echo $detailID;?>');">
+						<a class="btn-floating btn-large waves-effect waves-light red lighten-1" id="btn-<?php echo $i;?>" href="javascript: chooseBk.removeWord('<?php echo $detailID;?>',<?php echo $i;?>);">
 							<i class="material-icons">remove</i>
 						</a>
+						<div class="preloader-wrapper small active right" id="loader-<?php echo $i;?>">
+							<div class="spinner-layer spinner-green-only">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div>
+								<div class="gap-patch">
+									<div class="circle"></div>
+								</div>
+								<div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+						</div>
 						<?php
 					}
 					else {
@@ -90,9 +103,22 @@
 							狀態：未選擇
 						</h6>
 					</div>
-					<a class="btn-floating btn-large waves-effect waves-light teal lighten-1" href="javascript: chooseBk.addWord('<?php echo $orderID;?>','<?php echo $pkWordID;?>');">
+					<a class="btn-floating btn-large waves-effect waves-light teal lighten-1" href="javascript: chooseBk.addWord('<?php echo $orderID;?>','<?php echo $pkWordID;?>',<?php echo $i;?>);" id="btn-<?php echo $i;?>">
 						<i class="material-icons">add</i>
 					</a>
+					<div class="preloader-wrapper small active right" id="loader-<?php echo $i;?>">
+						<div class="spinner-layer spinner-green-only">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+					</div>
 					<?php
 				}
 				?>

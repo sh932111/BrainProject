@@ -126,6 +126,12 @@
     <Compile Include="UI\Choose.Designer.cs">
       <DependentUpon>Choose.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DoTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DoTest.Designer.cs">
+      <DependentUpon>DoTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,12 @@
     </Compile>
     <Compile Include="UI\Memory.Designer.cs">
       <DependentUpon>Memory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\OrderView.Designer.cs">
+      <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\FileListUtils.cs" />
     <Compile Include="Utils\OpenFileDialogUtils.cs" />
@@ -187,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Choose.resx">
       <DependentUpon>Choose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DoTest.resx">
+      <DependentUpon>DoTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

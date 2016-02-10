@@ -48,13 +48,16 @@ namespace Stu.UI
                 MessageBox.Show("尚未選擇輸出路徑!");
                 return;
             }
-            if (bluetooth_list.getResult().Count == 0)
+            ArrayList list = bluetooth_list.getResult();
+            if (list.Count == 0)
             {
                 MessageBox.Show("尚未選擇Device!");
                 return;
             }
+            BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
             HttpWorker httpWorker = new HttpWorker(HttpWorker.orderCreate, httpResponse);
             JSONObject form = new JSONObject();
+            form.setString("deviceAddress", manager.getDeviceAddress());
             form.setString("userName", textUserName.Text);
             form.setString("userYearOld", textUserYearOld.Text);
             form.setString("wordNum", textWordNum.Text);
@@ -76,9 +79,15 @@ namespace Stu.UI
                 ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, firstRange, lastRange);
                 Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/chooseWord/?orderID=" + order_id);
                 Choose choose = new Choose(config_manager);
-                choose.Location = new Point(20, 0);
+                //choose.Location = new Point(20, 0);
+                choose.DesktopLocation = new Point(0, 0);
                 choose.Show();
                 this.Hide();
+            }
+            else
+            {
+                string message = response.getString("message");
+                MessageBox.Show(message);
             }
         }
 

@@ -2,6 +2,7 @@ var testPageBk;
 function testPageBlock(id) {
 	this.bkID = id;
 	this.wordNum = 0;
+	this.orderID;
 	this.upload = function() {
 		var list = [];
 		for (var i = 0; i < this.wordNum; i++) {
@@ -16,7 +17,8 @@ function testPageBlock(id) {
 			list.push(item);
 		}
 		var post = {
-			list : list
+			list : list,
+			orderID : this.orderID
 		};
 		httpPost(orderUpdateWord,post,function(data){
 			if (data.result) {
@@ -24,8 +26,9 @@ function testPageBlock(id) {
 			}
 		});
 	};
-	this.init = function(word_num) {
+	this.init = function(word_num , order_id) {
 		this.wordNum = word_num;
+		this.orderID = order_id;
 	};
 };
 
@@ -33,6 +36,7 @@ function testPageBlockMain(bkID) {
 	testPageBk = new testPageBlock(bkID);
 	var manager = ctrlManagerList[bkID];
 	var api = manager.getAPI();
+	var get = manager.getGET();
 	var value = api.value;
-	testPageBk.init(value.wordNum);
+	testPageBk.init(value.wordNum,get);
 };

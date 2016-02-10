@@ -363,6 +363,7 @@ public function createOrderTable($link) {
 	$table_name = TableName::getOrderTable;
 	$action = "CREATE TABLE `$table_name`(
 		`orderID`   		VARCHAR(100)  	NOT NULL PRIMARY KEY ,
+		`deviceAddress`   	VARCHAR(10000)  NOT NULL ,
 		`userName`   		VARCHAR(100)  	NOT NULL ,
 		`userYearOld`   	INT NOT NULL ,
 		`wordNum`   		INT NOT NULL ,
@@ -451,9 +452,10 @@ public function addWordExampleTable($link,$obj) {
 public function addOrderTable($link,$obj,$status,$testResult) {
 	$table_name = TableName::getOrderTable;
 	$action = sprintf("INSERT INTO `$table_name`(
-		`orderID`,`userName`,`userYearOld`,`wordNum`,`testTime`,`status`,`testResult`,`create_time`,`update_time`)
-	VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+		`orderID`,`deviceAddress`,`userName`,`userYearOld`,`wordNum`,`testTime`,`status`,`testResult`,`create_time`,`update_time`)
+	VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
 	$obj["orderID"],
+	$obj["deviceAddress"],
 	$obj["userName"],
 	$obj["userYearOld"],
 	$obj["wordNum"],
