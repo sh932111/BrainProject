@@ -63,7 +63,7 @@ if (mysql_select_db(DBName::getUserDB)) {
 			$userScore = $userScore - $score;
 		}
 	}
-	$resultOrder["status"] = 3;
+	$resultOrder["status"] = 4;
 	$resultOrder["testResult"] = $userScore;
 	if(!$db_utils -> updateData($user_link , TableName::getOrderTable , $resultOrder , "orderID" , $orderID)){
 		$db_utils -> responseError($start_time ,mysql_error() , mysql_errno() , $user_link);
