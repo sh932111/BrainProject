@@ -13,6 +13,8 @@ namespace Stu.Class
     {
         public static string wordList = "http://shared.tw/En/api/module/en/word/list.php";
         public static string orderCreate = "http://shared.tw/En/api/module/order/create.php";
+        public static string orderCheckout = "http://shared.tw/En/api/module/order/checkout.php";
+        public static string orderFinish = "http://shared.tw/En/api/module/order/finish.php";
 
         private string requestURL = null;
         private JSONObject requestForm = null;

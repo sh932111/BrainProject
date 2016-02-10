@@ -52,11 +52,8 @@ namespace Stu.Class
                     int index = PNPDeviceID.IndexOf(device_address);
                     if (index > 0)
                     {
-                        if (tryConnect(DeviceID))
-                        {
-                            manager.addCOM(DeviceID);
-                            bluetoothList.Add(manager);
-                        }
+                        manager.addCOM(DeviceID);
+                        bluetoothList.Add(manager);
                     }
                 }
             }
@@ -69,6 +66,7 @@ namespace Stu.Class
 
         private Boolean tryConnect(string COM)
         {
+            Console.WriteLine(COM);
             try
             {
                 SerialPort BluetoothConnection = new SerialPort();

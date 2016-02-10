@@ -69,3 +69,5 @@ C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.xml
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.WaitDialog.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.Main.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.Choose.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.Memory.resources

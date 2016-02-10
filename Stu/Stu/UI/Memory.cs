@@ -10,59 +10,38 @@ using Stu.Manager;
 using Stu.Class;
 using System.Collections;
 using System.IO;
-using Stu.Utils;
+using System.Diagnostics;
 
 namespace Stu.UI
 {
-    public partial class BrainWorker : Form
+    public partial class Memory : Form
     {
-        private int runType = 0;
-        private string runPath = null;
-        private BluetoothDeviceManager deviceManager = null;
-        private ArrayList lastRange = null;
-        private ArrayList firstRange = null;
-        private int overTime;
+        ConfigManager configManager = null;
 
         private BrainReceiver brainReceiver;
         private int time;
         private string startTime = null;
         private BackgroundWorker bgBluetooth;
         private int serviceTime;
-        public BrainWorker(string run_path,BluetoothDeviceManager device_manager)
+        private string runPath = null;
+
+        public Memory(ConfigManager manager)
         {
             InitializeComponent();
-            this.runPath = run_path;
-            this.deviceManager = device_manager;
+            this.configManager = manager;
+            this.TopMost = true;
+            this.runPath = manager.getPath();
+            BluetoothDeviceManager deviceManager = manager.getDeviceManager();
             this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback, sectionReciver);
-            setComboBox();
-            setValue();
-            buttonStop.Hide();
-            serviceTime = -1;
-        }
-
-        private void setComboBox()
-        {
-            this.runTypeCombo.SelectedIndex = this.runType;
-        }
-
-        private void setValue()
-        {
             labelDeviceName.Text = deviceManager.getDeviceName() + "(" + deviceManager.getCOM() + ")";
             labelMac.Text = deviceManager.getDeviceAddress();
-            textBoxSecond.Text = "10";
+            serviceTime = -1;
+            brainReciverRun();
         }
 
-        private void addTime()
+        private void memoryFinishBtn_Click(object sender, EventArgs e)
         {
-            if (!brainReceiver.isRun) return;
-            labelTimer.Text = time + "s";
-            if (time == overTime)
-            {
-                stopTimer();
-                buttonStop.Hide();
-                buttonRun.Show();
-            }
-            else runWorker();
+            stopTimer();
         }
 
         private void stopTimer()
@@ -71,63 +50,41 @@ namespace Stu.UI
             time = 0;
             brainReceiver.stop();
 
-            BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(),null, "yyyy_MM_dd_HH_mm_ss_fffff");
+            string ProcessName = "chrome";//這裡換成你需要刪除的進程名稱
+            Process[] processes = Process.GetProcessesByName(ProcessName);
+            foreach (Process p in processes)
+            {
+                p.CloseMainWindow();
+            }
+
+            BluetoothDeviceManager deviceManager = configManager.getDeviceManager();
+            BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), null, "yyyy_MM_dd_HH_mm_ss_fffff");
             brainCharts.Show();
             brainCharts.parseResultFile(runPath + "/ResultFile.csv");
+            Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/testWord/?orderID=" + configManager.getOrderID());
+            this.Close();
+            //ArrayList list = new ArrayList();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    if (i == 8 || i == 9)
+            //    {
+            //        list.Add(100);
+            //    }
+            //    else
+            //    {
+            //        list.Add(20000000);
+            //    }
+            //}
 
-            ArrayList list = new ArrayList();
-            for (int i = 0; i < 10; i++)
-            {
-                if (i == 8 || i == 9)
-                {
-                    list.Add(100);
-                }
-                else
-                {
-                    list.Add(20000000);
-                }
-            }
-
-            BrainCharts brainCharts2 = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), list, "yyyy/MM/dd/ HH:mm:ss.fffff");
-            brainCharts2.Show();
-            brainCharts2.parseResultFile(runPath + "/Brain.csv");
-
+            //BrainCharts brainCharts2 = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), list, "yyyy/MM/dd/ HH:mm:ss.fffff");
+            //brainCharts2.Show();
+            //brainCharts2.parseResultFile(runPath + "/Brain.csv");
         }
 
-        private void buttonRun_Click(object sender, EventArgs e)
-        {
-            if (textBoxSecond.Text.Length == 0)
-            {
-                MessageBox.Show("請填入時間!");
-                return;
-            }
-            switch (this.runType)
-            {
-                case 0:
-                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
-                    break;
-                case 1:
-                    RangeDialog.show(setRange);
-                    break;
-                default:
-                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
-                    break;
-            }
-        }
-
-        private void setRange(ArrayList fr, ArrayList lr)
-        {
-            this.firstRange = fr;
-            this.lastRange = lr;
-            brainReciverRun();
-        }
         delegate void ChartUIHabdler(ArrayList list);
-        
+
         private void brainReciverRun()
         {
-            buttonStop.Show();
-            buttonRun.Hide();
-            overTime = int.Parse(textBoxSecond.Text);
             this.time = 0;
             this.startTime = DateTime.Now.ToString("yyyy/MM/dd/ HH:mm:ss");
             runWorker();
@@ -155,8 +112,8 @@ namespace Stu.UI
 
         private void background_DoWork(object sender, DoWorkEventArgs e)
         {
-            int now = serviceTime; 
-            while(now == serviceTime)
+            int now = serviceTime;
+            while (now == serviceTime)
             {
                 string ss = DateTime.Now.ToString("ss");
                 now = int.Parse(ss);
@@ -171,97 +128,17 @@ namespace Stu.UI
             addTime();
         }
 
-        
-        private ArrayList writeFFTResult(ArrayList fr, ArrayList lr, string write_file_name, string fft_path)
+        private void addTime()
         {
-            StreamWriter sw = new StreamWriter(write_file_name);
-            /*寫入標準*/
-            String row0 = "";
-            for (int i = 0; i < fr.Count; i++)
+            if (!brainReceiver.isRun) return;
+            labelTimer.Text = (configManager.getRunTime() - time) + "s";
+            if (time == configManager.getRunTime())
             {
-                double frange = double.Parse((String)fr[i]);
-                double lrange = double.Parse((String)lr[i]);
-                if (i != fr.Count - 1)
-                {
-                    row0 = row0 + frange + "~" + lrange + ",";
-                }
-                else
-                {
-                    row0 = row0 + frange + "~" + lrange;
-                }
+                stopTimer();
             }
-            sw.WriteLine(row0);
-            /*寫入標準*/
-            /*將判斷後增加的資料寫入*/
-            String row_more = "";
-            ArrayList Classified = new ArrayList();
-            for (int i = 0; i < fr.Count; i++)
-            {
-                double num = 0.0f;
-                double frange = double.Parse((String)fr[i]);
-                double lrange = double.Parse((String)lr[i]);
-                StreamReader SR = new StreamReader(fft_path);
-                string Line;
-                while ((Line = SR.ReadLine()) != null)/*讓使用者選擇第幾筆到第幾筆(1:512)*/
-                {
-                    string[] ReadLine_Array = Line.Split(',');
-
-                    String row_a = ReadLine_Array[0];
-                    String row_b = ReadLine_Array[1];
-
-                    double f_row_a = double.Parse(row_a);
-                    double f_row_b = double.Parse(row_b);
-
-                    if (frange <= f_row_a && lrange >= f_row_a) /*參考論文邊界怎麼做*/
-                    {
-                        num = num + f_row_b;
-                    }
-                }
-                row_more = row_more + num;
-                if (i != fr.Count - 1) row_more = row_more + ",";
-                Classified.Add(num);
-            }
-            sw.WriteLine(row_more);
-            /*將判斷後增加的資料寫入*/
-            sw.Close();
-            return Classified;
+            else runWorker();
         }
 
-        private void buttonStop_Click(object sender, EventArgs e)
-        {
-            stopTimer();
-            buttonStop.Hide();
-            buttonRun.Show();
-        }
-        /*2048目前為寫死*/
-        int max = 2048;
-        private ArrayList FFTList(ArrayList lfft)
-        {
-            float[] resource = new float[max];
-            int x = 0;
-            foreach (string fft in lfft)
-            {
-                if (x == max) break;
-                float f = float.Parse(fft);
-                resource[x] = f;
-                x++;
-            }
-            ArrayList time_out = TWFFT.getArrayWithDivision(512.0f, 0.0f, 1024.0f);
-            ArrayList result = TWFFT.FFTMagic(time_out, TWFFT.FFTAbs(TWFFT.FFT(resource, getZero())), 1025);
-            return result;
-        }
-
-        private float[] getZero()
-        {
-            float[] res = new float[max];
-            for (int i = 0; i < max; i++) res[i] = 0.0f;
-            return res;
-        }
-
-        private void runTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.runType = runTypeCombo.SelectedIndex;
-        }
         private void brainReiverCallback(BrainManager manager)
         {
             string over_time = DateTime.Now.ToString("yyyy/MM/dd/ HH:mm:ss");
@@ -269,7 +146,6 @@ namespace Stu.UI
             writeCode(runPath + "/" + "streamLog.csv", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
             writeCode(runPath + "/" + "dataLog.csv", startTime, over_time, manager.getDataLog(), 512, numRow, fftTitleItem());
             writeCode(runPath + "/" + "Brain.csv", "", "", manager.getBrainList(), 1, numRow, brashTitleItem());
-            MessageBox.Show(deviceManager.getDeviceName() + " is Finish");
             System.Diagnostics.Process.Start(runPath);
         }
 
@@ -364,7 +240,86 @@ namespace Stu.UI
             writeCode(dir_fft + "/" + file, "", "", fft_resource, 1025, 1, null);
 
             WriteFile writeFile = new WriteFile(runPath);
-            writeFile.FFTResult(firstRange, lastRange, time, dir_fft + "/" + file);
+            writeFile.FFTResult(configManager.getFirstRange(), configManager.getLastRange(), time, dir_fft + "/" + file);
+        }
+        /*2048目前為寫死*/
+        int max = 2048;
+        private ArrayList FFTList(ArrayList lfft)
+        {
+            float[] resource = new float[max];
+            int x = 0;
+            foreach (string fft in lfft)
+            {
+                if (x == max) break;
+                float f = float.Parse(fft);
+                resource[x] = f;
+                x++;
+            }
+            ArrayList time_out = TWFFT.getArrayWithDivision(512.0f, 0.0f, 1024.0f);
+            ArrayList result = TWFFT.FFTMagic(time_out, TWFFT.FFTAbs(TWFFT.FFT(resource, getZero())), 1025);
+            return result;
+        }
+
+        private float[] getZero()
+        {
+            float[] res = new float[max];
+            for (int i = 0; i < max; i++) res[i] = 0.0f;
+            return res;
+        }
+
+        private ArrayList writeFFTResult(ArrayList fr, ArrayList lr, string write_file_name, string fft_path)
+        {
+            StreamWriter sw = new StreamWriter(write_file_name);
+            /*寫入標準*/
+            String row0 = "";
+            for (int i = 0; i < fr.Count; i++)
+            {
+                double frange = double.Parse((String)fr[i]);
+                double lrange = double.Parse((String)lr[i]);
+                if (i != fr.Count - 1)
+                {
+                    row0 = row0 + frange + "~" + lrange + ",";
+                }
+                else
+                {
+                    row0 = row0 + frange + "~" + lrange;
+                }
+            }
+            sw.WriteLine(row0);
+            /*寫入標準*/
+            /*將判斷後增加的資料寫入*/
+            String row_more = "";
+            ArrayList Classified = new ArrayList();
+            for (int i = 0; i < fr.Count; i++)
+            {
+                double num = 0.0f;
+                double frange = double.Parse((String)fr[i]);
+                double lrange = double.Parse((String)lr[i]);
+                StreamReader SR = new StreamReader(fft_path);
+                string Line;
+                while ((Line = SR.ReadLine()) != null)/*讓使用者選擇第幾筆到第幾筆(1:512)*/
+                {
+                    string[] ReadLine_Array = Line.Split(',');
+
+                    String row_a = ReadLine_Array[0];
+                    String row_b = ReadLine_Array[1];
+
+                    double f_row_a = double.Parse(row_a);
+                    double f_row_b = double.Parse(row_b);
+
+                    if (frange <= f_row_a && lrange >= f_row_a) /*參考論文邊界怎麼做*/
+                    {
+                        num = num + f_row_b;
+                    }
+                }
+                row_more = row_more + num;
+                if (i != fr.Count - 1) row_more = row_more + ",";
+                Classified.Add(num);
+            }
+            sw.WriteLine(row_more);
+            /*將判斷後增加的資料寫入*/
+            sw.Close();
+            return Classified;
         }
     }
 }
