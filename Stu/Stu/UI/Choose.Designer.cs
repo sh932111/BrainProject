@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.chooseFinishBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // chooseFinishBtn
@@ -44,21 +45,34 @@
             this.chooseFinishBtn.UseVisualStyleBackColor = false;
             this.chooseFinishBtn.Click += new System.EventHandler(this.chooseFinishBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(429, 63);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(301, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "此為可移動視窗，如視線擋住可拖拉移動!";
+            // 
             // Choose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 62);
+            this.ClientSize = new System.Drawing.Size(1184, 92);
             this.ControlBox = false;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chooseFinishBtn);
             this.Name = "Choose";
             this.Text = "選擇單字";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button chooseFinishBtn;
+        private System.Windows.Forms.Label label1;
     }
 }

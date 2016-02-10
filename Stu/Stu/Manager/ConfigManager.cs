@@ -21,7 +21,7 @@ namespace Stu.Manager
             this.deviceManager = device;
             this.firstRange = fr;
             this.lastRange = lr;
-            this.runTime = run;
+            this.runTime = run + 10;
         }
         public string getOrderID()
         {

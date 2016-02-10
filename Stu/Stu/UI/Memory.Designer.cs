@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
             this.memoryFinishBtn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelMac
@@ -116,7 +117,7 @@
             this.memoryFinishBtn.BackColor = System.Drawing.Color.IndianRed;
             this.memoryFinishBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memoryFinishBtn.ForeColor = System.Drawing.Color.White;
-            this.memoryFinishBtn.Location = new System.Drawing.Point(233, 12);
+            this.memoryFinishBtn.Location = new System.Drawing.Point(233, 2);
             this.memoryFinishBtn.Name = "memoryFinishBtn";
             this.memoryFinishBtn.Size = new System.Drawing.Size(939, 50);
             this.memoryFinishBtn.TabIndex = 14;
@@ -124,12 +125,23 @@
             this.memoryFinishBtn.UseVisualStyleBackColor = false;
             this.memoryFinishBtn.Click += new System.EventHandler(this.memoryFinishBtn_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(503, 51);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(301, 20);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "此為可移動視窗，如視線擋住可拖拉移動!";
+            // 
             // Memory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 76);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.memoryFinishBtn);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.label2);
@@ -155,5 +167,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Button memoryFinishBtn;
+        private System.Windows.Forms.Label label4;
     }
 }

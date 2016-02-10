@@ -101,7 +101,15 @@ namespace Stu.UI
 
         private void historyBtn_Click(object sender, EventArgs e)
         {
-
+            if (outPath.Length == 0)
+            {
+                FolderBrowserDialog path = new FolderBrowserDialog();
+                path.ShowDialog();
+                outputText.Text = path.SelectedPath;
+                outPath = path.SelectedPath;
+            }
+            OrderList list = new OrderList(outPath);
+            list.Show();
         }
 
         private void resetBtn_Click(object sender, EventArgs e)

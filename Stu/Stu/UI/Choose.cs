@@ -43,10 +43,10 @@ namespace Stu.UI
                 {
                     p.CloseMainWindow();
                 }
+                Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/memoryWord/?orderID=" + configManager.getOrderID());
                 Memory choose = new Memory(configManager);
                 choose.DesktopLocation = new Point(0, 0);
                 choose.Show();
-                Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/memoryWord/?orderID=" + configManager.getOrderID());
                 this.Close();
             }
             else

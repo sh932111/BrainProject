@@ -6,37 +6,35 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Stu.Class;
 using System.Collections;
+using Stu.Class;
 
 namespace Stu.UI
 {
-    public partial class OrderView : Form
+    public partial class OrderList : Form
     {
-        private string orderID;
-        private string outPath;
+        private string outPath = "";
         private ListView bluetoothList = null;
         private ArrayList resultList;
-        public OrderView(string order_id , string path)
+        
+        public OrderList(string path)
         {
             InitializeComponent();
-            this.orderID = order_id;
             this.outPath = path;
             this.resultList = new ArrayList();
+            this.bluetoothList = bluetoothListView;
             this.bluetoothList = bluetoothListView;
             bluetoothList.BeginUpdate();
             bluetoothList.View = View.Details;
             loadListTitle();
             bluetoothList.EndUpdate();
-            
-            getOrderView();
+            getOrderList();
         }
-        private void getOrderView()
+        private void getOrderList()
         {
-            HttpWorker httpWorker = new HttpWorker(HttpWorker.orderView, httpResponse);
+            HttpWorker httpWorker = new HttpWorker(HttpWorker.orderList, httpResponse);
             JSONObject form = new JSONObject();
-            form.setString("orderID", orderID);
-            form.setString("showTranslate", "true");
+            form.setString("status", "4");
             httpWorker.setData(form);
             httpWorker.httpWorker();
             WaitDialog.show();
@@ -47,7 +45,6 @@ namespace Stu.UI
             int error_code = response.getInt("error_code");
             if (error_code == 0)
             {
-                Console.WriteLine(response.toString());
                 resultList.Clear();
                 JSONArray list = response.getJSONArray("list");
                 for (int i = 0; i < list.Count; i++)
@@ -56,8 +53,6 @@ namespace Stu.UI
                     resultList.Add(item);
                 }
                 reloadList();
-                JSONObject value = response.getJSONObject("value");
-                setValue(value);
             }
             else
             {
@@ -65,42 +60,50 @@ namespace Stu.UI
                 MessageBox.Show(message);
             }
         }
-        private void setValue(JSONObject value)
-        {
-            textCreateTime.Text = value.getString("create_time");
-            textUserName.Text = value.getString("userName");
-            textUserYearOld.Text = value.getString("userYearOld");
-            textTestTime.Text = value.getString("testTime");
-            textWordNum.Text = value.getString("wordNum");
-            labelScore.Text = "共獲得:"+value.getString("testResult")+"分";
-        }
         private void reloadList()
         {
             bluetoothList.BeginUpdate();
             bluetoothList.Clear();
             loadListTitle();
+            int i = 0;
             foreach (JSONObject manager in resultList)
             {
-                ListViewItem i1 = new ListViewItem(manager.getString("enWord"));
-                i1.SubItems.Add(manager.getString("test"));
-                int result = manager.getInt("testResult");
-                string res = "正確";
-                if (result == 2) res = "錯誤";
-                i1.SubItems.Add(res);
+                ListViewItem i1 = new ListViewItem(i+"");
+                i1.SubItems.Add(manager.getString("userName"));
+                i1.SubItems.Add(manager.getString("userYearOld"));
+                i1.SubItems.Add(manager.getString("wordNum"));
+                i1.SubItems.Add(manager.getString("testTime"));
+                i1.SubItems.Add(manager.getString("testResult"));
                 bluetoothList.Items.Add(i1);
+                i++;
             }
-            bluetoothList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            bluetoothList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             bluetoothList.EndUpdate();
         }
 
-        #region 增加Item的標題，共有三個列
+        #region 增加Item的標題，共有五個列
         private void loadListTitle()
         {
-            bluetoothList.Columns.Add("考試單字");
-            bluetoothList.Columns.Add("您的答案");
-            bluetoothList.Columns.Add("答題結果");
+            bluetoothList.Columns.Add(" ");
+            bluetoothList.Columns.Add("名字");
+            bluetoothList.Columns.Add("年紀");
+            bluetoothList.Columns.Add("單字數");
+            bluetoothList.Columns.Add("時間");
+            bluetoothList.Columns.Add("分數");
         }
         #endregion
+
+        private void bluetoothListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (bluetoothList.SelectedItems.Count > 0)
+            {
+                ListView.SelectedListViewItemCollection selected = bluetoothList.SelectedItems;
+                string indexStr = selected[0].SubItems[0].Text;
+                int index = int.Parse(indexStr);
+                JSONObject manager = (JSONObject)resultList[index];
+                string orderID = manager.getString("orderID");
+                OrderView view = new OrderView(orderID,outPath);
+                view.Show();
+            }
+        }
     }
 }

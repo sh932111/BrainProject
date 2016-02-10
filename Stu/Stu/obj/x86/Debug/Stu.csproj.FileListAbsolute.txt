@@ -72,3 +72,5 @@ C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.ca
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.Choose.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.Memory.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.DoTest.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.OrderView.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.OrderList.resources
