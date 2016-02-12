@@ -82,7 +82,6 @@ namespace Stu.UI
                 //choose.Location = new Point(20, 0);
                 choose.DesktopLocation = new Point(0, 0);
                 choose.Show();
-                this.Hide();
             }
             else
             {

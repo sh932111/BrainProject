@@ -28,7 +28,6 @@ namespace Stu.UI
             bluetoothList.View = View.Details;
             loadListTitle();
             bluetoothList.EndUpdate();
-            
             getOrderView();
         }
         private void getOrderView()
@@ -47,7 +46,16 @@ namespace Stu.UI
             int error_code = response.getInt("error_code");
             if (error_code == 0)
             {
-                Console.WriteLine(response.toString());
+                FloderUtils folder = new FloderUtils(outPath);
+                JSONObject value = response.getJSONObject("value");
+                string file_path = folder.createDeviceFolder(value.getString("deviceAddress"), orderID);
+                BrainCharts brainCharts = new BrainCharts("","", null, "yyyy_MM_dd_HH_mm_ss_fffff");
+                brainCharts.Location = new Point(350, 45);
+                brainCharts.TopLevel = false;
+                this.Controls.Add(brainCharts);
+                brainCharts.Show();
+                brainCharts.parseResultFile(file_path + "/ResultFile.csv");
+                brainCharts.addParseFile(file_path + "/Brain.csv");
                 resultList.Clear();
                 JSONArray list = response.getJSONArray("list");
                 for (int i = 0; i < list.Count; i++)
@@ -56,7 +64,6 @@ namespace Stu.UI
                     resultList.Add(item);
                 }
                 reloadList();
-                JSONObject value = response.getJSONObject("value");
                 setValue(value);
             }
             else

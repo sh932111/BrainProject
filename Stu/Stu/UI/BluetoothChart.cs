@@ -16,6 +16,7 @@ namespace Stu.UI
     public partial class BrainCharts : Form
     {
         /*Chart Value*/
+        private ArrayList attDataes = null;
         private ArrayList chartDataes = null;
         private ArrayList chartCombos = null;
         private ArrayList maxRange = null;
@@ -29,11 +30,30 @@ namespace Stu.UI
             this.labelDeviceName.Text = device_name;
             this.labelMac.Text = device_mac;
             this.chartCombos = new ArrayList();
+            this.attDataes = new ArrayList();
             this.chartDataes = new ArrayList();
             this.comboIndex = 0;
             this.colorIndex = 0;
             this.parseTimeForrmat = time_forrmat;
             this.maxRange = max_range;
+        }
+        /*2/11*/
+        public void addParseFile(string file_path)
+        {
+            attDataes.Clear();
+            StreamReader fSR = new StreamReader(file_path);
+            string fLine;
+            int index = 0;
+            while ((fLine = fSR.ReadLine()) != null)
+            {
+                string[] ReadLine_Array = fLine.Split(',');
+                if (index != 0)
+                {
+                    attDataes.Add(fLine);
+                }
+                index++;
+            }
+            fSR.Close();
         }
 
         public void parseResultFile(string file_path)
@@ -64,7 +84,9 @@ namespace Stu.UI
             }
             fSR.Close();
             showNumCombo.SelectedIndex = 0;
-            setChartLayout((string)chartCombos[comboIndex]);
+            int max = 2000000;
+            if (maxRange != null) max = (int)maxRange[comboIndex];
+            setChartLayout((string)chartCombos[comboIndex],max);
             rangeList.SelectedIndex = comboIndex;
         }
 
@@ -103,11 +125,9 @@ namespace Stu.UI
             }
         }
 
-        private void setChartLayout(string name)
+        private void setChartLayout(string name,int max)
         {
             this.brainChart.Series.Clear();
-            int max = 5000000;
-            if (maxRange != null) max = (int)maxRange[comboIndex];
             Series series = new Series(name);
             series.Font = new System.Drawing.Font("新細明體", 10);
             series.ChartType = SeriesChartType.Line;
@@ -150,7 +170,6 @@ namespace Stu.UI
 
         private void showNumCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             reloadIndexCombo();
             indexCombo.SelectedIndex = 0;
         }
@@ -163,8 +182,56 @@ namespace Stu.UI
         private void rangeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboIndex = rangeList.SelectedIndex;
-            setChartLayout((string)chartCombos[comboIndex]);
+            int max = 2000000;
+            if (maxRange != null) max = (int)maxRange[comboIndex];
+            setChartLayout((string)chartCombos[comboIndex], max);
             drawChartLine();
+        }
+
+        private void btnMed_Click(object sender, EventArgs e)
+        {
+            if (brainChart.Series.Count == 0) return;
+            setChartLayout("放鬆度", 100);
+            string item1 = (string)showNumCombo.SelectedItem;
+            int value = int.Parse(item1);
+            int index = (int)indexCombo.SelectedItem;
+            Series series = brainChart.Series[0];
+            series.Points.Clear();
+            int start = (index - 1) * value;
+            for (int i = start; i < attDataes.Count; i++)
+            {
+                if (i == value * index - 1) break;
+                string line = (string)attDataes[i];
+                string[] ReadLine_Array = line.Split(',');
+                string time = ReadLine_Array[0];
+                DateTime myDate = DateTime.ParseExact(time, "yyyy/MM/dd/ HH:mm:ss.fffff", System.Globalization.CultureInfo.InvariantCulture);
+                time = myDate.ToString("HH:mm:ss");
+                string chartCode = ReadLine_Array[10];
+                drawLine(series, time, chartCode);
+            }
+        }
+
+        private void btnAtt_Click(object sender, EventArgs e)
+        {
+            if (brainChart.Series.Count == 0) return;
+            setChartLayout("專注度", 100);
+            string item1 = (string)showNumCombo.SelectedItem;
+            int value = int.Parse(item1);
+            int index = (int)indexCombo.SelectedItem;
+            Series series = brainChart.Series[0];
+            series.Points.Clear();
+            int start = (index - 1) * value;
+            for (int i = start; i < attDataes.Count; i++)
+            {
+                if (i == value * index - 1) break;
+                string line = (string)attDataes[i];
+                string[] ReadLine_Array = line.Split(',');
+                string time = ReadLine_Array[0];
+                DateTime myDate = DateTime.ParseExact(time, "yyyy/MM/dd/ HH:mm:ss.fffff", System.Globalization.CultureInfo.InvariantCulture);
+                time = myDate.ToString("HH:mm:ss");
+                string chartCode = ReadLine_Array[9];
+                drawLine(series, time, chartCode);
+            }
         }
     }
 }

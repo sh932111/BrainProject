@@ -43,6 +43,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.labelScore = new System.Windows.Forms.Label();
             this.bluetoothListView = new System.Windows.Forms.ListView();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
@@ -183,18 +184,30 @@
             // 
             // bluetoothListView
             // 
-            this.bluetoothListView.Location = new System.Drawing.Point(16, 323);
+            this.bluetoothListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bluetoothListView.Location = new System.Drawing.Point(16, 310);
             this.bluetoothListView.Name = "bluetoothListView";
-            this.bluetoothListView.Size = new System.Drawing.Size(300, 157);
+            this.bluetoothListView.Size = new System.Drawing.Size(300, 105);
             this.bluetoothListView.TabIndex = 29;
             this.bluetoothListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(345, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 24);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "腦波資訊";
             // 
             // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cornsilk;
-            this.ClientSize = new System.Drawing.Size(957, 492);
+            this.ClientSize = new System.Drawing.Size(957, 427);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.bluetoothListView);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.label8);
@@ -235,5 +248,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.ListView bluetoothListView;
+        private System.Windows.Forms.Label label9;
     }
 }
