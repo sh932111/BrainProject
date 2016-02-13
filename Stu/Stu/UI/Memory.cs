@@ -30,6 +30,7 @@ namespace Stu.UI
             InitializeComponent();
             this.configManager = manager;
             this.TopMost = true;
+            Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/memoryWord/?orderID=" + configManager.getOrderID());
             BluetoothDeviceManager deviceManager = manager.getDeviceManager();
             FloderUtils folder = new FloderUtils(manager.getPath());
             folder.createRoot();
