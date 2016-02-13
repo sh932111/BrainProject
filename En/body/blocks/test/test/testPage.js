@@ -20,10 +20,14 @@ function testPageBlock(id) {
 			list : list,
 			orderID : this.orderID
 		};
+    	$("#upload-loader").show();
+    	$("#upload-btn").hide();
 		httpPost(orderUpdateWord,post,function(data){
 			if (data.result) {
-				alert("上傳成功！如確認無誤請點選交卷按鈕！");
+				$('#message-modal').openModal();
 			}
+    		$("#upload-loader").hide();
+    		$("#upload-btn").show();
 		});
 	};
 	this.init = function(word_num , order_id) {
@@ -44,4 +48,5 @@ function testPageBlockMain(bkID) {
 	testPageBk.init(value.wordNum,get);
     meSpeak.loadConfig("/En/resource/lib/mespeak/mespeak_config.json");
     meSpeak.loadVoice("/En/resource/lib/mespeak/voices/en/en.json");
+    $("#upload-loader").hide();
 };

@@ -44,6 +44,29 @@
 	?>
 	<div class="clear"></div>
 	<div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right:80px;">
-		<a class="btn-floating btn-large red"  href="javascript: testPageBk.upload();">上傳</a>
+		<a class="btn-floating btn-large red modal-trigger"  href="javascript: testPageBk.upload();" id="upload-btn">上傳</a>
+		<div class="preloader-wrapper small active" id="upload-loader">
+			<div class="spinner-layer spinner-green-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal Structure -->
+<div id="message-modal" class="modal">
+	<div class="modal-content">
+		<h4>訊息</h4>
+		<h5>上傳成功！如確認無誤請點選交卷按鈕！</h5>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript: void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">確定</a>
 	</div>
 </div>

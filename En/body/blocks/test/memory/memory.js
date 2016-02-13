@@ -62,11 +62,13 @@ function memoryBlock(id) {
 		var word = item.enWord;
 		var input = $("#write-input").val();
 		if (input == word) {
-			alert("你答對了！");
+			$('#message').html("你答對了！");
+			$('#message-modal').openModal();
 			this.hideTest();
 		}
 		else {
-			alert("你答錯了，請再試試！");
+			$('#message').html("你答錯了，請再試試！");
+			$('#message-modal').openModal();
 		}
 	};
 	this.init = function(list) {
