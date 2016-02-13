@@ -54,6 +54,12 @@ namespace Stu.UI
                 MessageBox.Show("尚未選擇Device!");
                 return;
             }
+            string ProcessName = "chrome";//這裡換成你需要刪除的進程名稱
+            Process[] processes = Process.GetProcessesByName(ProcessName);
+            foreach (Process p in processes)
+            {
+                p.CloseMainWindow();
+            }
             BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
             HttpWorker httpWorker = new HttpWorker(HttpWorker.orderCreate, httpResponse);
             JSONObject form = new JSONObject();
@@ -148,6 +154,11 @@ namespace Stu.UI
                 this.firstRange = fr;
                 this.lastRange = lr;
             }
+        }
+
+        private void exBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/ex/");
         }
     }
 }
