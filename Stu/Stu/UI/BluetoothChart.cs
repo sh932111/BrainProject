@@ -84,7 +84,7 @@ namespace Stu.UI
             }
             fSR.Close();
             showNumCombo.SelectedIndex = 0;
-            int max = 2000000;
+            int max = 3000000;
             if (maxRange != null) max = (int)maxRange[comboIndex];
             setChartLayout((string)chartCombos[comboIndex],max);
             rangeList.SelectedIndex = comboIndex;
@@ -182,7 +182,7 @@ namespace Stu.UI
         private void rangeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboIndex = rangeList.SelectedIndex;
-            int max = 2000000;
+            int max = 3000000;
             if (maxRange != null) max = (int)maxRange[comboIndex];
             setChartLayout((string)chartCombos[comboIndex], max);
             drawChartLine();
