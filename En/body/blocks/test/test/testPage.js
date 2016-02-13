@@ -30,6 +30,9 @@ function testPageBlock(id) {
 		this.wordNum = word_num;
 		this.orderID = order_id;
 	};
+	this.sound = function(index) {
+		$("#speak" + index).click();
+	};
 };
 
 function testPageBlockMain(bkID) {
@@ -39,4 +42,6 @@ function testPageBlockMain(bkID) {
 	var get = manager.getGET();
 	var value = api.value;
 	testPageBk.init(value.wordNum,get);
+    meSpeak.loadConfig("/En/resource/lib/mespeak/mespeak_config.json");
+    meSpeak.loadVoice("/En/resource/lib/mespeak/voices/en/en.json");
 };

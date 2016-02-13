@@ -17,3 +17,13 @@
 	height: 80px !important;
 	line-height: 80px;
 }
+
+.custom-card {
+	position: relative;
+}
+
+.custom-card a {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
