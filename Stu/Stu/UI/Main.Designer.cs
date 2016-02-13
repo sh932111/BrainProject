@@ -105,7 +105,7 @@
             this.textWordNum.Name = "textWordNum";
             this.textWordNum.Size = new System.Drawing.Size(201, 29);
             this.textWordNum.TabIndex = 9;
-            this.textWordNum.Text = "7";
+            this.textWordNum.Text = "6";
             // 
             // label3
             // 
