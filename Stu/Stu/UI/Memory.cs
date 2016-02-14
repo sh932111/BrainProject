@@ -60,12 +60,12 @@ namespace Stu.UI
                 p.CloseMainWindow();
             }
 
+            this.Close();
             ShowExDialog.show("第三步、測試單字", Properties.Resources.test);
             DoTest doTest = new DoTest(configManager);
             doTest.Show();
             doTest.Location = new Point(0, 0);
             Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/testWord/?orderID=" + configManager.getOrderID());
-            this.Close();
         }
 
         delegate void ChartUIHabdler(ArrayList list);
@@ -133,7 +133,7 @@ namespace Stu.UI
             writeCode(runPath + "/" + "streamLog.csv", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
             writeCode(runPath + "/" + "dataLog.csv", startTime, over_time, manager.getDataLog(), 512, numRow, fftTitleItem());
             writeCode(runPath + "/" + "Brain.csv", "", "", manager.getBrainList(), 1, numRow, brashTitleItem());
-            System.Diagnostics.Process.Start(runPath);
+            //System.Diagnostics.Process.Start(runPath);
         }
 
         private ArrayList brashTitleItem()

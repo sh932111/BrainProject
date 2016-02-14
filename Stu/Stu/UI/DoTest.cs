@@ -48,9 +48,9 @@ namespace Stu.UI
                 {
                     p.CloseMainWindow();
                 }
+                this.Close();
                 OrderView view = new OrderView(configManager.getOrderID(),configManager.getPath());
                 view.Show();
-                this.Close();
             }
             else
             {

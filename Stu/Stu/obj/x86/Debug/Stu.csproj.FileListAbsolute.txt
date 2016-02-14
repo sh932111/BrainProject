@@ -84,3 +84,4 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.OrderList.r
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.OrderView.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.WaitDialog.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.ShowExDialog.resources
+C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.ShowExDialog.resources
