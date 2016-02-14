@@ -44,7 +44,11 @@ namespace Stu.UI
 
         private void memoryFinishBtn_Click(object sender, EventArgs e)
         {
-            stopTimer();
+            DialogResult myResult = MessageBox.Show("確定背完?", "確定已經背完單字，準備提早考試嗎??", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (myResult == DialogResult.Yes)
+            {
+                stopTimer();
+            }
         }
 
         private void stopTimer()
