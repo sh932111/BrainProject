@@ -131,3 +131,13 @@
 ?>
 <div class="clear"></div>
 </div>
+<!-- Modal Structure -->
+<div id="message-modal" class="modal">
+	<div class="modal-content">
+		<h4>訊息</h4>
+		<h5 id="message"></h5>
+	</div>
+	<div class="modal-footer">
+		<a href="javascript: void(0)" class="modal-action modal-close waves-effect waves-green btn-flat">確定</a>
+	</div>
+</div>

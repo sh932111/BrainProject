@@ -19,7 +19,8 @@ function chooseBlock(id) {
 			else {
 				$("#loader-"+index).hide();
 				$("#btn-"+index).show();
-				alert(data.message);
+				$('#message').html(data.message);
+				$('#message-modal').openModal();
 			}
 		});
 	};
@@ -39,7 +40,8 @@ function chooseBlock(id) {
 			else {
 				$("#btn-"+index).show();
 				$("#loader-"+index).hide();
-				alert(data.message);
+				$('#message').html(data.message);
+				$('#message-modal').openModal();
 			}
 		});
 	};
