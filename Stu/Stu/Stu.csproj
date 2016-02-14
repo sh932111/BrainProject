@@ -162,6 +162,12 @@
     <Compile Include="UI\OrderView.Designer.cs">
       <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ShowExDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ShowExDialog.Designer.cs">
+      <DependentUpon>ShowExDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FileListUtils.cs" />
     <Compile Include="Utils\OpenFileDialogUtils.cs" />
     <Compile Include="Utils\RangeDefinition.cs" />
@@ -224,6 +230,9 @@
     <EmbeddedResource Include="UI\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ShowExDialog.resx">
+      <DependentUpon>ShowExDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitDialog.resx">
       <DependentUpon>WaitDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +250,11 @@
   <ItemGroup>
     <Content Include="DLL\NCalc.dll" />
     <Content Include="DLL\thinkgear.dll" />
+    <Content Include="Resources\choose.png" />
+    <Content Include="Resources\main.png" />
+    <Content Include="Resources\memory.png" />
+    <Content Include="Resources\result.png" />
+    <Content Include="Resources\test.png" />
     <None Include="Resources\loader.gif" />
   </ItemGroup>
   <ItemGroup />

@@ -115,7 +115,7 @@
             this.Name = "RangeDialog";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RangeDialog";
+            this.Text = "自訂腦波範圍";
             this.ResumeLayout(false);
             this.PerformLayout();
 

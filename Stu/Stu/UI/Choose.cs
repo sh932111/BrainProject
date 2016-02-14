@@ -43,9 +43,10 @@ namespace Stu.UI
                 {
                     p.CloseMainWindow();
                 }
-                Memory choose = new Memory(configManager);
-                choose.DesktopLocation = new Point(0, 0);
-                choose.Show();
+                ShowExDialog.show("第二步、背單字", Properties.Resources.memory);
+                Memory memory = new Memory(configManager);
+                memory.Show();
+                memory.Location = new Point(0, 0);
                 this.Close();
             }
             else

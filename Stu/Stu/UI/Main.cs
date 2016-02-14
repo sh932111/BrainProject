@@ -79,15 +79,15 @@ namespace Stu.UI
             int error_code = response.getInt("error_code");
             if (error_code == 0)
             {
+                ShowExDialog.show("第一步、選擇單字", Properties.Resources.choose);
                 ArrayList list = bluetooth_list.getResult();
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = response.getString("orderID");
                 ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, firstRange, lastRange);
                 Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/chooseWord/?orderID=" + order_id);
                 Choose choose = new Choose(config_manager);
-                //choose.Location = new Point(20, 0);
-                choose.DesktopLocation = new Point(0, 0);
                 choose.Show();
+                choose.Location = new Point(0, 0);
             }
             else
             {

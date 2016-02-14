@@ -60,33 +60,12 @@ namespace Stu.UI
                 p.CloseMainWindow();
             }
 
-            //BluetoothDeviceManager deviceManager = configManager.getDeviceManager();
-            //BrainCharts brainCharts = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), null, "yyyy_MM_dd_HH_mm_ss_fffff");
-            //brainCharts.Show();
-            //brainCharts.parseResultFile(runPath + "/ResultFile.csv");
-
+            ShowExDialog.show("第三步、測試單字", Properties.Resources.test);
             DoTest doTest = new DoTest(configManager);
-            doTest.DesktopLocation = new Point(0, 0);
             doTest.Show();
-
+            doTest.Location = new Point(0, 0);
             Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/testWord/?orderID=" + configManager.getOrderID());
             this.Close();
-            //ArrayList list = new ArrayList();
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    if (i == 8 || i == 9)
-            //    {
-            //        list.Add(100);
-            //    }
-            //    else
-            //    {
-            //        list.Add(20000000);
-            //    }
-            //}
-
-            //BrainCharts brainCharts2 = new BrainCharts(deviceManager.getDeviceName(), deviceManager.getDeviceAddress(), list, "yyyy/MM/dd/ HH:mm:ss.fffff");
-            //brainCharts2.Show();
-            //brainCharts2.parseResultFile(runPath + "/Brain.csv");
         }
 
         delegate void ChartUIHabdler(ArrayList list);
