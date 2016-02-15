@@ -124,7 +124,7 @@
             this.textTestTime.Name = "textTestTime";
             this.textTestTime.Size = new System.Drawing.Size(166, 29);
             this.textTestTime.TabIndex = 11;
-            this.textTestTime.Text = "600";
+            this.textTestTime.Text = "500";
             // 
             // label4
             // 
