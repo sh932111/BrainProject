@@ -9,6 +9,7 @@
 	$error_code = $data["error_code"];
 	if ($error_code == 0) {
 		$wordList = $data["wordList"];
+		shuffle($wordList);
 		$alreadyWord = count($list);
 		?>
 		<div class="col s12">
@@ -48,18 +49,14 @@
 					<div class="col s12">
 						<h6 class="blue-text text-darken-4">單字：<?php echo $wordItem["enWord"];?></h6>
 						<?php
-						for ($x=0; $x < count($definitionList); $x++) {
-							$ditem = $definitionList[$x];
-							$titem = $translateList[$x];
-							?>
-							<h6 class=" light-blue-text text-accent-4">
-								詞性：<?php echo $ditem["enDefinition"];?>
-								&nbsp;&nbsp;
-								解釋：<?php echo $titem["enTranslate"];?>
-							</h6>	
-							<?php
-						}
+						$ditem = $definitionList[0];
+						$titem = $translateList[0];
 						?>
+						<h6 class=" light-blue-text text-accent-4">
+							詞性：<?php echo $ditem["enDefinition"];?>
+							&nbsp;&nbsp;
+							解釋：<?php echo $titem["enTranslate"];?>
+						</h6>	
 						<?php
 						$pkCheck = false;
 						$pkWordID = $wordItem["enWordID"];
