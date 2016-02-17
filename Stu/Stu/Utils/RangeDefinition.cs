@@ -8,7 +8,19 @@ namespace Stu.Utils
 {
     class RangeDefinition
     {
-        public static ArrayList getFirstRange() 
+        public static ArrayList getNameRange()
+        {
+            ArrayList fr = new ArrayList();
+
+            fr.Add("Delta");
+            fr.Add("Theta");
+            fr.Add("Alpha");
+            fr.Add("Beta");
+            fr.Add("Gamma");
+
+            return fr;
+        }
+        public static ArrayList getFirstRange()
         {
             ArrayList fr = new ArrayList();
 

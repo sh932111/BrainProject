@@ -8,32 +8,20 @@ namespace Stu.Manager
 {
     public partial class ConfigManager
     {
-        private ArrayList lastRange = null;
-        private ArrayList firstRange = null;
         private BluetoothDeviceManager deviceManager = null;
         private string outPath = "";
         private string orderID = "";
         int runTime = 0;
-        public ConfigManager(string id, string path , int run , BluetoothDeviceManager device, ArrayList fr, ArrayList lr)
+        public ConfigManager(string id, string path, int run, BluetoothDeviceManager device)
         {
             this.orderID = id;
             this.outPath = path;
             this.deviceManager = device;
-            this.firstRange = fr;
-            this.lastRange = lr;
             this.runTime = run + 10;
         }
         public string getOrderID()
         {
             return orderID;
-        }
-        public ArrayList getLastRange()
-        {
-            return lastRange;
-        }
-        public ArrayList getFirstRange()
-        {
-            return firstRange;
         }
         public string getPath()
         {

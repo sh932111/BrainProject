@@ -107,7 +107,7 @@ namespace Stu.UI
                     setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
                     break;
                 case 1:
-                    RangeDialog.show(setRange);
+                    //RangeDialog.show(setRange);
                     break;
                 default:
                     setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
@@ -364,7 +364,7 @@ namespace Stu.UI
             writeCode(dir_fft + "/" + file, "", "", fft_resource, 1025, 1, null);
 
             WriteFile writeFile = new WriteFile(runPath);
-            writeFile.FFTResult(firstRange, lastRange, time, dir_fft + "/" + file);
+            writeFile.FFTResult(WriteFile.FFTResultFile,null,firstRange, lastRange, time, dir_fft + "/" + file);
         }
     }
 }

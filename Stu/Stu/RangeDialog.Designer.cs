@@ -35,13 +35,15 @@
             this.addBtn = new System.Windows.Forms.Button();
             this.rangeList = new System.Windows.Forms.ListView();
             this.runBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // fRangeInput
             // 
             this.fRangeInput.Location = new System.Drawing.Point(57, 3);
             this.fRangeInput.Name = "fRangeInput";
-            this.fRangeInput.Size = new System.Drawing.Size(100, 20);
+            this.fRangeInput.Size = new System.Drawing.Size(71, 20);
             this.fRangeInput.TabIndex = 0;
             // 
             // label1
@@ -55,15 +57,15 @@
             // 
             // lRangeInput
             // 
-            this.lRangeInput.Location = new System.Drawing.Point(180, 3);
+            this.lRangeInput.Location = new System.Drawing.Point(154, 3);
             this.lRangeInput.Name = "lRangeInput";
-            this.lRangeInput.Size = new System.Drawing.Size(100, 20);
+            this.lRangeInput.Size = new System.Drawing.Size(72, 20);
             this.lRangeInput.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(163, 10);
+            this.label2.Location = new System.Drawing.Point(134, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 13);
             this.label2.TabIndex = 3;
@@ -71,7 +73,7 @@
             // 
             // addBtn
             // 
-            this.addBtn.Location = new System.Drawing.Point(297, 3);
+            this.addBtn.Location = new System.Drawing.Point(378, 3);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(75, 25);
             this.addBtn.TabIndex = 4;
@@ -97,11 +99,29 @@
             this.runBtn.UseVisualStyleBackColor = true;
             this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(244, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "命名：";
+            // 
+            // textName
+            // 
+            this.textName.Location = new System.Drawing.Point(293, 3);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(72, 20);
+            this.textName.TabIndex = 8;
+            // 
             // RangeDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 219);
+            this.Controls.Add(this.textName);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.runBtn);
             this.Controls.Add(this.rangeList);
             this.Controls.Add(this.addBtn);
@@ -130,5 +150,7 @@
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.ListView rangeList;
         private System.Windows.Forms.Button runBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textName;
     }
 }

@@ -114,6 +114,12 @@
     <Compile Include="UI\BluetoothList.Designer.cs">
       <DependentUpon>BluetoothList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\BrainChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BrainChart.Designer.cs">
+      <DependentUpon>BrainChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\BrainWorker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BluetoothList.resx">
       <DependentUpon>BluetoothList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BrainChart.resx">
+      <DependentUpon>BrainChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrainWorker.resx">
       <DependentUpon>BrainWorker.cs</DependentUpon>

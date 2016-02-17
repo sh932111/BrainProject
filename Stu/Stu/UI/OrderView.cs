@@ -49,13 +49,11 @@ namespace Stu.UI
                 FloderUtils folder = new FloderUtils(outPath);
                 JSONObject value = response.getJSONObject("value");
                 string file_path = folder.createDeviceFolder(value.getString("deviceAddress"), orderID);
-                BrainCharts brainCharts = new BrainCharts("","", null, "yyyy_MM_dd_HH_mm_ss_fffff");
+                BrainChart brainCharts = new BrainChart(file_path);
                 brainCharts.Location = new Point(350, 45);
                 brainCharts.TopLevel = false;
                 this.Controls.Add(brainCharts);
                 brainCharts.Show();
-                brainCharts.parseResultFile(file_path + "/ResultFile.csv");
-                brainCharts.addParseFile(file_path + "/Brain.csv");
                 resultList.Clear();
                 JSONArray list = response.getJSONArray("list");
                 for (int i = 0; i < list.Count; i++)

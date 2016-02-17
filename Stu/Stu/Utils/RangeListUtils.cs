@@ -12,12 +12,14 @@ namespace Stu.Utils
         ListView rangeList = null;
         ArrayList fRangeList = null;
         ArrayList lRangeList = null;
+        ArrayList nRangeList = null;
 
         /*ListView Initialize*/
         public RangeListUtils(ListView _list)
         {
             this.fRangeList = new ArrayList();
             this.lRangeList = new ArrayList();
+            this.nRangeList = new ArrayList();
             this.rangeList       = _list;
 
             rangeList.BeginUpdate();
@@ -35,15 +37,21 @@ namespace Stu.Utils
             return fRangeList;
         }
 
+        public ArrayList getnRangeList()
+        {
+            return nRangeList;
+        }
+
         public ArrayList getlRangeList()
         {
             return lRangeList;
         }
 
-        public void addRangeItem(String r1,String r2)
+        public void addRangeItem(String r1,String r2,String n)
         {
             fRangeList.Add(r1);
             lRangeList.Add(r2);
+            nRangeList.Add(n);
             reloadList();
         }
 
@@ -62,12 +70,15 @@ namespace Stu.Utils
 
                 ListViewItem.ListViewSubItem sub_i1 = new ListViewItem.ListViewSubItem();
                 ListViewItem.ListViewSubItem sub_i2 = new ListViewItem.ListViewSubItem();
+                ListViewItem.ListViewSubItem sub_i3 = new ListViewItem.ListViewSubItem();
 
                 sub_i1.Text = (String)fRangeList[i];
                 sub_i2.Text = (String)lRangeList[i];
+                sub_i3.Text = (String)nRangeList[i];
 
                 i1.SubItems.Add(sub_i1);
                 i1.SubItems.Add(sub_i2);
+                i1.SubItems.Add(sub_i3);
 
                 rangeList.Items.Add(i1);
             }
@@ -86,6 +97,7 @@ namespace Stu.Utils
             rangeList.Columns.Add("");
             rangeList.Columns.Add("起始範圍");
             rangeList.Columns.Add("終點範圍");
+            rangeList.Columns.Add("定義名字");
             #endregion
         }
         /*載入ListView標題列*/

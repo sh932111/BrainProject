@@ -17,6 +17,7 @@ namespace Stu.UI
     public partial class Main : Form
     {
         private string outPath = "";
+        private ArrayList nameRange = null;
         private ArrayList lastRange = null;
         private ArrayList firstRange = null;
         BluetoothList bluetooth_list = null;
@@ -83,7 +84,7 @@ namespace Stu.UI
                 ArrayList list = bluetooth_list.getResult();
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = response.getString("orderID");
-                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, firstRange, lastRange);
+                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager);
                 Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/chooseWord/?orderID=" + order_id);
                 Choose choose = new Choose(config_manager);
                 choose.Show();
@@ -132,20 +133,20 @@ namespace Stu.UI
             switch (runTypeCombo.SelectedIndex)
             {
                 case 0:
-                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
+                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange(), RangeDefinition.getNameRange());
                     break;
                 case 1:
                     RangeDialog.show(setRange);
                     break;
                 default:
-                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange());
+                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange(),RangeDefinition.getNameRange());
                     break;
             }
         }
 
-        private void setRange(ArrayList fr, ArrayList lr)
+        private void setRange(ArrayList fr, ArrayList lr , ArrayList nr)
         {
-            if (fr == null || lr == null)
+            if (fr == null || lr == null || nr == null)
             {
                 runTypeCombo.SelectedIndex = 0;
             }
@@ -153,6 +154,7 @@ namespace Stu.UI
             {
                 this.firstRange = fr;
                 this.lastRange = lr;
+                this.nameRange = nr;
             }
         }
 

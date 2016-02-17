@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace Stu
 {
-    public delegate void rangeDialogCallback(ArrayList farraylist ,ArrayList larraylist);
+    public delegate void rangeDialogCallback(ArrayList farraylist ,ArrayList larraylist , ArrayList nameList);
 
     public partial class RangeDialog : Form
     {
@@ -24,9 +24,7 @@ namespace Stu
         public RangeDialog(rangeDialogCallback _callback)
         {
             InitializeComponent();
-            this.FormClosing += Form1_FormClosing;
             this.callback = _callback;
-
             setListView();
         }
         
@@ -52,13 +50,17 @@ namespace Stu
 
             String lr = lRangeInput.Text;
 
-            if (fr.Length > 0 && lr.Length > 0)
+            String nr = textName.Text;
+
+            if (fr.Length > 0 && lr.Length > 0 && nr.Length > 0)
             {
-                rangeListUtils.addRangeItem(fr, lr);
+                rangeListUtils.addRangeItem(fr, lr ,nr);
 
                 fRangeInput.Text = "";
 
                 lRangeInput.Text = "";
+
+                textName.Text = "";
             }
             else
             {
@@ -68,33 +70,19 @@ namespace Stu
 
         private void runBtn_Click(object sender, EventArgs e)
         {
-            if (rangeListUtils.getfRangeList().Count > 0 && rangeListUtils.getlRangeList().Count > 0)
+            if (rangeListUtils.getfRangeList().Count > 0 && rangeListUtils.getlRangeList().Count > 0 && rangeListUtils.getnRangeList().Count > 0)
             {
 
                 result = DialogResult.Yes;
 
                 if (callback != null)
-                    callback(rangeListUtils.getfRangeList(), rangeListUtils.getlRangeList());
+                    callback(rangeListUtils.getfRangeList(), rangeListUtils.getlRangeList(),rangeListUtils.getnRangeList());
 
                 dialog.Close();
             }
             else 
             {
                 MessageBox.Show("至少需要一筆判斷值!");
-            }
-        }
-
-        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            //In case windows is trying to shut down, don't hold the process up
-            if (e.CloseReason == CloseReason.WindowsShutDown) return;
-
-            if (this.DialogResult == DialogResult.Cancel)
-            {
-                // Assume that X has been clicked and act accordingly.
-                // Confirm user wants to close
-                if (callback != null)
-                    callback(null, null);
             }
         }
     }
