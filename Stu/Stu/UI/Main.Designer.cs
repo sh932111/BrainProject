@@ -42,9 +42,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.outputText = new System.Windows.Forms.TextBox();
             this.chooseFolderBtn = new System.Windows.Forms.Button();
-            this.runTypeCombo = new System.Windows.Forms.ComboBox();
             this.labelNorm = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.resetBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
@@ -191,20 +189,6 @@
             this.chooseFolderBtn.UseVisualStyleBackColor = true;
             this.chooseFolderBtn.Click += new System.EventHandler(this.chooseFolderBtn_Click);
             // 
-            // runTypeCombo
-            // 
-            this.runTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.runTypeCombo.FormattingEnabled = true;
-            this.runTypeCombo.Items.AddRange(new object[] {
-            "腦波標準",
-            "自訂條件"});
-            this.runTypeCombo.Location = new System.Drawing.Point(123, 196);
-            this.runTypeCombo.Name = "runTypeCombo";
-            this.runTypeCombo.Size = new System.Drawing.Size(201, 21);
-            this.runTypeCombo.TabIndex = 21;
-            this.runTypeCombo.Visible = false;
-            this.runTypeCombo.SelectedIndexChanged += new System.EventHandler(this.runTypeCombo_SelectedIndexChanged);
-            // 
             // labelNorm
             // 
             this.labelNorm.AutoSize = true;
@@ -215,17 +199,6 @@
             this.labelNorm.Size = new System.Drawing.Size(0, 16);
             this.labelNorm.TabIndex = 20;
             this.labelNorm.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(19, 193);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 24);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "腦波條件：";
-            this.label9.Visible = false;
             // 
             // textBox1
             // 
@@ -285,9 +258,7 @@
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.runTypeCombo);
             this.Controls.Add(this.labelNorm);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.outputText);
             this.Controls.Add(this.chooseFolderBtn);
             this.Controls.Add(this.label7);
@@ -327,9 +298,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox outputText;
         private System.Windows.Forms.Button chooseFolderBtn;
-        private System.Windows.Forms.ComboBox runTypeCombo;
         private System.Windows.Forms.Label labelNorm;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.Button historyBtn;

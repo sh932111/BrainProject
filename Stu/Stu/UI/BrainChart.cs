@@ -129,20 +129,23 @@ namespace Stu.UI
         }
         private void btnFFT_Click(object sender, EventArgs e)
         {
-            setChartLayout("FFT頻譜", 100000);
-            Series series = chart1.Series[0];
-            series.Points.Clear();
+            this.chart1.Series.Clear();
+            chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            chart1.ChartAreas[0].AxisY.Maximum = 100000;
             string title_line = (string)fftDataes[0];
             string[] title_Array = title_line.Split(',');
             for (int i = 1; i < fftDataes.Count; i++)
             {
+                Series series = new Series();
+                series.ChartType = SeriesChartType.Point;
+                series.Color = Color.Red;
                 string line = (string)fftDataes[i];
                 string[] data_Array = line.Split(',');
                 for (int x = 1; x < data_Array.Length; x++)
                 {
                     drawLine(series, title_Array[x], data_Array[x]);
-                    if (x == 1) break;
                 }
+                this.chart1.Series.Add(series);
             }
         }
         private void setChartLayout(string name, int max)

@@ -78,12 +78,6 @@
     <Compile Include="Computer.Designer.cs">
       <DependentUpon>Computer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Demo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Demo.Designer.cs">
-      <DependentUpon>Demo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Manager\BluetoothDeviceManager.cs" />
     <Compile Include="Manager\BrainManager.cs" />
     <Compile Include="Manager\ConfigManager.cs" />
@@ -102,12 +96,6 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\BluetoothChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\BluetoothChart.Designer.cs">
-      <DependentUpon>BluetoothChart.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\BluetoothList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,12 +107,6 @@
     </Compile>
     <Compile Include="UI\BrainChart.Designer.cs">
       <DependentUpon>BrainChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\BrainWorker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\BrainWorker.Designer.cs">
-      <DependentUpon>BrainWorker.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Choose.cs">
       <SubType>Form</SubType>
@@ -143,12 +125,6 @@
     </Compile>
     <Compile Include="UI\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\FolderController.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\FolderController.Designer.cs">
-      <DependentUpon>FolderController.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Memory.cs">
       <SubType>Form</SubType>
@@ -187,9 +163,6 @@
     <EmbeddedResource Include="Computer.resx">
       <DependentUpon>Computer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Demo.resx">
-      <DependentUpon>Demo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -206,17 +179,11 @@
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\BluetoothChart.resx">
-      <DependentUpon>BluetoothChart.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\BluetoothList.resx">
       <DependentUpon>BluetoothList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrainChart.resx">
       <DependentUpon>BrainChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\BrainWorker.resx">
-      <DependentUpon>BrainWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Choose.resx">
       <DependentUpon>Choose.cs</DependentUpon>
@@ -226,9 +193,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\FolderController.resx">
-      <DependentUpon>FolderController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Memory.resx">
       <DependentUpon>Memory.cs</DependentUpon>

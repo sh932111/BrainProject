@@ -40,11 +40,7 @@ Z:\winData\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
 Z:\winData\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\InTheHand.Net.Personal.dll
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\InTheHand.Net.Personal.xml
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.Demo.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BluetoothList.resources
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.FolderController.resources
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BrainWorker.resources
-C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BrainCharts.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.TestForm.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.exe
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.pdb

@@ -128,36 +128,6 @@ namespace Stu.UI
             outputText.Text = "";
         }
 
-        private void runTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (runTypeCombo.SelectedIndex)
-            {
-                case 0:
-                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange(), RangeDefinition.getNameRange());
-                    break;
-                case 1:
-                    RangeDialog.show(setRange);
-                    break;
-                default:
-                    setRange(RangeDefinition.getFirstRange(), RangeDefinition.getLastRange(),RangeDefinition.getNameRange());
-                    break;
-            }
-        }
-
-        private void setRange(ArrayList fr, ArrayList lr , ArrayList nr)
-        {
-            if (fr == null || lr == null || nr == null)
-            {
-                runTypeCombo.SelectedIndex = 0;
-            }
-            else
-            {
-                this.firstRange = fr;
-                this.lastRange = lr;
-                this.nameRange = nr;
-            }
-        }
-
         private void exBtn_Click(object sender, EventArgs e)
         {
             Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/ex/");
