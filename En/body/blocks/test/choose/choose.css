@@ -9,10 +9,24 @@
 	top: 20px;
 }
 
+.text-card-panel {
+	padding: 2px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+}
+
+.text-card-panel code {
+	margin-top: 3px;
+}
+
 .custom-title-font-size {
 	font-size: 1.24rem;
 }
 
 .custom-font-size {
 	font-size: 1.14rem;
+}
+
+.margin-rigth-10 {
+	margin-right: 10px;
 }

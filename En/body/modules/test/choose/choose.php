@@ -10,7 +10,8 @@ class chooseModules {
         $wordResult = $httpWorkerForWord->post($post);
         $wordObj = json_decode($wordResult,true);
         $orderData = array(
-        	"orderID" => $orderID
+        	"orderID" => $orderID,
+            "showTranslate" => true
         	);
         // $orderViewAPI = "http://localhost:8888/www/En/api/module/order/view.php";
         $orderViewAPI = "http://shared.tw/En/api/module/order/view.php";
