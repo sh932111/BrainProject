@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.runTypeCombo = new System.Windows.Forms.ComboBox();
             this.bigBtn = new System.Windows.Forms.Button();
+            this.lastBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +73,7 @@
             // 
             // btnAtt
             // 
-            this.btnAtt.Location = new System.Drawing.Point(410, 30);
+            this.btnAtt.Location = new System.Drawing.Point(491, 1);
             this.btnAtt.Name = "btnAtt";
             this.btnAtt.Size = new System.Drawing.Size(75, 23);
             this.btnAtt.TabIndex = 15;
@@ -92,7 +93,7 @@
             // 
             // btnFFT
             // 
-            this.btnFFT.Location = new System.Drawing.Point(329, 30);
+            this.btnFFT.Location = new System.Drawing.Point(401, 30);
             this.btnFFT.Name = "btnFFT";
             this.btnFFT.Size = new System.Drawing.Size(75, 23);
             this.btnFFT.TabIndex = 16;
@@ -133,6 +134,16 @@
             this.bigBtn.UseVisualStyleBackColor = true;
             this.bigBtn.Click += new System.EventHandler(this.bigBtn_Click);
             // 
+            // lastBtn
+            // 
+            this.lastBtn.Location = new System.Drawing.Point(401, 1);
+            this.lastBtn.Name = "lastBtn";
+            this.lastBtn.Size = new System.Drawing.Size(75, 23);
+            this.lastBtn.TabIndex = 24;
+            this.lastBtn.Text = "原始訊號";
+            this.lastBtn.UseVisualStyleBackColor = true;
+            this.lastBtn.Click += new System.EventHandler(this.lastBtn_Click);
+            // 
             // BrainChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,6 +151,7 @@
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(578, 383);
+            this.Controls.Add(this.lastBtn);
             this.Controls.Add(this.bigBtn);
             this.Controls.Add(this.runTypeCombo);
             this.Controls.Add(this.label2);
@@ -170,5 +182,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox runTypeCombo;
         private System.Windows.Forms.Button bigBtn;
+        private System.Windows.Forms.Button lastBtn;
     }
 }

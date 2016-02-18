@@ -18,6 +18,7 @@ namespace Stu.UI
     {
         private string outPath = "";
         private ArrayList fftDataes = null;
+        private ArrayList lastDataes = null;
         private ArrayList attDataes = null;
         private ArrayList resDataes = null;
         private ArrayList resTitleDataes = null;
@@ -31,9 +32,23 @@ namespace Stu.UI
             this.attDataes = new ArrayList();
             this.resDataes = new ArrayList();
             this.resTitleDataes = new ArrayList();
+            this.lastDataes = new ArrayList();
             parseBrainFile();
             parseFFTFile();
+            parseLastFile();
             runTypeCombo.SelectedIndex = 0;
+        }
+
+        private void parseLastFile()
+        {
+            lastDataes.Clear();
+            StreamReader fSR = new StreamReader(outPath + "/NoFFT.csv");
+            string fLine;
+            while ((fLine = fSR.ReadLine()) != null)
+            {
+                lastDataes.Add(fLine);
+            }
+            fSR.Close();
         }
 
         private void parseFFTFile()
@@ -127,18 +142,40 @@ namespace Stu.UI
                 drawLine(series, time, chartCode);
             }
         }
+
+        private void lastBtn_Click(object sender, EventArgs e)
+        {
+            this.chart1.Series.Clear();
+            chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            chart1.ChartAreas[0].AxisY.Maximum = 2048;
+            chart1.ChartAreas[0].AxisY.Minimum = -2048;
+            for (int i = 1; i < lastDataes.Count; i++)
+            {
+                Series series = new Series();
+                series.ChartType = SeriesChartType.Stock;
+                series.Color = Color.Blue;
+                string line = (string)lastDataes[i];
+                string[] data_Array = line.Split(',');
+                for (int x = 1; x < data_Array.Length; x++)
+                {
+                    drawLine(series, x - 1 + "", data_Array[x]);
+                }
+                this.chart1.Series.Add(series);
+            }
+        }
         private void btnFFT_Click(object sender, EventArgs e)
         {
             this.chart1.Series.Clear();
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart1.ChartAreas[0].AxisY.Maximum = 100000;
+            chart1.ChartAreas[0].AxisY.Minimum = 0;
             string title_line = (string)fftDataes[0];
             string[] title_Array = title_line.Split(',');
             for (int i = 1; i < fftDataes.Count; i++)
             {
                 Series series = new Series();
-                series.ChartType = SeriesChartType.Point;
-                series.Color = Color.Red;
+                series.ChartType = SeriesChartType.FastPoint;
+                series.Color = Color.Brown;
                 string line = (string)fftDataes[i];
                 string[] data_Array = line.Split(',');
                 for (int x = 1; x < data_Array.Length; x++)
@@ -158,6 +195,7 @@ namespace Stu.UI
             this.chart1.Series.Add(series);
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart1.ChartAreas[0].AxisY.Maximum = max;
+            chart1.ChartAreas[0].AxisY.Minimum = 0;
             colorIndex++;
         }
         private Color getColorWithIndex()
