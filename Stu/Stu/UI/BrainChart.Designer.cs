@@ -37,6 +37,7 @@
             this.btnFFT = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.runTypeCombo = new System.Windows.Forms.ComboBox();
+            this.bigBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(2, 59);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(574, 306);
+            this.chart1.Size = new System.Drawing.Size(574, 293);
             this.chart1.TabIndex = 12;
             this.chart1.Text = "chart1";
             // 
@@ -122,12 +123,24 @@
             this.runTypeCombo.TabIndex = 22;
             this.runTypeCombo.SelectedIndexChanged += new System.EventHandler(this.runTypeCombo_SelectedIndexChanged);
             // 
+            // bigBtn
+            // 
+            this.bigBtn.Location = new System.Drawing.Point(522, 355);
+            this.bigBtn.Name = "bigBtn";
+            this.bigBtn.Size = new System.Drawing.Size(52, 23);
+            this.bigBtn.TabIndex = 23;
+            this.bigBtn.Text = "放大";
+            this.bigBtn.UseVisualStyleBackColor = true;
+            this.bigBtn.Click += new System.EventHandler(this.bigBtn_Click);
+            // 
             // BrainChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
-            this.ClientSize = new System.Drawing.Size(578, 368);
+            this.CausesValidation = false;
+            this.ClientSize = new System.Drawing.Size(578, 383);
+            this.Controls.Add(this.bigBtn);
             this.Controls.Add(this.runTypeCombo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnFFT);
@@ -139,6 +152,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BrainChart";
             this.Text = "BrainChart";
+            this.Resize += new System.EventHandler(this.BrainChart_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -155,5 +169,6 @@
         private System.Windows.Forms.Button btnFFT;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox runTypeCombo;
+        private System.Windows.Forms.Button bigBtn;
     }
 }

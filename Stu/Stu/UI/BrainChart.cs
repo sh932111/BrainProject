@@ -209,5 +209,27 @@ namespace Stu.UI
             WriteFile writeFile = new WriteFile(outPath);
             writeFile.FFTQuery(WriteFile.FFTResultFile, nr, fr, lr);
         }
+
+        private void bigBtn_Click(object sender, EventArgs e)
+        {
+            BrainChart brain_chart = new BrainChart(this.outPath);
+            brain_chart.Show();
+            brain_chart.bigStyle();
+        }
+        public void bigStyle()
+        {
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.Location = new Point(0, 0);
+            this.WindowState = FormWindowState.Maximized;
+            bigBtn.Hide();
+            chart1.Width = this.Width - 6;
+            chart1.Height = this.Height - 80;
+        }
+
+        private void BrainChart_Resize(object sender, EventArgs e)
+        {
+            chart1.Width = this.Width - 6;
+            chart1.Height = this.Height - 80;
+        }
     }
 }
