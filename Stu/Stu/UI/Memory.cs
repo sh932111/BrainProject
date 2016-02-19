@@ -150,8 +150,8 @@ namespace Stu.UI
             result.Add("High Alpha");
             result.Add("Low Beta");
             result.Add("High Beta");
-            result.Add("Low GammaHigh");
-            result.Add("GammaPool");
+            result.Add("Low Gamma");
+            result.Add("High Gamma");
             result.Add("Attention");
             result.Add("Meditation");
             return result;

@@ -109,40 +109,6 @@ namespace Stu.UI
             fSR.Close();
         }
 
-        private void btnMed_Click(object sender, EventArgs e)
-        {
-            setChartLayout("放鬆度", 100);
-            Series series = chart1.Series[0];
-            series.Points.Clear();
-            for (int i = 0; i < attDataes.Count; i++)
-            {
-                string line = (string)attDataes[i];
-                string[] ReadLine_Array = line.Split(',');
-                string time = ReadLine_Array[0];
-                DateTime myDate = DateTime.ParseExact(time, "yyyy/MM/dd/ HH:mm:ss.fffff", System.Globalization.CultureInfo.InvariantCulture);
-                time = myDate.ToString("HH:mm:ss");
-                string chartCode = ReadLine_Array[10];
-                drawLine(series, time, chartCode);
-            }
-        }
-
-        private void btnAtt_Click(object sender, EventArgs e)
-        {
-            setChartLayout("放鬆度", 100);
-            Series series = chart1.Series[0];
-            series.Points.Clear();
-            for (int i = 0; i < attDataes.Count; i++)
-            {
-                string line = (string)attDataes[i];
-                string[] ReadLine_Array = line.Split(',');
-                string time = ReadLine_Array[0];
-                DateTime myDate = DateTime.ParseExact(time, "yyyy/MM/dd/ HH:mm:ss.fffff", System.Globalization.CultureInfo.InvariantCulture);
-                time = myDate.ToString("HH:mm:ss");
-                string chartCode = ReadLine_Array[9];
-                drawLine(series, time, chartCode);
-            }
-        }
-
         private void lastBtn_Click(object sender, EventArgs e)
         {
             this.chart1.Series.Clear();
@@ -219,7 +185,7 @@ namespace Stu.UI
         private void rangeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = rangeList.SelectedIndex;
-            int max = 3000000;
+            int max = 1200000;
             setChartLayout((string)resTitleDataes[index], max);
             Series series = chart1.Series[0];
             series.Points.Clear();
@@ -274,6 +240,52 @@ namespace Stu.UI
         {
             chart1.Width = this.Width - 6;
             chart1.Height = this.Height - 80;
+        }
+
+        private void lastCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lastCombo.SelectedIndex;
+            setChartLayout(getTitle(index), getMax(index));
+            Series series = chart1.Series[0];
+            series.Points.Clear();
+            int avgCode = 8;
+            int temp = 0;
+            double code = 0;
+            for (int i = 0; i < attDataes.Count; i++)
+            {
+                string line = (string)attDataes[i];
+                string[] ReadLine_Array = line.Split(',');
+                string time = ReadLine_Array[0];
+                DateTime myDate = DateTime.ParseExact(time, "yyyy/MM/dd/ HH:mm:ss.fffff", System.Globalization.CultureInfo.InvariantCulture);
+                time = myDate.ToString("HH:mm:ss");
+                string chartCode = ReadLine_Array[index+1];
+                code = code + double.Parse(chartCode);
+                temp++;
+                if (temp == avgCode - 1)
+                {
+                    double avg = code / avgCode;
+                    drawLine(series, time, avg + "");
+                    temp = 0;
+                    code = 0;
+                }
+            }
+        }
+        private string getTitle(int index)
+        {
+            string[] res = new string[] { "Delta", "Theta", "Low Alpha", "High Alpha", "Low Beta", "High Beta", "Low Gamma", "High Gamma","專注度","放鬆度" };
+            return res[index];
+        }
+
+        private int getMax(int index)
+        {
+            if (index == 9 || index == 8)
+            {
+                return 100;
+            }
+            else
+            {
+                return 12000000;
+            }
         }
     }
 }
