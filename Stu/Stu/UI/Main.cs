@@ -17,9 +17,6 @@ namespace Stu.UI
     public partial class Main : Form
     {
         private string outPath = "";
-        private ArrayList nameRange = null;
-        private ArrayList lastRange = null;
-        private ArrayList firstRange = null;
         BluetoothList bluetooth_list = null;
         public Main()
         {
@@ -37,11 +34,6 @@ namespace Stu.UI
             if (textTestTime.Text.Length == 0 || textUserName.Text.Length == 0 || textUserYearOld.Text.Length == 0 || textWordNum.Text.Length == 0)
             {
                 MessageBox.Show("欄位都為必填!");
-                return;
-            }
-            if (firstRange == null || lastRange == null)
-            {
-                MessageBox.Show("尚未選擇腦波資料!");
                 return;
             }
             if (outPath.Length == 0)

@@ -51,14 +51,10 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\bin\Debug\NCalc.dll
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\bin\Debug\InTheHand.Net.Personal.xml
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.csprojResolveAssemblyReference.cache
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.Computer.resources
-C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.Demo.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.Properties.Resources.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.RangeDialog.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.TestForm.resources
-C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.BrainCharts.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.BluetoothList.resources
-C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.BrainWorker.resources
-C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.FolderController.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.csproj.GenerateResource.Cache
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.dll
 C:\Users\God\Desktop\Stu\Stu\bin\Debug\Newtonsoft.Json.xml
@@ -82,3 +78,4 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.WaitDialog.res
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.ShowExDialog.resources
 C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.ShowExDialog.resources
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.BrainChart.resources
+C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.UI.BrainChart.resources
