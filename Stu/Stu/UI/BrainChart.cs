@@ -147,6 +147,8 @@ namespace Stu.UI
         {
             this.chart1.Series.Clear();
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            chart1.ChartAreas[0].AxisX.IsLabelAutoFit = false;
+            chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chart1.ChartAreas[0].AxisY.Maximum = 2048;
             chart1.ChartAreas[0].AxisY.Minimum = -2048;
             for (int i = 1; i < lastDataes.Count; i++)
@@ -167,6 +169,8 @@ namespace Stu.UI
         {
             this.chart1.Series.Clear();
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            chart1.ChartAreas[0].AxisX.IsLabelAutoFit = false;
+            chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chart1.ChartAreas[0].AxisY.Maximum = 100000;
             chart1.ChartAreas[0].AxisY.Minimum = 0;
             string title_line = (string)fftDataes[0];
@@ -194,6 +198,8 @@ namespace Stu.UI
             series.Color = getColorWithIndex();
             this.chart1.Series.Add(series);
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            chart1.ChartAreas[0].AxisX.IsLabelAutoFit = false;
+            chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chart1.ChartAreas[0].AxisY.Maximum = max;
             chart1.ChartAreas[0].AxisY.Minimum = 0;
             colorIndex++;
