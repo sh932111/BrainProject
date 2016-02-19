@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.label1 = new System.Windows.Forms.Label();
             this.rangeList = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -63,8 +63,8 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(2, 54);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(574, 270);
@@ -142,6 +142,7 @@
             this.lastCombo.Name = "lastCombo";
             this.lastCombo.Size = new System.Drawing.Size(102, 20);
             this.lastCombo.TabIndex = 25;
+            this.lastCombo.Visible = false;
             this.lastCombo.SelectedIndexChanged += new System.EventHandler(this.lastCombo_SelectedIndexChanged);
             // 
             // label3
@@ -153,6 +154,7 @@
             this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 26;
             this.label3.Text = "原始頻段";
+            this.label3.Visible = false;
             // 
             // BrainChart
             // 
