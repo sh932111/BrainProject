@@ -30,7 +30,8 @@ namespace Stu.UI
             InitializeComponent();
             this.configManager = manager;
             this.TopMost = true;
-            Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/memoryWord/?orderID=" + configManager.getOrderID());
+            string memory = ChromeUtils.memoryURL + configManager.getOrderID();
+            ChromeUtils.openChrome(memory);
             BluetoothDeviceManager deviceManager = manager.getDeviceManager();
             FloderUtils folder = new FloderUtils(manager.getPath());
             folder.createRoot();
@@ -56,20 +57,13 @@ namespace Stu.UI
             stopWorker();
             time = 0;
             brainReceiver.stop();
-
-            string ProcessName = "chrome";//這裡換成你需要刪除的進程名稱
-            Process[] processes = Process.GetProcessesByName(ProcessName);
-            foreach (Process p in processes)
-            {
-                p.CloseMainWindow();
-            }
-
+            ChromeUtils.closeChrome();
             this.Close();
             ShowExDialog.show("第三步、測試單字", Properties.Resources.test);
             DoTest doTest = new DoTest(configManager);
             doTest.Show();
             doTest.Location = new Point(0, 0);
-            Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/testWord/?orderID=" + configManager.getOrderID());
+            ChromeUtils.openChrome(ChromeUtils.testURL + configManager.getOrderID());
         }
 
         delegate void ChartUIHabdler(ArrayList list);

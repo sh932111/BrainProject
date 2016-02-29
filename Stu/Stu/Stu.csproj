@@ -63,6 +63,7 @@
     <Compile Include="Class\BlueController.cs" />
     <Compile Include="Class\BrainReciver.cs" />
     <Compile Include="Class\Calculate.cs" />
+    <Compile Include="Class\ChromeUtils.cs" />
     <Compile Include="Class\FloderUtils.cs" />
     <Compile Include="Class\HttpWorker.cs" />
     <Compile Include="Class\JSONArray.cs" />

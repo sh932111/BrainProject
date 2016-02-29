@@ -103,7 +103,7 @@
             this.textWordNum.Name = "textWordNum";
             this.textWordNum.Size = new System.Drawing.Size(201, 29);
             this.textWordNum.TabIndex = 9;
-            this.textWordNum.Text = "6";
+            this.textWordNum.Text = "10";
             // 
             // label3
             // 
@@ -122,7 +122,7 @@
             this.textTestTime.Name = "textTestTime";
             this.textTestTime.Size = new System.Drawing.Size(166, 29);
             this.textTestTime.TabIndex = 11;
-            this.textTestTime.Text = "500";
+            this.textTestTime.Text = "600";
             // 
             // label4
             // 

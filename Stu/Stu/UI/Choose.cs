@@ -37,12 +37,7 @@ namespace Stu.UI
             int error_code = response.getInt("error_code");
             if (error_code == 0)
             {
-                string ProcessName = "chrome";//這裡換成你需要刪除的進程名稱
-                Process[] processes = Process.GetProcessesByName(ProcessName);
-                foreach (Process p in processes)
-                {
-                    p.CloseMainWindow();
-                }
+                ChromeUtils.closeChrome();
                 this.Close();
                 ShowExDialog.show("第二步、背單字", Properties.Resources.memory);
                 Memory memory = new Memory(configManager);

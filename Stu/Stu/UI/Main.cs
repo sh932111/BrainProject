@@ -47,12 +47,7 @@ namespace Stu.UI
                 MessageBox.Show("尚未選擇Device!");
                 return;
             }
-            string ProcessName = "chrome";//這裡換成你需要刪除的進程名稱
-            Process[] processes = Process.GetProcessesByName(ProcessName);
-            foreach (Process p in processes)
-            {
-                p.CloseMainWindow();
-            }
+            ChromeUtils.closeChrome();
             BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
             HttpWorker httpWorker = new HttpWorker(HttpWorker.orderCreate, httpResponse);
             JSONObject form = new JSONObject();
@@ -77,7 +72,8 @@ namespace Stu.UI
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = response.getString("orderID");
                 ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager);
-                Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/chooseWord/?orderID=" + order_id);
+                string chooseUrl = ChromeUtils.chooseURL + order_id;
+                ChromeUtils.openChrome(chooseUrl);
                 Choose choose = new Choose(config_manager);
                 choose.Show();
                 choose.Location = new Point(0, 0);
@@ -122,7 +118,7 @@ namespace Stu.UI
 
         private void exBtn_Click(object sender, EventArgs e)
         {
-            Process.Start("chrome.exe", "http://shared.tw/En/body/pages/test/ex/");
+            ChromeUtils.openChrome(ChromeUtils.exURL);
         }
     }
 }

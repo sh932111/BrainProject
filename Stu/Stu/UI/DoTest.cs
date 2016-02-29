@@ -42,12 +42,7 @@ namespace Stu.UI
             int error_code = response.getInt("error_code");
             if (error_code == 0)
             {
-                string ProcessName = "chrome";//這裡換成你需要刪除的進程名稱
-                Process[] processes = Process.GetProcessesByName(ProcessName);
-                foreach (Process p in processes)
-                {
-                    p.CloseMainWindow();
-                }
+                ChromeUtils.closeChrome();
                 this.Close();
                 OrderView view = new OrderView(configManager.getOrderID(),configManager.getPath());
                 view.Show();
