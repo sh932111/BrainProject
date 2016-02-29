@@ -1,0 +1,35 @@
+{
+    "/index": {
+        "id": "no"
+    },
+    "/plug/head": {
+        "id": "no"
+    },
+    "/plug/foot": {
+        "id": "no"
+    },
+    "/index/type": {
+        "id": "no"
+    },
+    "/test/chooseWord": {
+        "id": "no"
+    },
+    "/test/ex": {
+        "id": "no"
+    },
+    "/test/memoryWord": {
+        "id": "no"
+    },
+    "/word/edit": {
+        "id": "no"
+    },
+    "/index/addOrder": {
+        "id": "no"
+    },
+    "/test/head": {
+        "id": "no"
+    },
+    "/test/checkout": {
+        "id": "no"
+    }
+}

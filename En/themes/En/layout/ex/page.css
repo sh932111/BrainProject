@@ -1,0 +1,35 @@
+#pgContainer {
+	margin: 0px auto;
+	width: 960px;
+}
+
+#pgHeader {
+	height: auto;
+	width: 100%;
+}
+
+#pgContent {
+	min-height: 400px;
+}
+
+#pgFooter {
+	height: auto;
+	width: 100%;
+}
+
+h6 {
+	font-size: 1.4rem;
+}
+
+img {
+	width: 690px;
+}
+
+code {
+	color: red;
+}
+
+.row {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}

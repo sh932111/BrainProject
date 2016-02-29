@@ -1,0 +1,8 @@
+{
+    "localhost": {
+        "title": "En Page",
+        "locale": "en",
+        "home": "/index",
+        "domain": "http://shared.tw/EnApi/api/module"
+    }
+}
