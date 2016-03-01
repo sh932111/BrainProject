@@ -11,12 +11,16 @@ using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
 using Stu.Class;
 using Stu.Utils;
+using System.Diagnostics;
 
 namespace Stu.UI
 {
     public partial class BrainChart : Form
     {
         private string outPath = "";
+        private ArrayList fDataes = null;
+        private ArrayList lDataes = null;
+        private ArrayList nDataes = null;
         private ArrayList fftDataes = null;
         private ArrayList lastDataes = null;
         private ArrayList attDataes = null;
@@ -37,6 +41,10 @@ namespace Stu.UI
             parseFFTFile();
             parseLastFile();
             runTypeCombo.SelectedIndex = 0;
+            if (File.Exists(outPath + "/ResultFileAvg.xlsx"))
+            {
+                Process.Start(outPath + "/ResultFileAvg.xlsx");
+            }
         }
 
         private void parseLastFile()
@@ -69,6 +77,8 @@ namespace Stu.UI
             resTitleDataes.Clear();
             rangeList.Items.Clear();
             rangeList.Text = "";
+            comboFFT.Items.Clear();
+            comboFFT.Text = "";
             StreamReader fSR = new StreamReader(outPath + "/ResultFile.csv");
             string fLine;
             int index = 0;
@@ -80,6 +90,7 @@ namespace Stu.UI
                     for (int i = 1; i < ReadLine_Array.Length; i++)
                     {
                         rangeList.Items.Add(ReadLine_Array[i]);
+                        comboFFT.Items.Add(ReadLine_Array[i]);
                         resTitleDataes.Add(ReadLine_Array[i]);
                     }
                 }
@@ -133,6 +144,13 @@ namespace Stu.UI
         }
         private void btnFFT_Click(object sender, EventArgs e)
         {
+            string title_line = (string)fftDataes[0];
+            string[] title_Array = title_line.Split(',');
+            runFFTRange(0, title_Array.Length - 2);
+        }
+
+        private void runFFTRange(int startIndex , int endIndex)
+        {
             this.chart1.Series.Clear();
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart1.ChartAreas[0].AxisX.IsLabelAutoFit = false;
@@ -150,7 +168,16 @@ namespace Stu.UI
                 string[] data_Array = line.Split(',');
                 for (int x = 1; x < data_Array.Length; x++)
                 {
-                    drawLine(series, title_Array[x], data_Array[x]);
+                    string title = title_Array[x];
+                    if (x >= startIndex && x <= endIndex)
+                    {
+                        drawLine(series, title, data_Array[x]);
+                    }
+                    else
+                    {
+                        drawLine(series, title, "0");
+                    }
+                    if (title.Equals("100")) break;
                 }
                 this.chart1.Series.Add(series);
             }
@@ -216,6 +243,9 @@ namespace Stu.UI
         }
         private void setRange(ArrayList fr, ArrayList lr, ArrayList nr)
         {
+            this.fDataes = fr;
+            this.lDataes = lr;
+            this.nDataes = nr;
             WriteFile writeFile = new WriteFile(outPath);
             writeFile.FFTQuery(WriteFile.FFTResultFile, nr, fr, lr);
         }
@@ -285,6 +315,46 @@ namespace Stu.UI
             else
             {
                 return 12000000;
+            }
+        }
+
+        private void comboFFT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fDataes != null && lDataes != null)
+            {
+                int index = comboFFT.SelectedIndex;
+                double f = double.Parse((string)fDataes[index]);
+                double l = double.Parse((string)lDataes[index]);
+                string title_line = (string)fftDataes[0];
+                string[] title_Array = title_line.Split(',');
+                int temp = 0; /*0未找到 1找到f 2找到l*/
+                int fpoint = 0;
+                int lpoint = 0;
+                for (int i = 1; i < title_Array.Length; i++)
+                {
+                    double code = double.Parse((string)title_Array[i]);
+                    if (temp == 0) 
+                    {
+                        if (code >= f)
+                        {
+                            temp = 1;
+                            fpoint = i;
+                        }
+                    }
+                    else if (temp == 1)
+                    {
+                        if (code > l)
+                        {
+                            temp = 2;
+                            lpoint = i - 1;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                runFFTRange(fpoint, lpoint);
             }
         }
     }

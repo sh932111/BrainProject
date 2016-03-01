@@ -14,8 +14,12 @@ namespace Stu.Utils
 
             fr.Add("Delta");
             fr.Add("Theta");
-            fr.Add("Alpha");
-            fr.Add("Beta");
+            fr.Add("Low Alpha");
+            fr.Add("Middle Alpha");
+            fr.Add("High Alpha");
+            fr.Add("Low Beta");
+            fr.Add("Middle Beta");
+            fr.Add("High Beta");
             fr.Add("Gamma");
 
             return fr;
@@ -27,7 +31,11 @@ namespace Stu.Utils
             fr.Add("0.1");
             fr.Add("4");
             fr.Add("8");
-            fr.Add("13");
+            fr.Add("9");
+            fr.Add("12");
+            fr.Add("12.5");
+            fr.Add("16.5");
+            fr.Add("20.5");
             fr.Add("30");
 
             return fr;
@@ -36,10 +44,14 @@ namespace Stu.Utils
         {
             ArrayList lr = new ArrayList();
 
-            lr.Add("4");
-            lr.Add("7.5");
-            lr.Add("13");
-            lr.Add("30");
+            lr.Add("3");
+            lr.Add("7");
+            lr.Add("9");
+            lr.Add("12");
+            lr.Add("14");
+            lr.Add("16");
+            lr.Add("20");
+            lr.Add("28");
             lr.Add("70");
 
             return lr;

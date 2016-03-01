@@ -37,7 +37,7 @@
             this.bluetoothListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bluetoothListView.Location = new System.Drawing.Point(12, 41);
             this.bluetoothListView.Name = "bluetoothListView";
-            this.bluetoothListView.Size = new System.Drawing.Size(463, 214);
+            this.bluetoothListView.Size = new System.Drawing.Size(943, 439);
             this.bluetoothListView.TabIndex = 30;
             this.bluetoothListView.UseCompatibleStateImageBehavior = false;
             this.bluetoothListView.SelectedIndexChanged += new System.EventHandler(this.bluetoothListView_SelectedIndexChanged);
@@ -57,7 +57,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(488, 262);
+            this.ClientSize = new System.Drawing.Size(970, 503);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.bluetoothListView);
             this.Name = "OrderList";

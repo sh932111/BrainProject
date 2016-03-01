@@ -153,7 +153,7 @@ namespace Stu.Class
                         for (int x = 1; x < ReadLine_Array.Length; x++)
                         {
                             double range = double.Parse((string)ReadLine_Array[x]);
-                            if (frange <= range && lrange >= range)
+                            if (frange <= range && lrange > range)
                             {
                                 readTemp.Add(x);
                             }

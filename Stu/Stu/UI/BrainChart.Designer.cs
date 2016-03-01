@@ -39,6 +39,8 @@
             this.lastBtn = new System.Windows.Forms.Button();
             this.lastCombo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboFFT = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 8);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 10;
@@ -55,9 +57,9 @@
             // rangeList
             // 
             this.rangeList.FormattingEnabled = true;
-            this.rangeList.Location = new System.Drawing.Point(165, 30);
+            this.rangeList.Location = new System.Drawing.Point(145, 32);
             this.rangeList.Name = "rangeList";
-            this.rangeList.Size = new System.Drawing.Size(121, 20);
+            this.rangeList.Size = new System.Drawing.Size(121, 21);
             this.rangeList.TabIndex = 11;
             this.rangeList.SelectedIndexChanged += new System.EventHandler(this.rangeList_SelectedIndexChanged);
             // 
@@ -65,17 +67,17 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(2, 54);
+            this.chart1.Location = new System.Drawing.Point(2, 59);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(574, 270);
+            this.chart1.Size = new System.Drawing.Size(574, 293);
             this.chart1.TabIndex = 12;
             this.chart1.Text = "chart1";
             // 
             // btnFFT
             // 
-            this.btnFFT.Location = new System.Drawing.Point(383, 27);
+            this.btnFFT.Location = new System.Drawing.Point(391, 30);
             this.btnFFT.Name = "btnFFT";
-            this.btnFFT.Size = new System.Drawing.Size(75, 21);
+            this.btnFFT.Size = new System.Drawing.Size(75, 23);
             this.btnFFT.TabIndex = 16;
             this.btnFFT.Text = "FFT頻譜";
             this.btnFFT.UseVisualStyleBackColor = true;
@@ -85,11 +87,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(161, 8);
+            this.label2.Location = new System.Drawing.Point(141, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.Size = new System.Drawing.Size(115, 20);
             this.label2.TabIndex = 17;
-            this.label2.Text = "腦波頻段";
+            this.label2.Text = "腦波頻段(時間)";
             // 
             // runTypeCombo
             // 
@@ -98,17 +100,17 @@
             this.runTypeCombo.Items.AddRange(new object[] {
             "腦波標準",
             "自訂條件"});
-            this.runTypeCombo.Location = new System.Drawing.Point(16, 30);
+            this.runTypeCombo.Location = new System.Drawing.Point(16, 33);
             this.runTypeCombo.Name = "runTypeCombo";
-            this.runTypeCombo.Size = new System.Drawing.Size(123, 20);
+            this.runTypeCombo.Size = new System.Drawing.Size(123, 21);
             this.runTypeCombo.TabIndex = 22;
             this.runTypeCombo.SelectedIndexChanged += new System.EventHandler(this.runTypeCombo_SelectedIndexChanged);
             // 
             // bigBtn
             // 
-            this.bigBtn.Location = new System.Drawing.Point(494, 328);
+            this.bigBtn.Location = new System.Drawing.Point(494, 355);
             this.bigBtn.Name = "bigBtn";
-            this.bigBtn.Size = new System.Drawing.Size(80, 21);
+            this.bigBtn.Size = new System.Drawing.Size(80, 23);
             this.bigBtn.TabIndex = 23;
             this.bigBtn.Text = "另開視窗";
             this.bigBtn.UseVisualStyleBackColor = true;
@@ -116,9 +118,9 @@
             // 
             // lastBtn
             // 
-            this.lastBtn.Location = new System.Drawing.Point(302, 27);
+            this.lastBtn.Location = new System.Drawing.Point(391, 7);
             this.lastBtn.Name = "lastBtn";
-            this.lastBtn.Size = new System.Drawing.Size(75, 21);
+            this.lastBtn.Size = new System.Drawing.Size(75, 23);
             this.lastBtn.TabIndex = 24;
             this.lastBtn.Text = "原始訊號";
             this.lastBtn.UseVisualStyleBackColor = true;
@@ -138,9 +140,9 @@
             "High Gamma",
             "專注度",
             "放鬆度"});
-            this.lastCombo.Location = new System.Drawing.Point(472, 30);
+            this.lastCombo.Location = new System.Drawing.Point(472, 33);
             this.lastCombo.Name = "lastCombo";
-            this.lastCombo.Size = new System.Drawing.Size(102, 20);
+            this.lastCombo.Size = new System.Drawing.Size(102, 21);
             this.lastCombo.TabIndex = 25;
             this.lastCombo.Visible = false;
             this.lastCombo.SelectedIndexChanged += new System.EventHandler(this.lastCombo_SelectedIndexChanged);
@@ -149,20 +151,41 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(468, 9);
+            this.label3.Location = new System.Drawing.Point(468, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 26;
             this.label3.Text = "原始頻段";
             this.label3.Visible = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(264, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 20);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "腦波頻段(頻率)";
+            // 
+            // comboFFT
+            // 
+            this.comboFFT.FormattingEnabled = true;
+            this.comboFFT.Location = new System.Drawing.Point(268, 31);
+            this.comboFFT.Name = "comboFFT";
+            this.comboFFT.Size = new System.Drawing.Size(121, 21);
+            this.comboFFT.TabIndex = 27;
+            this.comboFFT.SelectedIndexChanged += new System.EventHandler(this.comboFFT_SelectedIndexChanged);
+            // 
             // BrainChart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PapayaWhip;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(578, 354);
+            this.ClientSize = new System.Drawing.Size(578, 384);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboFFT);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lastCombo);
             this.Controls.Add(this.lastBtn);
@@ -195,5 +218,7 @@
         private System.Windows.Forms.Button lastBtn;
         private System.Windows.Forms.ComboBox lastCombo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboFFT;
     }
 }
