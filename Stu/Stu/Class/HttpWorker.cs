@@ -11,12 +11,12 @@ namespace Stu.Class
 {
     class HttpWorker
     {
-        public static string wordList = "http://shared.tw/En/api/module/en/word/list.php";
-        public static string orderCreate = "http://shared.tw/En/api/module/order/create.php";
-        public static string orderCheckout = "http://shared.tw/En/api/module/order/checkout.php";
-        public static string orderFinish = "http://shared.tw/En/api/module/order/finish.php";
-        public static string orderView = "http://shared.tw/En/api/module/order/view.php";
-        public static string orderList = "http://shared.tw/En/api/module/order/list.php";
+        public static string wordList = "http://shared.tw/EnApi/api/module/en/word/list.php";
+        public static string orderCreate = "http://shared.tw/EnApi/api/module/order/create.php";
+        public static string orderCheckout = "http://shared.tw/EnApi/api/module/order/checkout.php";
+        public static string orderFinish = "http://shared.tw/EnApi/api/module/order/finish.php";
+        public static string orderView = "http://shared.tw/EnApi/api/module/order/view.php";
+        public static string orderList = "http://shared.tw/EnApi/api/module/order/list.php";
 
         private string requestURL = null;
         private JSONObject requestForm = null;
