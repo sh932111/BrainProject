@@ -158,7 +158,10 @@ namespace Stu.UI
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
             chart1.ChartAreas[0].AxisX.IsLabelAutoFit = false;
             chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
-            chart1.ChartAreas[0].AxisY.Maximum = 100000;
+            int maxIndex = comboMax.SelectedIndex;
+            if (maxIndex == -1) maxIndex = 0;
+            int[] maxs = { 100000, 120000, 140000, 160000, 180000, 200000, 300000, 500000, 1000000 };
+            chart1.ChartAreas[0].AxisY.Maximum = maxs[maxIndex];
             chart1.ChartAreas[0].AxisY.Minimum = 0;
             string title_line = (string)fftDataes[0];
             string[] title_Array = title_line.Split(',');
@@ -327,6 +330,47 @@ namespace Stu.UI
             if (fDataes != null && lDataes != null)
             {
                 int index = comboFFT.SelectedIndex;
+                double f = double.Parse((string)fDataes[index]);
+                double l = double.Parse((string)lDataes[index]);
+                string title_line = (string)fftDataes[0];
+                string[] title_Array = title_line.Split(',');
+                int temp = 0; /*0未找到 1找到f 2找到l*/
+                int fpoint = 0;
+                int lpoint = 0;
+                for (int i = 1; i < title_Array.Length; i++)
+                {
+                    double code = double.Parse((string)title_Array[i]);
+                    if (temp == 0)
+                    {
+                        if (code >= f)
+                        {
+                            temp = 1;
+                            fpoint = i;
+                        }
+                    }
+                    else if (temp == 1)
+                    {
+                        if (code > l)
+                        {
+                            temp = 2;
+                            lpoint = i - 1;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                runFFTRange(fpoint, lpoint);
+            }
+        }
+
+        private void comboMax_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fDataes != null && lDataes != null)
+            {
+                int index = comboFFT.SelectedIndex;
+                if (index == -1) return;
                 double f = double.Parse((string)fDataes[index]);
                 double l = double.Parse((string)lDataes[index]);
                 string title_line = (string)fftDataes[0];
