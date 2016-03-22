@@ -11,6 +11,7 @@ using Stu.Class;
 using System.Collections;
 using System.IO;
 using System.Diagnostics;
+using WMPLib;
 
 namespace Stu.UI
 {
@@ -30,8 +31,11 @@ namespace Stu.UI
             InitializeComponent();
             this.configManager = manager;
             this.TopMost = true;
-            string memory = ChromeUtils.memoryURL + configManager.getOrderID();
-            ChromeUtils.openChrome(memory);
+            if (!manager.getIsTest())
+            {
+                string memory = ChromeUtils.memoryURL + configManager.getOrderID();
+                ChromeUtils.openChrome(memory);
+            }
             BluetoothDeviceManager deviceManager = manager.getDeviceManager();
             FloderUtils folder = new FloderUtils(manager.getPath());
             folder.createRoot();
@@ -76,6 +80,9 @@ namespace Stu.UI
             }
             else
             {
+                WindowsMediaPlayer newMedia = new WindowsMediaPlayer();
+                newMedia.URL = @"sound.mp3";
+                newMedia.controls.play();
                 HttpWorker httpWorker = new HttpWorker(HttpWorker.orderFinish, httpResponse);
                 JSONObject form = new JSONObject();
                 form.setString("orderID", configManager.getOrderID());

@@ -77,24 +77,24 @@ namespace Stu.UI
             if (error_code == 0)
             {
                 Boolean isTest = radioTest.Checked;
-                ShowExDialog.show("第一步、選擇單字", Properties.Resources.choose);
                 ArrayList list = bluetooth_list.getResult();
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = response.getString("orderID");
                 ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, isTest);
-                if (config_manager.getIsTest())
+                if (!config_manager.getIsTest())
                 {
-                    Memory memory = new Memory(config_manager);
-                    memory.Show();
-                    memory.Location = new Point(0, 0);
-                }
-                else
-                {
+                    ShowExDialog.show("第一步、選擇單字", Properties.Resources.choose);
                     string chooseUrl = ChromeUtils.chooseURL + order_id;
                     ChromeUtils.openChrome(chooseUrl);
                     Choose choose = new Choose(config_manager);
                     choose.Show();
                     choose.Location = new Point(0, 0);
+                }
+                else
+                {
+                    Memory memory = new Memory(config_manager);
+                    memory.Show();
+                    memory.Location = new Point(0, 0);
                 }
             }
             else
@@ -151,58 +151,6 @@ namespace Stu.UI
                 foreach (string fname in Directory.GetFileSystemEntries(p)) 
                 {
                     string file = fname + "/" + "FFT.csv";
-                    if (File.Exists(file))
-                    {
-                        ArrayList lineArray = new ArrayList();
-                        int index = 0;
-                        StreamReader fSR = new StreamReader(file);
-                        string fLine;
-                        while ((fLine = fSR.ReadLine()) != null)
-                        {
-                            if (index == 0)
-                            {
-                                lineArray.Add(fLine);
-                            }
-                            else
-                            {
-                                string[] ReadLine_Array = fLine.Split(',');
-                                /*取得量化的值*/
-                                ArrayList list = new ArrayList();
-                                for (int i = 1; i < ReadLine_Array.Length; i++)
-                                {
-                                    double val = double.Parse(ReadLine_Array[i]);
-                                    list.Add(val);
-                                }
-                                double norm_res = Calculate.norm(list);
-                                /*計算量化後的結果*/
-                                string code = "";
-                                for (int i = 0; i < ReadLine_Array.Length; i++)
-                                {
-                                    if (i == 0)
-                                    {
-                                        code = code + ReadLine_Array[i] ;
-                                    }
-                                    else
-                                    {
-                                        double val = double.Parse(ReadLine_Array[i]);
-                                        double result = val / norm_res;
-                                        code = code + "," + result;
-                                    }
-                                }
-                                lineArray.Add(code);
-                            }
-                            index++;
-                        }
-                        fSR.Close();
-                        string FFTNorm = fname + "/" + "FFTNorm.csv";
-                        StreamWriter sw = new StreamWriter(FFTNorm);
-                        for (int i = 0; i < lineArray.Count; i++)
-                        {
-                            string row = (string)lineArray[i];
-                            sw.WriteLine(row);
-                        }
-                        sw.Close();
-                    }
                 } 
             }
             ChromeUtils.openChrome(ChromeUtils.exURL);
@@ -212,12 +160,14 @@ namespace Stu.UI
         {
             label3.Visible = true;
             textWordNum.Visible = true;
+            textTestTime.Text = "600";
         }
 
         private void radioTest_CheckedChanged(object sender, EventArgs e)
         {
             label3.Visible = false;
             textWordNum.Visible = false;
+            textTestTime.Text = "180";
         }
     }
 }

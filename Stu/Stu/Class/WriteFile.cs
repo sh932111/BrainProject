@@ -64,6 +64,62 @@ namespace Stu.Class
                 sw.Close();
             }
         }
+        public void FFTToNFFT()
+        {
+            string file = runPath + FFT;
+            if (File.Exists(file))
+            {
+                ArrayList lineArray = new ArrayList();
+                int index = 0;
+                StreamReader fSR = new StreamReader(file);
+                string fLine;
+                while ((fLine = fSR.ReadLine()) != null)
+                {
+                    if (index == 0)
+                    {
+                        lineArray.Add(fLine);
+                    }
+                    else
+                    {
+                        string[] ReadLine_Array = fLine.Split(',');
+                        /*取得量化的值*/
+                        ArrayList list = new ArrayList();
+                        for (int i = 1; i < ReadLine_Array.Length; i++)
+                        {
+                            double val = double.Parse(ReadLine_Array[i]);
+                            list.Add(val);
+                        }
+                        double norm_res = Calculate.norm(list);
+                        /*計算量化後的結果*/
+                        string code = "";
+                        for (int i = 0; i < ReadLine_Array.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                code = code + ReadLine_Array[i];
+                            }
+                            else
+                            {
+                                double val = double.Parse(ReadLine_Array[i]);
+                                double result = val / norm_res;
+                                code = code + "," + result;
+                            }
+                        }
+                        lineArray.Add(code);
+                    }
+                    index++;
+                }
+                fSR.Close();
+                string FFT_N = runPath + FFTNorm;
+                StreamWriter sw = new StreamWriter(FFT_N);
+                for (int i = 0; i < lineArray.Count; i++)
+                {
+                    string row = (string)lineArray[i];
+                    sw.WriteLine(row);
+                }
+                sw.Close();
+            }
+        }
         public void FFTWrite(ArrayList sectionList, string time)
         {
             string path = runPath + FFT;
@@ -114,6 +170,7 @@ namespace Stu.Class
                 sw.WriteLine(res);
                 sw.Close();
             }
+            FFTToNFFT();
         }
         public void FFTQuery(string fileName,string resourcePath, ArrayList nr, ArrayList fr, ArrayList lr)
         {

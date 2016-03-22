@@ -18,7 +18,14 @@ namespace Stu.Manager
             this.orderID = id;
             this.outPath = path;
             this.deviceManager = device;
-            this.runTime = run + 10;
+            if (is_test)
+            {
+                this.runTime = run ;
+            }
+            else
+            {
+                this.runTime = run + 10;
+            }
             this.isTest = is_test;
         }
         public string getOrderID()
