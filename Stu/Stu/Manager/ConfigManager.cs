@@ -11,13 +11,15 @@ namespace Stu.Manager
         private BluetoothDeviceManager deviceManager = null;
         private string outPath = "";
         private string orderID = "";
-        int runTime = 0;
-        public ConfigManager(string id, string path, int run, BluetoothDeviceManager device)
+        private int runTime = 0;
+        private Boolean isTest = false;
+        public ConfigManager(string id, string path, int run, BluetoothDeviceManager device , Boolean is_test)
         {
             this.orderID = id;
             this.outPath = path;
             this.deviceManager = device;
             this.runTime = run + 10;
+            this.isTest = is_test;
         }
         public string getOrderID()
         {
@@ -34,6 +36,10 @@ namespace Stu.Manager
         public BluetoothDeviceManager getDeviceManager()
         {
             return deviceManager;
+        }
+        public Boolean getIsTest()
+        {
+            return isTest;
         }
     }
 }

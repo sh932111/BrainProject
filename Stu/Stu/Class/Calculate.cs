@@ -8,6 +8,28 @@ namespace Stu.Class
 {
     class Calculate
     {
+        public static double norm(ArrayList list)
+        {
+            double sum = customSum(list);
+            double res = Math.Sqrt(sum);
+            return res;
+        }
+
+        private static double customSum(ArrayList list)
+        {
+            double sum = 0;
+            foreach (double it in list)
+            {
+                sum = sum + square(it);
+            }
+            return sum;
+        }
+
+        private static double square(double res)
+        {
+            return res * res;
+        }
+
         public static String run16To2(String get)
         {
             Boolean isPlus = true;

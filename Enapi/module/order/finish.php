@@ -14,6 +14,7 @@ else{
 }
 $obj = json_decode($data,true);
 $orderID 		= $obj["orderID"];
+$isTest 		= $obj["isTest"]; /*1.測試模式0.英文模式*/
 $db_utils 		= new DatabaseUtils();
 $update_time 	= TimeUtils::getNowTime();
 $start_time 	= TimeUtils::getNowTime();
@@ -25,11 +26,13 @@ if (mysql_select_db(DBName::getUserDB)) {
 	$selectOrder = $db_utils -> selectTableAnd($user_link , TableName::getOrderTable,$select_array);
 	$orderRecord = mysql_fetch_array($selectOrder);
 	$status = (int)$orderRecord['status'];
-	if ($status == 2) {
-		$db_utils -> responseError($start_time ,"尚未上傳成績！請點擊上傳按鈕！" , 209 , $user_link);
-	}
-	if ($status == 4) {
-		$db_utils -> responseError($start_time ,"已經結算過了！" , 163 , $user_link);
+	if ($isTest != 1) {
+		if ($status == 2) {
+			$db_utils -> responseError($start_time ,"尚未上傳成績！請點擊上傳按鈕！" , 209 , $user_link);
+		}
+		if ($status == 4) {
+			$db_utils -> responseError($start_time ,"已經結算過了！" , 163 , $user_link);
+		}
 	}
 	$wordNum = (int)$orderRecord['wordNum'];
 	$score = 100 / $wordNum;

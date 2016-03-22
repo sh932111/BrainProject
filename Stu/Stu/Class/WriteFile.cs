@@ -11,7 +11,9 @@ namespace Stu.Class
     {
         private string runPath;
         public static string FFTResultFile = "/ResultFile.csv";
-        private string FFT = "/FFT.csv";
+        public static string NormResultFile = "/NormResultFile.csv";
+        public static string FFTNorm = "/FFTNorm.csv";
+        public static string FFT = "/FFT.csv";
         private string NoFFT = "/NoFFT.csv";
         public WriteFile(string path)
         {
@@ -113,7 +115,7 @@ namespace Stu.Class
                 sw.Close();
             }
         }
-        public void FFTQuery(string fileName, ArrayList nr, ArrayList fr, ArrayList lr)
+        public void FFTQuery(string fileName,string resourcePath, ArrayList nr, ArrayList fr, ArrayList lr)
         {
             string path = runPath + fileName;
             StreamWriter sw = new StreamWriter(path);
@@ -135,7 +137,7 @@ namespace Stu.Class
             }
             sw.WriteLine(row0);
             /*寫入標準*/
-            string fft_resource = runPath + FFT;
+            string fft_resource = runPath + resourcePath;
             StreamReader SR = new StreamReader(fft_resource);
             string Line;
             int index = 0;

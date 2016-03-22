@@ -47,6 +47,8 @@
             this.resetBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
             this.exBtn = new System.Windows.Forms.Button();
+            this.radioEn = new System.Windows.Forms.RadioButton();
+            this.radioTest = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // btnCheck
@@ -99,7 +101,7 @@
             // textWordNum
             // 
             this.textWordNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textWordNum.Location = new System.Drawing.Point(123, 131);
+            this.textWordNum.Location = new System.Drawing.Point(123, 173);
             this.textWordNum.Name = "textWordNum";
             this.textWordNum.Size = new System.Drawing.Size(201, 29);
             this.textWordNum.TabIndex = 9;
@@ -109,7 +111,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(45, 131);
+            this.label3.Location = new System.Drawing.Point(45, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 24);
             this.label3.TabIndex = 8;
@@ -118,7 +120,7 @@
             // textTestTime
             // 
             this.textTestTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textTestTime.Location = new System.Drawing.Point(123, 172);
+            this.textTestTime.Location = new System.Drawing.Point(123, 131);
             this.textTestTime.Name = "textTestTime";
             this.textTestTime.Size = new System.Drawing.Size(166, 29);
             this.textTestTime.TabIndex = 11;
@@ -128,7 +130,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(26, 172);
+            this.label4.Location = new System.Drawing.Point(26, 131);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 24);
             this.label4.TabIndex = 10;
@@ -148,7 +150,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(295, 172);
+            this.label6.Location = new System.Drawing.Point(295, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 24);
             this.label6.TabIndex = 14;
@@ -248,12 +250,38 @@
             this.exBtn.UseVisualStyleBackColor = true;
             this.exBtn.Click += new System.EventHandler(this.exBtn_Click);
             // 
+            // radioEn
+            // 
+            this.radioEn.AutoSize = true;
+            this.radioEn.Checked = true;
+            this.radioEn.Location = new System.Drawing.Point(123, 12);
+            this.radioEn.Name = "radioEn";
+            this.radioEn.Size = new System.Drawing.Size(73, 17);
+            this.radioEn.TabIndex = 28;
+            this.radioEn.TabStop = true;
+            this.radioEn.Text = "英文模式";
+            this.radioEn.UseVisualStyleBackColor = true;
+            this.radioEn.CheckedChanged += new System.EventHandler(this.radioEn_CheckedChanged);
+            // 
+            // radioTest
+            // 
+            this.radioTest.AutoSize = true;
+            this.radioTest.Location = new System.Drawing.Point(202, 12);
+            this.radioTest.Name = "radioTest";
+            this.radioTest.Size = new System.Drawing.Size(73, 17);
+            this.radioTest.TabIndex = 29;
+            this.radioTest.Text = "測試模式";
+            this.radioTest.UseVisualStyleBackColor = true;
+            this.radioTest.CheckedChanged += new System.EventHandler(this.radioTest_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(666, 378);
+            this.Controls.Add(this.radioTest);
+            this.Controls.Add(this.radioEn);
             this.Controls.Add(this.exBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.resetBtn);
@@ -303,5 +331,7 @@
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.Button historyBtn;
         private System.Windows.Forms.Button exBtn;
+        private System.Windows.Forms.RadioButton radioEn;
+        private System.Windows.Forms.RadioButton radioTest;
     }
 }

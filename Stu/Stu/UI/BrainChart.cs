@@ -27,7 +27,7 @@ namespace Stu.UI
         private ArrayList resDataes = null;
         private ArrayList resTitleDataes = null;
         private int colorIndex;
-        public BrainChart(string path)
+        public BrainChart(string path,Boolean show_csv)
         {
             InitializeComponent();
             this.outPath = path;
@@ -41,9 +41,12 @@ namespace Stu.UI
             parseFFTFile();
             parseLastFile();
             runTypeCombo.SelectedIndex = 0;
-            if (File.Exists(outPath + "/ResultFileAvg.xlsx"))
+            if (show_csv)
             {
-                Process.Start(outPath + "/ResultFileAvg.xlsx");
+                if (File.Exists(outPath + "/ResultFileAvg.xlsx"))
+                {
+                    Process.Start(outPath + "/ResultFileAvg.xlsx");
+                }
             }
         }
 
@@ -247,12 +250,13 @@ namespace Stu.UI
             this.lDataes = lr;
             this.nDataes = nr;
             WriteFile writeFile = new WriteFile(outPath);
-            writeFile.FFTQuery(WriteFile.FFTResultFile, nr, fr, lr);
+            writeFile.FFTQuery(WriteFile.FFTResultFile, WriteFile.FFT , nr, fr, lr);
+            writeFile.FFTQuery(WriteFile.NormResultFile, WriteFile.FFTNorm, nr, fr, lr);
         }
 
         private void bigBtn_Click(object sender, EventArgs e)
         {
-            BrainChart brain_chart = new BrainChart(this.outPath);
+            BrainChart brain_chart = new BrainChart(this.outPath,false);
             brain_chart.Show();
             brain_chart.bigStyle();
         }

@@ -45,10 +45,17 @@ namespace Stu.UI
 
         private void memoryFinishBtn_Click(object sender, EventArgs e)
         {
-            DialogResult myResult = MessageBox.Show("確定背完?", "確定已經背完單字，準備提早考試嗎??", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (myResult == DialogResult.Yes)
+            if (!configManager.getIsTest())
             {
-                stopTimer();
+                DialogResult myResult = MessageBox.Show("確定背完?", "確定已經背完單字，準備提早考試嗎??", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (myResult == DialogResult.Yes)
+                {
+                    stopTimer();
+                }
+            }
+            else
+            {
+                MessageBox.Show("現在是測試模式!無法提早結束，請專心測試!");
             }
         }
 
@@ -57,15 +64,42 @@ namespace Stu.UI
             stopWorker();
             time = 0;
             brainReceiver.stop();
-            ChromeUtils.closeChrome();
-            this.Close();
-            ShowExDialog.show("第三步、測試單字", Properties.Resources.test);
-            DoTest doTest = new DoTest(configManager);
-            doTest.Show();
-            doTest.Location = new Point(0, 0);
-            ChromeUtils.openChrome(ChromeUtils.testURL + configManager.getOrderID());
+            if (!configManager.getIsTest())
+            {
+                ChromeUtils.closeChrome();
+                this.Close();
+                ShowExDialog.show("第三步、測試單字", Properties.Resources.test);
+                DoTest doTest = new DoTest(configManager);
+                doTest.Show();
+                doTest.Location = new Point(0, 0);
+                ChromeUtils.openChrome(ChromeUtils.testURL + configManager.getOrderID());
+            }
+            else
+            {
+                HttpWorker httpWorker = new HttpWorker(HttpWorker.orderFinish, httpResponse);
+                JSONObject form = new JSONObject();
+                form.setString("orderID", configManager.getOrderID());
+                httpWorker.setData(form);
+                httpWorker.httpWorker();
+                WaitDialog.show();
+            }
         }
-
+        private void httpResponse(JSONObject response)
+        {
+            WaitDialog.close();
+            int error_code = response.getInt("error_code");
+            if (error_code == 0)
+            {
+                this.Close();
+                OrderView view = new OrderView(configManager.getOrderID(), configManager.getPath());
+                view.Show();
+            }
+            else
+            {
+                string message = response.getString("message");
+                MessageBox.Show(message);
+            }
+        }
         delegate void ChartUIHabdler(ArrayList list);
 
         private void brainReciverRun()
