@@ -22,11 +22,13 @@ namespace Stu.UI
         public Main()
         {
             InitializeComponent();
+            radioTest.Checked = true;
             this.bluetooth_list = new BluetoothList();
-            bluetooth_list.Location = new Point(350, 40);
-            bluetooth_list.TopLevel = false;
-            this.Controls.Add(bluetooth_list);
+            //bluetooth_list.Location = new Point(350, 40);
+            //bluetooth_list.TopLevel = false;
+            //this.Controls.Add(bluetooth_list);
             bluetooth_list.Show();
+            bluetooth_list.Location = new Point(0, 0);
             bluetooth_list.hideButton();
 
             //ArrayList list = new ArrayList();
@@ -40,14 +42,21 @@ namespace Stu.UI
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            if (textTestTime.Text.Length == 0 || textUserName.Text.Length == 0 || textUserYearOld.Text.Length == 0 || textWordNum.Text.Length == 0)
+            if (outPath.Length == 0)
             {
-                MessageBox.Show("欄位都為必填!");
-                return;
+                FolderBrowserDialog path = new FolderBrowserDialog();
+                path.ShowDialog();
+                outputText.Text = path.SelectedPath;
+                outPath = path.SelectedPath;
             }
             if (outPath.Length == 0)
             {
                 MessageBox.Show("尚未選擇輸出路徑!");
+                return;
+            }
+            if (textTestTime.Text.Length == 0 || textUserName.Text.Length == 0 || textUserYearOld.Text.Length == 0 || textWordNum.Text.Length == 0)
+            {
+                MessageBox.Show("欄位都為必填!");
                 return;
             }
             ArrayList list = bluetooth_list.getResult();
@@ -57,17 +66,30 @@ namespace Stu.UI
                 return;
             }
             ChromeUtils.closeChrome();
-            BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
-            HttpWorker httpWorker = new HttpWorker(HttpWorker.orderCreate, httpResponse);
-            JSONObject form = new JSONObject();
-            form.setString("deviceAddress", manager.getDeviceAddress());
-            form.setString("userName", textUserName.Text);
-            form.setString("userYearOld", textUserYearOld.Text);
-            form.setString("wordNum", textWordNum.Text);
-            form.setString("testTime", textTestTime.Text);
-            httpWorker.setData(form);
-            httpWorker.httpWorker();
-            WaitDialog.show();
+            Boolean isclient = checkBoxClient.Checked;
+            if (isclient)
+            {
+                BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
+                string order_id = DateTime.Now.ToString("yyyyMMddHHmmss");
+                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, true, isclient, textUserName.Text, textUserYearOld.Text);
+                Memory memory = new Memory(config_manager);
+                memory.Show();
+                memory.Location = new Point(0, 0);
+            }
+            else
+            {
+                BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
+                HttpWorker httpWorker = new HttpWorker(HttpWorker.orderCreate, httpResponse);
+                JSONObject form = new JSONObject();
+                form.setString("deviceAddress", manager.getDeviceAddress());
+                form.setString("userName", textUserName.Text);
+                form.setString("userYearOld", textUserYearOld.Text);
+                form.setString("wordNum", textWordNum.Text);
+                form.setString("testTime", textTestTime.Text);
+                httpWorker.setData(form);
+                httpWorker.httpWorker();
+                WaitDialog.show();
+            }
         }
 
         private void httpResponse(JSONObject response)
@@ -77,10 +99,11 @@ namespace Stu.UI
             if (error_code == 0)
             {
                 Boolean isTest = radioTest.Checked;
+                Boolean isclient = checkBoxClient.Checked;
                 ArrayList list = bluetooth_list.getResult();
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = response.getString("orderID");
-                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, isTest);
+                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, isTest, isclient, textUserName.Text, textUserYearOld.Text);
                 if (!config_manager.getIsTest())
                 {
                     ShowExDialog.show("第一步、選擇單字", Properties.Resources.choose);
@@ -120,6 +143,11 @@ namespace Stu.UI
                 path.ShowDialog();
                 outputText.Text = path.SelectedPath;
                 outPath = path.SelectedPath;
+            }
+            if (outPath.Length == 0)
+            {
+                MessageBox.Show("尚未選擇輸出路徑!");
+                return;
             }
             OrderList list = new OrderList(outPath);
             list.Show();
@@ -161,6 +189,8 @@ namespace Stu.UI
             label3.Visible = true;
             textWordNum.Visible = true;
             textTestTime.Text = "600";
+            checkBoxClient.Checked = false;
+            checkBoxClient.Enabled = false;
         }
 
         private void radioTest_CheckedChanged(object sender, EventArgs e)
@@ -168,6 +198,8 @@ namespace Stu.UI
             label3.Visible = false;
             textWordNum.Visible = false;
             textTestTime.Text = "180";
+            checkBoxClient.Checked = true;
+            checkBoxClient.Enabled = true;
         }
     }
 }

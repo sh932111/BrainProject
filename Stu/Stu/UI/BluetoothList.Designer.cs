@@ -35,6 +35,7 @@ namespace Stu.UI
             this.loaderImage = new System.Windows.Forms.PictureBox();
             this.connectBtn = new System.Windows.Forms.Button();
             this.btnSearchDevice = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.loaderImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +44,7 @@ namespace Stu.UI
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 24);
             this.label1.TabIndex = 0;
@@ -52,7 +53,7 @@ namespace Stu.UI
             // bluetoothListView
             // 
             this.bluetoothListView.CheckBoxes = true;
-            this.bluetoothListView.Location = new System.Drawing.Point(12, 36);
+            this.bluetoothListView.Location = new System.Drawing.Point(12, 72);
             this.bluetoothListView.Name = "bluetoothListView";
             this.bluetoothListView.Size = new System.Drawing.Size(277, 100);
             this.bluetoothListView.TabIndex = 1;
@@ -61,7 +62,7 @@ namespace Stu.UI
             // loaderImage
             // 
             this.loaderImage.Image = ((System.Drawing.Image)(resources.GetObject("loaderImage.Image")));
-            this.loaderImage.Location = new System.Drawing.Point(132, 68);
+            this.loaderImage.Location = new System.Drawing.Point(132, 104);
             this.loaderImage.Name = "loaderImage";
             this.loaderImage.Size = new System.Drawing.Size(42, 42);
             this.loaderImage.TabIndex = 2;
@@ -69,7 +70,7 @@ namespace Stu.UI
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(214, 142);
+            this.connectBtn.Location = new System.Drawing.Point(214, 178);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(75, 23);
             this.connectBtn.TabIndex = 3;
@@ -79,7 +80,7 @@ namespace Stu.UI
             // 
             // btnSearchDevice
             // 
-            this.btnSearchDevice.Location = new System.Drawing.Point(12, 142);
+            this.btnSearchDevice.Location = new System.Drawing.Point(12, 178);
             this.btnSearchDevice.Name = "btnSearchDevice";
             this.btnSearchDevice.Size = new System.Drawing.Size(75, 23);
             this.btnSearchDevice.TabIndex = 4;
@@ -87,19 +88,29 @@ namespace Stu.UI
             this.btnSearchDevice.UseVisualStyleBackColor = true;
             this.btnSearchDevice.Click += new System.EventHandler(this.btnSearchDevice_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(13, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 24);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Device";
+            // 
             // BluetoothList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(300, 176);
+            this.ClientSize = new System.Drawing.Size(300, 219);
             this.ControlBox = false;
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnSearchDevice);
             this.Controls.Add(this.connectBtn);
             this.Controls.Add(this.loaderImage);
             this.Controls.Add(this.bluetoothListView);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BluetoothList";
             this.Text = "BluetoothList";
             ((System.ComponentModel.ISupportInitialize)(this.loaderImage)).EndInit();
@@ -115,5 +126,6 @@ namespace Stu.UI
         private System.Windows.Forms.PictureBox loaderImage;
         private System.Windows.Forms.Button connectBtn;
         private Button btnSearchDevice;
+        private Label label7;
     }
 }

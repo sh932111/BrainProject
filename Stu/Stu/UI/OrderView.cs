@@ -50,10 +50,11 @@ namespace Stu.UI
                 JSONObject value = response.getJSONObject("value");
                 string file_path = folder.createDeviceFolder(value.getString("deviceAddress"), orderID);
                 BrainChart brainCharts = new BrainChart(file_path,true);
-                brainCharts.Location = new Point(350, 45);
-                brainCharts.TopLevel = false;
-                this.Controls.Add(brainCharts);
+                //brainCharts.Location = new Point(350, 45);
+                //brainCharts.TopLevel = false;
+                //this.Controls.Add(brainCharts);
                 brainCharts.Show();
+                brainCharts.Location = new Point(0, 0);
                 resultList.Clear();
                 JSONArray list = response.getJSONArray("list");
                 for (int i = 0; i < list.Count; i++)

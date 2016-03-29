@@ -39,7 +39,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.outputText = new System.Windows.Forms.TextBox();
             this.chooseFolderBtn = new System.Windows.Forms.Button();
             this.labelNorm = new System.Windows.Forms.Label();
@@ -49,14 +48,15 @@
             this.exBtn = new System.Windows.Forms.Button();
             this.radioEn = new System.Windows.Forms.RadioButton();
             this.radioTest = new System.Windows.Forms.RadioButton();
+            this.checkBoxClient = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnCheck
             // 
             this.btnCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheck.Location = new System.Drawing.Point(397, 273);
+            this.btnCheck.Location = new System.Drawing.Point(13, 273);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(257, 30);
+            this.btnCheck.Size = new System.Drawing.Size(638, 30);
             this.btnCheck.TabIndex = 0;
             this.btnCheck.Text = "開始測試";
             this.btnCheck.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 7);
+            this.label5.Location = new System.Drawing.Point(26, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 24);
             this.label5.TabIndex = 12;
@@ -156,23 +156,13 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "秒";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(342, 7);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 24);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Device";
-            // 
             // outputText
             // 
             this.outputText.BackColor = System.Drawing.Color.Snow;
             this.outputText.CausesValidation = false;
             this.outputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputText.ForeColor = System.Drawing.Color.DarkRed;
-            this.outputText.Location = new System.Drawing.Point(159, 233);
+            this.outputText.Location = new System.Drawing.Point(162, 231);
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
             this.outputText.ReadOnly = true;
@@ -183,7 +173,7 @@
             // chooseFolderBtn
             // 
             this.chooseFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseFolderBtn.Location = new System.Drawing.Point(12, 231);
+            this.chooseFolderBtn.Location = new System.Drawing.Point(12, 228);
             this.chooseFolderBtn.Name = "chooseFolderBtn";
             this.chooseFolderBtn.Size = new System.Drawing.Size(141, 33);
             this.chooseFolderBtn.TabIndex = 17;
@@ -209,20 +199,20 @@
             this.textBox1.CausesValidation = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Maroon;
-            this.textBox1.Location = new System.Drawing.Point(17, 280);
+            this.textBox1.Location = new System.Drawing.Point(345, 55);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(374, 89);
+            this.textBox1.Size = new System.Drawing.Size(306, 131);
             this.textBox1.TabIndex = 24;
             this.textBox1.Text = "說明：依序設定測試者的資料及腦波的相關設定，選擇裝置後即可開始測試，歷史紀錄則可以觀看受試者的資訊";
             // 
             // resetBtn
             // 
             this.resetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetBtn.Location = new System.Drawing.Point(397, 340);
+            this.resetBtn.Location = new System.Drawing.Point(12, 345);
             this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(257, 30);
+            this.resetBtn.Size = new System.Drawing.Size(642, 30);
             this.resetBtn.TabIndex = 25;
             this.resetBtn.Text = "重置資料";
             this.resetBtn.UseVisualStyleBackColor = true;
@@ -231,9 +221,9 @@
             // historyBtn
             // 
             this.historyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.historyBtn.Location = new System.Drawing.Point(397, 307);
+            this.historyBtn.Location = new System.Drawing.Point(13, 309);
             this.historyBtn.Name = "historyBtn";
-            this.historyBtn.Size = new System.Drawing.Size(257, 30);
+            this.historyBtn.Size = new System.Drawing.Size(641, 30);
             this.historyBtn.TabIndex = 26;
             this.historyBtn.Text = "歷史紀錄";
             this.historyBtn.UseVisualStyleBackColor = true;
@@ -242,7 +232,7 @@
             // exBtn
             // 
             this.exBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exBtn.Location = new System.Drawing.Point(235, 338);
+            this.exBtn.Location = new System.Drawing.Point(530, 149);
             this.exBtn.Name = "exBtn";
             this.exBtn.Size = new System.Drawing.Size(121, 30);
             this.exBtn.TabIndex = 27;
@@ -254,9 +244,10 @@
             // 
             this.radioEn.AutoSize = true;
             this.radioEn.Checked = true;
-            this.radioEn.Location = new System.Drawing.Point(123, 12);
+            this.radioEn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioEn.Location = new System.Drawing.Point(339, 14);
             this.radioEn.Name = "radioEn";
-            this.radioEn.Size = new System.Drawing.Size(73, 17);
+            this.radioEn.Size = new System.Drawing.Size(91, 24);
             this.radioEn.TabIndex = 28;
             this.radioEn.TabStop = true;
             this.radioEn.Text = "英文模式";
@@ -266,20 +257,33 @@
             // radioTest
             // 
             this.radioTest.AutoSize = true;
-            this.radioTest.Location = new System.Drawing.Point(202, 12);
+            this.radioTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioTest.Location = new System.Drawing.Point(445, 14);
             this.radioTest.Name = "radioTest";
-            this.radioTest.Size = new System.Drawing.Size(73, 17);
+            this.radioTest.Size = new System.Drawing.Size(91, 24);
             this.radioTest.TabIndex = 29;
             this.radioTest.Text = "測試模式";
             this.radioTest.UseVisualStyleBackColor = true;
             this.radioTest.CheckedChanged += new System.EventHandler(this.radioTest_CheckedChanged);
+            // 
+            // checkBoxClient
+            // 
+            this.checkBoxClient.AutoSize = true;
+            this.checkBoxClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxClient.Location = new System.Drawing.Point(559, 15);
+            this.checkBoxClient.Name = "checkBoxClient";
+            this.checkBoxClient.Size = new System.Drawing.Size(92, 24);
+            this.checkBoxClient.TabIndex = 30;
+            this.checkBoxClient.Text = "離線測試";
+            this.checkBoxClient.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(666, 378);
+            this.ClientSize = new System.Drawing.Size(666, 387);
+            this.Controls.Add(this.checkBoxClient);
             this.Controls.Add(this.radioTest);
             this.Controls.Add(this.radioEn);
             this.Controls.Add(this.exBtn);
@@ -289,7 +293,6 @@
             this.Controls.Add(this.labelNorm);
             this.Controls.Add(this.outputText);
             this.Controls.Add(this.chooseFolderBtn);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textTestTime);
@@ -323,7 +326,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox outputText;
         private System.Windows.Forms.Button chooseFolderBtn;
         private System.Windows.Forms.Label labelNorm;
@@ -333,5 +335,6 @@
         private System.Windows.Forms.Button exBtn;
         private System.Windows.Forms.RadioButton radioEn;
         private System.Windows.Forms.RadioButton radioTest;
+        private System.Windows.Forms.CheckBox checkBoxClient;
     }
 }

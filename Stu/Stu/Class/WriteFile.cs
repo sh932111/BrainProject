@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.IO;
+using Stu.Manager;
 
 namespace Stu.Class
 {
@@ -15,9 +16,30 @@ namespace Stu.Class
         public static string FFTNorm = "/FFTNorm.csv";
         public static string FFT = "/FFT.csv";
         private string NoFFT = "/NoFFT.csv";
+        private string Client = "/Client.txt";
         public WriteFile(string path)
         {
             this.runPath = path;
+        }
+        public void clientSave(ConfigManager manager)
+        {
+            string path = runPath + Client;
+            if (!File.Exists(path))
+            {
+                StreamWriter sw = new StreamWriter(path);
+                string orderID = manager.getOrderID();
+                sw.WriteLine(orderID);
+                string name = manager.getName();
+                sw.WriteLine(name);
+                string year = manager.getYear();
+                sw.WriteLine(year);
+                string runTime = manager.getRunTime() + "";
+                sw.WriteLine(runTime);
+                BluetoothDeviceManager blueManager = manager.getDeviceManager();
+                string addr = blueManager.getDeviceAddress();
+                sw.WriteLine(addr);
+                sw.Close();
+            }
         }
         public void NoFFTWrite(ArrayList sectionList , string time)
         {

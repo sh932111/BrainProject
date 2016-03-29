@@ -103,6 +103,7 @@ namespace Stu.UI
                 string orderID = manager.getString("orderID");
                 OrderView view = new OrderView(orderID,outPath);
                 view.Show();
+                this.Close();
             }
         }
     }

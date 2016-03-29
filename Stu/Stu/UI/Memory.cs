@@ -83,12 +83,21 @@ namespace Stu.UI
                 WindowsMediaPlayer newMedia = new WindowsMediaPlayer();
                 newMedia.URL = @"sound.mp3";
                 newMedia.controls.play();
-                HttpWorker httpWorker = new HttpWorker(HttpWorker.orderFinish, httpResponse);
-                JSONObject form = new JSONObject();
-                form.setString("orderID", configManager.getOrderID());
-                httpWorker.setData(form);
-                httpWorker.httpWorker();
-                WaitDialog.show();
+                if (configManager.getIsClient())
+                {
+                    this.Close();
+                    OrderView view = new OrderView(configManager.getOrderID(), configManager.getPath());
+                    view.Show();
+                }
+                else
+                {
+                    HttpWorker httpWorker = new HttpWorker(HttpWorker.orderFinish, httpResponse);
+                    JSONObject form = new JSONObject();
+                    form.setString("orderID", configManager.getOrderID());
+                    httpWorker.setData(form);
+                    httpWorker.httpWorker();
+                    WaitDialog.show();
+                }
             }
         }
         private void httpResponse(JSONObject response)

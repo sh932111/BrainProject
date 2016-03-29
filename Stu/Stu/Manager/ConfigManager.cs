@@ -13,7 +13,10 @@ namespace Stu.Manager
         private string orderID = "";
         private int runTime = 0;
         private Boolean isTest = false;
-        public ConfigManager(string id, string path, int run, BluetoothDeviceManager device , Boolean is_test)
+        private Boolean isClient = false; /*離線模式*/
+        private string year = "";
+        private string name = "";
+        public ConfigManager(string id, string path, int run, BluetoothDeviceManager device, Boolean is_test, Boolean is_client, string n, string y)
         {
             this.orderID = id;
             this.outPath = path;
@@ -27,6 +30,9 @@ namespace Stu.Manager
                 this.runTime = run + 10;
             }
             this.isTest = is_test;
+            this.isClient = is_client;
+            this.year = y;
+            this.name = n;
         }
         public string getOrderID()
         {
@@ -47,6 +53,18 @@ namespace Stu.Manager
         public Boolean getIsTest()
         {
             return isTest;
+        }
+        public Boolean getIsClient()
+        {
+            return isClient;
+        }
+        public string getYear()
+        {
+            return year;
+        }
+        public string getName()
+        {
+            return name;
         }
     }
 }
