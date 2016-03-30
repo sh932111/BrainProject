@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using Stu.Class;
+using System.Net.NetworkInformation;
 
 namespace Stu.UI
 {
@@ -21,15 +22,7 @@ namespace Stu.UI
         public OrderList(string path)
         {
             InitializeComponent();
-            System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
-            if (ping.Send("localhost").Status == System.Net.NetworkInformation.IPStatus.Success)
-            {
-                this.isClient = false;
-            }
-            else
-            {
-                this.isClient = true;
-            }
+            this.isClient = ConnectGoogleTW();
             this.outPath = path;
             this.resultList = new ArrayList();
             this.bluetoothList = bluetoothListView;
@@ -39,6 +32,31 @@ namespace Stu.UI
             loadListTitle();
             bluetoothList.EndUpdate();
             getOrderList();
+        }
+        bool ConnectGoogleTW()
+        {
+            //Google網址
+            string googleTW = "www.google.tw";
+            //Ping網站
+            Ping p = new Ping();
+            //網站的回覆
+            PingReply reply;
+
+            try
+            {
+                //取得網站的回覆
+                reply = p.Send(googleTW);
+                //如果回覆的狀態為Success則return true
+                if (reply.Status == IPStatus.Success) { return true; }
+
+            }
+
+            //catch這裡的Exception, 是有可能網站當下的某某狀況造成, 可以直接讓它傳回false.
+            //或在重覆try{}裡的動作一次
+            catch { return false; }
+
+            //如果reply.Status !=IPStatus.Success, 直接回傳false
+            return false;
         }
         private void getOrderList()
         {
