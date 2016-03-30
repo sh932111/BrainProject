@@ -42,7 +42,15 @@ namespace Stu.Class
         }
         public string getString(string key)
         {
-            return resource[key].ToString();
+            object value = resource.TryGetValue(key, out value) ? value : null;
+            if (value != null)
+            {
+                return value.ToString();
+            }
+            else
+            {
+                return "";
+            }
         }
         public int getInt(string key)
         {

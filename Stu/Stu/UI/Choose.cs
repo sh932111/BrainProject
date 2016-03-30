@@ -40,9 +40,7 @@ namespace Stu.UI
                 ChromeUtils.closeChrome();
                 this.Close();
                 ShowExDialog.show("第二步、背單字", Properties.Resources.memory);
-                Memory memory = new Memory(configManager);
-                memory.Show();
-                memory.Location = new Point(0, 0);
+                new Memory(configManager,null);
             }
             else
             {

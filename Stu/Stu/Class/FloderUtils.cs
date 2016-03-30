@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Collections;
 
 namespace Stu.Class
 {
@@ -36,6 +37,26 @@ namespace Stu.Class
         {
             if (!Directory.Exists(dir))  // if it doesn't exist, create
                 Directory.CreateDirectory(dir);
+        }
+
+        public ArrayList listAllOrder()
+        {
+            ArrayList pathes = new ArrayList();
+            string r_p = userChoosePath + "/" + rootFolder; 
+            foreach (string fname in Directory.GetFileSystemEntries(r_p))
+            {
+                foreach (string lname in Directory.GetFileSystemEntries(fname))
+                {
+                    string cli = lname + "/Client.txt";
+                    if (File.Exists(cli))
+                    {
+                        WriteFile wFile = new WriteFile(lname);
+                        JSONObject item = wFile.readClient();
+                        pathes.Add(item);
+                    }
+                }
+            } 
+            return pathes;
         }
     }
 }

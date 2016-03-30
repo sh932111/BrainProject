@@ -17,7 +17,7 @@ namespace Stu.UI
         private string outPath;
         private ListView bluetoothList = null;
         private ArrayList resultList;
-        public OrderView(string order_id , string path)
+        public OrderView(string order_id, string path)
         {
             InitializeComponent();
             this.orderID = order_id;

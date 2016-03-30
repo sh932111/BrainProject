@@ -41,6 +41,44 @@ namespace Stu.Class
                 sw.Close();
             }
         }
+        public JSONObject readClient()
+        {
+            JSONObject item = new JSONObject();
+            item.setString("path", runPath);
+            string path = runPath + Client;
+            if (File.Exists(path))
+            {
+                StreamReader fSR = new StreamReader(path);
+                string fLine;
+                int index = 0;
+                while ((fLine = fSR.ReadLine()) != null)/*讓使用者選擇第幾筆到第幾筆(1:512)*/
+                {
+                    if (index == 0)
+                    {
+                        item.setString("orderID", fLine);   
+                    }
+                    else if (index == 1)
+                    {
+                        item.setString("userName", fLine);   
+                    }
+                    else if (index == 2)
+                    {
+                        item.setString("userYearOld", fLine);   
+                    }
+                    else if (index == 3)
+                    {
+                        item.setString("testTime", fLine);   
+                    }
+                    else if (index == 4)
+                    {
+                        item.setString("deviceAddress", fLine);   
+                    }
+                    index++;
+                }
+                fSR.Close();
+            }
+            return item;
+        }
         public void NoFFTWrite(ArrayList sectionList , string time)
         {
             string path = runPath + NoFFT;

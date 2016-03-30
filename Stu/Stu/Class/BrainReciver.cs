@@ -32,11 +32,27 @@ namespace Stu.Class
             this.isRun = true;
         }
         
-        public void run()
+        public Boolean run()
         {
-            bluetoothConnection.Open();
-            bluetoothThread = new Thread(() => customRun(bluetoothConnection));
-            bluetoothThread.Start();
+            try
+            {
+                bluetoothConnection.Open();
+                if (bluetoothConnection.IsOpen == true)
+                {
+                    bluetoothThread = new Thread(() => customRun(bluetoothConnection));
+                    bluetoothThread.Start();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                    //MessageBox.Show("無法連接");
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private void customRun(SerialPort BluetoothConnection)

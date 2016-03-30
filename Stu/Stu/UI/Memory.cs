@@ -25,12 +25,14 @@ namespace Stu.UI
         private BackgroundWorker bgBluetooth;
         private int serviceTime;
         private string runPath = null;
+        private Form rootFrom = null;
 
-        public Memory(ConfigManager manager)
+        public Memory(ConfigManager manager,Form root_f)
         {
             InitializeComponent();
             this.configManager = manager;
             this.TopMost = true;
+            this.rootFrom = root_f;
             if (!manager.getIsTest())
             {
                 string memory = ChromeUtils.memoryURL + configManager.getOrderID();
@@ -85,8 +87,10 @@ namespace Stu.UI
                 newMedia.controls.play();
                 if (configManager.getIsClient())
                 {
+                    WriteFile writeFile = new WriteFile(this.runPath);
+                    writeFile.clientSave(configManager);
                     this.Close();
-                    OrderView view = new OrderView(configManager.getOrderID(), configManager.getPath());
+                    BrainChart view = new BrainChart(this.runPath,false);
                     view.Show();
                 }
                 else
@@ -123,7 +127,17 @@ namespace Stu.UI
             this.time = 0;
             this.startTime = DateTime.Now.ToString("yyyy/MM/dd/ HH:mm:ss");
             runWorker();
-            brainReceiver.run();
+            if (!brainReceiver.run())
+            {
+                MessageBox.Show("連接裝置失敗!");
+                this.Close();
+            }
+            else
+            {
+                this.Show();
+                this.Location = new Point(0, 0);
+                if (rootFrom!=null)  rootFrom.WindowState = FormWindowState.Minimized; 
+            }
         }
 
         private void runWorker()

@@ -276,6 +276,7 @@
             this.checkBoxClient.TabIndex = 30;
             this.checkBoxClient.Text = "離線測試";
             this.checkBoxClient.UseVisualStyleBackColor = true;
+            this.checkBoxClient.CheckedChanged += new System.EventHandler(this.checkBoxClient_CheckedChanged);
             // 
             // Main
             // 

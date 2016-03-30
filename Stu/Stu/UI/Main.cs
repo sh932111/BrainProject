@@ -72,9 +72,8 @@ namespace Stu.UI
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = DateTime.Now.ToString("yyyyMMddHHmmss");
                 ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, true, isclient, textUserName.Text, textUserYearOld.Text);
-                Memory memory = new Memory(config_manager);
-                memory.Show();
-                memory.Location = new Point(0, 0);
+                MessageBox.Show("準備好了?確定後開始測試"); 
+                new Memory(config_manager,this);
             }
             else
             {
@@ -112,12 +111,12 @@ namespace Stu.UI
                     Choose choose = new Choose(config_manager);
                     choose.Show();
                     choose.Location = new Point(0, 0);
+                    this.WindowState = FormWindowState.Minimized; 
                 }
                 else
                 {
-                    Memory memory = new Memory(config_manager);
-                    memory.Show();
-                    memory.Location = new Point(0, 0);
+                    MessageBox.Show("準備好了?確定後開始測試");
+                    new Memory(config_manager,this);
                 }
             }
             else
@@ -200,6 +199,18 @@ namespace Stu.UI
             textTestTime.Text = "180";
             checkBoxClient.Checked = true;
             checkBoxClient.Enabled = true;
+        }
+
+        private void checkBoxClient_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxClient.Checked)
+            {
+                btnCheck.Text = "開始測試-離線測試";
+            }
+            else
+            {
+                btnCheck.Text = "開始測試";
+            }
         }
     }
 }
