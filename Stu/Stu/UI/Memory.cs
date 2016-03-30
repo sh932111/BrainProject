@@ -25,9 +25,9 @@ namespace Stu.UI
         private BackgroundWorker bgBluetooth;
         private int serviceTime;
         private string runPath = null;
-        private Form rootFrom = null;
+        private ArrayList rootFrom = null;
 
-        public Memory(ConfigManager manager,Form root_f)
+        public Memory(ConfigManager manager, ArrayList root_f)
         {
             InitializeComponent();
             this.configManager = manager;
@@ -136,7 +136,10 @@ namespace Stu.UI
             {
                 this.Show();
                 this.Location = new Point(0, 0);
-                if (rootFrom!=null)  rootFrom.WindowState = FormWindowState.Minimized; 
+                if (rootFrom != null)
+                {
+                    foreach (Form f in rootFrom) f.WindowState = FormWindowState.Minimized;
+                }
             }
         }
 

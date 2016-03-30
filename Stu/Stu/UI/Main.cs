@@ -72,8 +72,11 @@ namespace Stu.UI
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = DateTime.Now.ToString("yyyyMMddHHmmss");
                 ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, true, isclient, textUserName.Text, textUserYearOld.Text);
-                MessageBox.Show("準備好了?確定後開始測試"); 
-                new Memory(config_manager,this);
+                MessageBox.Show("準備好了?確定後開始測試");
+                ArrayList formList = new ArrayList();
+                formList.Add(this);
+                formList.Add(bluetooth_list);
+                new Memory(config_manager,formList);
             }
             else
             {
@@ -116,7 +119,10 @@ namespace Stu.UI
                 else
                 {
                     MessageBox.Show("準備好了?確定後開始測試");
-                    new Memory(config_manager,this);
+                    ArrayList formList = new ArrayList();
+                    formList.Add(this);
+                    formList.Add(bluetooth_list);
+                    new Memory(config_manager, formList);
                 }
             }
             else
