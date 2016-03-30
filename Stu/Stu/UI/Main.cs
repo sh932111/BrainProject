@@ -154,7 +154,7 @@ namespace Stu.UI
                 MessageBox.Show("尚未選擇輸出路徑!");
                 return;
             }
-            OrderList list = new OrderList(outPath);
+            OrderList list = new OrderList(outPath,checkBoxClient.Checked);
             list.Show();
         }
 
@@ -212,10 +212,12 @@ namespace Stu.UI
             if (checkBoxClient.Checked)
             {
                 btnCheck.Text = "開始測試-離線測試";
+                historyBtn.Text = "歷史紀錄-只查詢本地";
             }
             else
             {
                 btnCheck.Text = "開始測試";
+                historyBtn.Text = "歷史紀錄";
             }
         }
     }
