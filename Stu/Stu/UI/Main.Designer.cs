@@ -165,10 +165,8 @@
             this.outputText.Location = new System.Drawing.Point(162, 231);
             this.outputText.Multiline = true;
             this.outputText.Name = "outputText";
-            this.outputText.ReadOnly = true;
             this.outputText.Size = new System.Drawing.Size(492, 28);
             this.outputText.TabIndex = 18;
-            this.outputText.Text = "路徑：";
             // 
             // chooseFolderBtn
             // 

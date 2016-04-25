@@ -17,7 +17,6 @@ namespace Stu.UI
 {
     public partial class Main : Form
     {
-        private string outPath = "";
         BluetoothList bluetooth_list = null;
         public Main()
         {
@@ -30,8 +29,7 @@ namespace Stu.UI
             bluetooth_list.Show();
             bluetooth_list.Location = new Point(0, 0);
             bluetooth_list.hideButton();
-            this.outPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            outputText.Text = this.outPath;
+            outputText.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             //ArrayList list = new ArrayList();
             //for (double i = 1; i <= 3; i++)
             //{
@@ -43,14 +41,13 @@ namespace Stu.UI
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            if (outPath.Length == 0)
+            if (outputText.Text.Length == 0)
             {
                 FolderBrowserDialog path = new FolderBrowserDialog();
                 path.ShowDialog();
                 outputText.Text = path.SelectedPath;
-                outPath = path.SelectedPath;
             }
-            if (outPath.Length == 0)
+            if (outputText.Text.Length == 0)
             {
                 MessageBox.Show("尚未選擇輸出路徑!");
                 return;
@@ -72,7 +69,7 @@ namespace Stu.UI
             {
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = DateTime.Now.ToString("yyyyMMddHHmmss");
-                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, true, isclient, textUserName.Text, textUserYearOld.Text);
+                ConfigManager config_manager = new ConfigManager(order_id, outputText.Text, int.Parse(textTestTime.Text), manager, true, isclient, textUserName.Text, textUserYearOld.Text);
                 MessageBox.Show("準備好了?確定後開始測試");
                 ArrayList formList = new ArrayList();
                 formList.Add(this);
@@ -106,7 +103,7 @@ namespace Stu.UI
                 ArrayList list = bluetooth_list.getResult();
                 BluetoothDeviceManager manager = (BluetoothDeviceManager)list[0];
                 string order_id = response.getString("orderID");
-                ConfigManager config_manager = new ConfigManager(order_id, outPath, int.Parse(textTestTime.Text), manager, isTest, isclient, textUserName.Text, textUserYearOld.Text);
+                ConfigManager config_manager = new ConfigManager(order_id, outputText.Text, int.Parse(textTestTime.Text), manager, isTest, isclient, textUserName.Text, textUserYearOld.Text);
                 if (!config_manager.getIsTest())
                 {
                     ShowExDialog.show("第一步、選擇單字", Properties.Resources.choose);
@@ -138,24 +135,22 @@ namespace Stu.UI
             FolderBrowserDialog path = new FolderBrowserDialog();
             path.ShowDialog();
             outputText.Text = path.SelectedPath;
-            this.outPath = path.SelectedPath;
         }
 
         private void historyBtn_Click(object sender, EventArgs e)
         {
-            if (outPath.Length == 0)
+            if (outputText.Text.Length == 0)
             {
                 FolderBrowserDialog path = new FolderBrowserDialog();
                 path.ShowDialog();
                 outputText.Text = path.SelectedPath;
-                outPath = path.SelectedPath;
             }
-            if (outPath.Length == 0)
+            if (outputText.Text.Length == 0)
             {
                 MessageBox.Show("尚未選擇輸出路徑!");
                 return;
             }
-            OrderList list = new OrderList(outPath,checkBoxClient.Checked);
+            OrderList list = new OrderList(outputText.Text, checkBoxClient.Checked);
             list.Show();
         }
 
@@ -165,7 +160,6 @@ namespace Stu.UI
             textUserName.Text = "";
             textUserYearOld.Text = "";
             textWordNum.Text = "";
-            outPath = "";
             outputText.Text = "";
         }
 
@@ -174,14 +168,13 @@ namespace Stu.UI
             int test = 0;
             if (test == 1)
             {
-                if (outPath.Length == 0)
+                if (outputText.Text.Length == 0)
                 {
                     FolderBrowserDialog path = new FolderBrowserDialog();
                     path.ShowDialog();
                     outputText.Text = path.SelectedPath;
-                    outPath = path.SelectedPath;
                 }
-                string p = outPath + "/" + "BrainResult" + "/" + "8CDE52929277" ;
+                string p = outputText.Text + "/" + "BrainResult" + "/" + "8CDE52929277";
                 foreach (string fname in Directory.GetFileSystemEntries(p)) 
                 {
                     string file = fname + "/" + "FFT.csv";
