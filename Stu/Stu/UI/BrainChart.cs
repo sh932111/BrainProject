@@ -12,6 +12,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Stu.Class;
 using Stu.Utils;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Stu.UI
 {
@@ -37,9 +38,6 @@ namespace Stu.UI
             this.resDataes = new ArrayList();
             this.resTitleDataes = new ArrayList();
             this.lastDataes = new ArrayList();
-            parseBrainFile();
-            parseFFTFile();
-            parseLastFile();
             runTypeCombo.SelectedIndex = 0;
             if (show_csv)
             {
@@ -48,6 +46,11 @@ namespace Stu.UI
                     Process.Start(outPath + "/ResultFileAvg.xlsx");
                 }
             }
+            Thread.Sleep(1);
+
+            parseBrainFile();
+            parseFFTFile();
+            parseLastFile();
         }
 
         private void parseLastFile()
@@ -109,18 +112,21 @@ namespace Stu.UI
         private void parseBrainFile()
         {
             attDataes.Clear();
-            StreamReader fSR = new StreamReader(outPath + "/Brain.csv");
-            string fLine;
-            int index = 0;
-            while ((fLine = fSR.ReadLine()) != null)
+            if (File.Exists(outPath + "/Brain.csv"))
             {
-                if (index != 0)
+                StreamReader fSR = new StreamReader(outPath + "/Brain.csv");
+                string fLine;
+                int index = 0;
+                while ((fLine = fSR.ReadLine()) != null)
                 {
-                    attDataes.Add(fLine);
+                    if (index != 0)
+                    {
+                        attDataes.Add(fLine);
+                    }
+                    index++;
                 }
-                index++;
+                fSR.Close();
             }
-            fSR.Close();
         }
 
         private void lastBtn_Click(object sender, EventArgs e)
