@@ -90,7 +90,7 @@ namespace Stu.UI
                     WriteFile writeFile = new WriteFile(this.runPath);
                     writeFile.clientSave(configManager);
                     this.Close();
-                    BrainChart view = new BrainChart(this.runPath,false);
+                    BrainChart view = new BrainChart(this.runPath,false,true);
                     view.Show();
                 }
                 else

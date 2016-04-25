@@ -49,7 +49,7 @@ namespace Stu.UI
                 FloderUtils folder = new FloderUtils(outPath);
                 JSONObject value = response.getJSONObject("value");
                 string file_path = folder.createDeviceFolder(value.getString("deviceAddress"), orderID);
-                BrainChart brainCharts = new BrainChart(file_path,true);
+                BrainChart brainCharts = new BrainChart(file_path,true,false);
                 //brainCharts.Location = new Point(350, 45);
                 //brainCharts.TopLevel = false;
                 //this.Controls.Add(brainCharts);
