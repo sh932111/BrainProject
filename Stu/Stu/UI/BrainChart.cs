@@ -49,10 +49,10 @@ namespace Stu.UI
             if (saveCheck)
             {
                 Thread.Sleep(5000);
-                parseBrainFile();
-                parseFFTFile();
-                parseLastFile();
             }
+            parseBrainFile();
+            parseFFTFile();
+            parseLastFile();
         }
 
         private void parseLastFile()
