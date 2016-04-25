@@ -30,7 +30,8 @@ namespace Stu.UI
             bluetooth_list.Show();
             bluetooth_list.Location = new Point(0, 0);
             bluetooth_list.hideButton();
-
+            this.outPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            outputText.Text = this.outPath;
             //ArrayList list = new ArrayList();
             //for (double i = 1; i <= 3; i++)
             //{
