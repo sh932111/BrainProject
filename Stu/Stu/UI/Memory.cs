@@ -198,6 +198,8 @@ namespace Stu.UI
             WriteFile.writeFinishCode(runPath + "/" + "streamLog.csv", startTime, over_time, manager.getStreamLog(), 513, numRow, null);
             WriteFile.writeFinishCode(runPath + "/" + "dataLog.csv", startTime, over_time, manager.getDataLog(), 512, numRow, fftTitleItem());
             WriteFile.writeFinishCode(runPath + "/" + "Brain.csv", "", "", manager.getBrainList(), 1, numRow, brashTitleItem());
+            WriteFile wr = new WriteFile(runPath);
+            wr.BrainToNBrain();
             //System.Diagnostics.Process.Start(runPath);
         }
 

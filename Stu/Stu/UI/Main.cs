@@ -39,6 +39,19 @@ namespace Stu.UI
             //Console.WriteLine(res);
         }
 
+        private void addDataFile()
+        {
+            string brainRoot =  outputText.Text + "/BrainResult";
+            foreach (string deviceFolder in Directory.GetFileSystemEntries(brainRoot))
+            {
+                foreach (string orderID in Directory.GetFileSystemEntries(deviceFolder))
+                {
+                    WriteFile wfile = new WriteFile(orderID);
+                    wfile.BrainToNBrain();
+                }
+            }
+        }
+
         private void btnCheck_Click(object sender, EventArgs e)
         {
             if (outputText.Text.Length == 0)

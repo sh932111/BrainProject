@@ -14,12 +14,84 @@ namespace Stu.Class
         public static string FFTResultFile = "/ResultFile.csv";
         public static string NormResultFile = "/NormResultFile.csv";
         public static string FFTNorm = "/FFTNorm.csv";
+        public static string BrainNorm = "/BrainNorm.csv";
+        public static string Brain = "/Brain.csv";
         public static string FFT = "/FFT.csv";
         private string NoFFT = "/NoFFT.csv";
         private string Client = "/Client.txt";
         public WriteFile(string path)
         {
             this.runPath = path;
+        }
+        public void BrainToNBrain()
+        {
+            string file = runPath + Brain;
+            if (!File.Exists(file))
+            {
+                return;
+            }
+            ArrayList lineArray = new ArrayList();
+            int index = 0;
+            StreamReader fSR = new StreamReader(file);
+            string fLine;
+            while ((fLine = fSR.ReadLine()) != null)
+            {
+                if (index == 0)
+                {
+                    string[] ReadLine_Array = fLine.Split(',');
+                    string code = "";
+                    for (int i = 0; i < ReadLine_Array.Length - 2; i++)
+                    {
+                        if (i == 0)
+                        {
+                            code = code + ReadLine_Array[i];
+                        }
+                        else
+                        {
+                            code = code + "," + ReadLine_Array[i];
+                        }
+                    }
+                    lineArray.Add(code);
+                }
+                else
+                {
+                    string[] ReadLine_Array = fLine.Split(',');
+                    /*取得量化的值*/
+                    ArrayList list = new ArrayList();
+                    for (int i = 1; i < ReadLine_Array.Length - 2; i++)
+                    {
+                        double val = double.Parse(ReadLine_Array[i]);
+                        list.Add(val);
+                    }
+                    double norm_res = Calculate.norm(list);
+                    /*計算量化後的結果*/
+                    string code = "";
+                    for (int i = 0; i < ReadLine_Array.Length - 2; i++)
+                    {
+                        if (i == 0)
+                        {
+                            code = code + ReadLine_Array[i];
+                        }
+                        else
+                        {
+                            double val = double.Parse(ReadLine_Array[i]);
+                            double result = val / norm_res;
+                            code = code + "," + result;
+                        }
+                    }
+                    lineArray.Add(code);
+                }
+                index++;
+            }
+            fSR.Close();
+            string FFT_N = runPath + BrainNorm;
+            StreamWriter sw = new StreamWriter(FFT_N);
+            for (int i = 0; i < lineArray.Count; i++)
+            {
+                string row = (string)lineArray[i];
+                sw.WriteLine(row);
+            }
+            sw.Close();
         }
         public void clientSave(ConfigManager manager)
         {

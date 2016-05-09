@@ -130,8 +130,6 @@ namespace Stu.UI
                     OrderView view = new OrderView(orderID, outPath);
                     view.Show();
                 }
-                this.Close();
-         
             }
         }
     }
