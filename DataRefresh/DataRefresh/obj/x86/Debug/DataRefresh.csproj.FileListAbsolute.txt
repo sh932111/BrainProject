@@ -1,0 +1,5 @@
+C:\Users\God\Desktop\DataRefresh\DataRefresh\bin\Debug\DataRefresh.exe
+C:\Users\God\Desktop\DataRefresh\DataRefresh\bin\Debug\DataRefresh.pdb
+C:\Users\God\Desktop\DataRefresh\DataRefresh\obj\x86\Debug\DataRefresh.csproj.ResolveComReference.cache
+C:\Users\God\Desktop\DataRefresh\DataRefresh\obj\x86\Debug\DataRefresh.exe
+C:\Users\God\Desktop\DataRefresh\DataRefresh\obj\x86\Debug\DataRefresh.pdb
