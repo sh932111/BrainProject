@@ -271,6 +271,7 @@ namespace Stu.UI
             brain_chart.Show();
             brain_chart.bigStyle();
         }
+        int h = 120;
         public void bigStyle()
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;
@@ -278,13 +279,13 @@ namespace Stu.UI
             this.WindowState = FormWindowState.Maximized;
             bigBtn.Hide();
             chart1.Width = this.Width - 6;
-            chart1.Height = this.Height - 80;
+            chart1.Height = this.Height - h;
         }
 
         private void BrainChart_Resize(object sender, EventArgs e)
         {
             chart1.Width = this.Width - 6;
-            chart1.Height = this.Height - 80;
+            chart1.Height = this.Height - h;
         }
 
         private void lastCombo_SelectedIndexChanged(object sender, EventArgs e)
