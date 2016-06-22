@@ -26,6 +26,7 @@ namespace Stu.UI
         private int serviceTime;
         private string runPath = null;
         private ArrayList rootFrom = null;
+        private ChartDraw chartDraw = null;
 
         public Memory(ConfigManager manager, ArrayList root_f)
         {
@@ -42,7 +43,10 @@ namespace Stu.UI
             FloderUtils folder = new FloderUtils(manager.getPath());
             folder.createRoot();
             this.runPath = folder.createDeviceFolder(deviceManager.getDeviceAddress(), manager.getOrderID());
-            this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback, sectionReciver);
+            this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback, sectionReciver, abrainCallback);
+            this.chartDraw = new ChartDraw(runPath);
+            chartDraw.Show();
+            chartDraw.Location = new Point(0,120);
             labelDeviceName.Text = deviceManager.getDeviceName() + "(" + deviceManager.getCOM() + ")";
             labelMac.Text = deviceManager.getDeviceAddress();
             serviceTime = -1;
@@ -120,7 +124,7 @@ namespace Stu.UI
                 MessageBox.Show(message);
             }
         }
-        delegate void ChartUIHabdler(ArrayList list);
+        delegate void ChartUIHabdler();
 
         private void brainReciverRun()
         {
@@ -200,7 +204,17 @@ namespace Stu.UI
             WriteFile.writeFinishCode(runPath + "/" + "Brain.csv", "", "", manager.getBrainList(), 1, numRow, brashTitleItem());
             WriteFile wr = new WriteFile(runPath);
             wr.BrainToNBrain();
-            //System.Diagnostics.Process.Start(runPath);
+        }
+
+        private void abrainCallback(ArrayList brainList)
+        {
+            chartDraw.setList(brainList);
+            this.Invoke(new ChartUIHabdler(drawChart));
+        }
+
+        private void drawChart()
+        {
+            chartDraw.showChart();
         }
 
         private ArrayList brashTitleItem()

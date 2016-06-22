@@ -13,6 +13,7 @@ namespace Stu.Class
     {
         public delegate void BrainReceiverCallback(BrainManager manager);
         public delegate void SectionCallback(ArrayList sectionList);
+        public delegate void brainCallback(ArrayList brainList);
 
         private string COM = null;
         private SerialPort bluetoothConnection = null;
@@ -20,11 +21,13 @@ namespace Stu.Class
         public  Boolean isRun = false;
         private BrainReceiverCallback aCallback;
         private SectionCallback aSectionCallback;
+        private brainCallback abrainCallback;
 
-        public BrainReceiver(string com, BrainReceiverCallback cb, SectionCallback scb)
+        public BrainReceiver(string com, BrainReceiverCallback cb, SectionCallback scb, brainCallback acb)
         {
             this.aCallback = cb;
             this.aSectionCallback = scb;
+            this.abrainCallback = acb;
             this.COM = com;
             this.bluetoothConnection = new SerialPort();
             bluetoothConnection.PortName = com;
@@ -171,6 +174,8 @@ namespace Stu.Class
                                 }
                             }
                             brainList.Add(refresh_item);
+                            ArrayList brain_list = (ArrayList)brainList.Clone();
+                            if (abrainCallback != null) abrainCallback(brain_list);
                         }
                         else
                         {

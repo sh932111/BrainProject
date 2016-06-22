@@ -109,6 +109,12 @@
     <Compile Include="UI\BrainChart.Designer.cs">
       <DependentUpon>BrainChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ChartDraw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ChartDraw.Designer.cs">
+      <DependentUpon>ChartDraw.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Choose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrainChart.resx">
       <DependentUpon>BrainChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ChartDraw.resx">
+      <DependentUpon>ChartDraw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Choose.resx">
       <DependentUpon>Choose.cs</DependentUpon>
