@@ -19,18 +19,20 @@ namespace DataRefresh
         private static void runBrain()
         {
             ArrayList orders = new ArrayList();
-            orders.Add(Resource.step_1);
+            //orders.Add(Resource.step_1);
             orders.Add(Resource.step_2);
-            orders.Add(Resource.step_3);
-            orders.Add(Resource.step_4);
+            //orders.Add(Resource.step_3);
+            //orders.Add(Resource.step_4);
             ArrayList indexes = new ArrayList();
-            indexes.Add(Resource.resource_1);
-            indexes.Add(Resource.resource_2);
+            //indexes.Add(Resource.resource_1);
+            //indexes.Add(Resource.resource_2);
             indexes.Add(Resource.resource_3);
             ArrayList fileNames = new ArrayList();
-            fileNames.Add(ReadBrain.Brain);
-            fileNames.Add(ReadBrain.Brain);
-            fileNames.Add(ReadBrain.BrainNorm);
+            //fileNames.Add(ReadBrain.Brain);
+            //fileNames.Add(ReadBrain.Brain);
+            //fileNames.Add(ReadBrain.BrainNorm);
+            fileNames.Add(ReadBrain.NormResultFile);
+            
             for (int i = 0; i < Resource.actions.Length; i++)
             {
                 string actionName = (string)Resource.actions[i];
@@ -61,18 +63,19 @@ namespace DataRefresh
         private static void runPeople()
         {
             ArrayList orders = new ArrayList();
-            orders.Add(Resource.step_1);
+            //orders.Add(Resource.step_1);
             orders.Add(Resource.step_2);
-            orders.Add(Resource.step_3);
-            orders.Add(Resource.step_4);
+           // orders.Add(Resource.step_3);
+           // orders.Add(Resource.step_4);
             ArrayList indexes = new ArrayList();
-            indexes.Add(Resource.resource_1);
-            indexes.Add(Resource.resource_2);
+            //indexes.Add(Resource.resource_1);
+            //indexes.Add(Resource.resource_2);
             indexes.Add(Resource.resource_3);
             ArrayList fileNames = new ArrayList();
-            fileNames.Add(ReadBrain.Brain);
-            fileNames.Add(ReadBrain.Brain);
-            fileNames.Add(ReadBrain.BrainNorm);
+            //fileNames.Add(ReadBrain.Brain);
+            //fileNames.Add(ReadBrain.Brain);
+            //fileNames.Add(ReadBrain.BrainNorm);
+            fileNames.Add(ReadBrain.NormResultFile);
             for (int i = 0; i < Resource.actions.Length; i++)
             {
                 string actionName = (string)Resource.actions[i];

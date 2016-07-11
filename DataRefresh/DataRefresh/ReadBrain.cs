@@ -12,6 +12,7 @@ namespace DataRefresh
         /*File name*/
         public static string Brain = "/Brain.csv";
         public static string BrainNorm = "/BrainNorm.csv";
+        public static string NormResultFile = "/NormResultFile.csv";
         /*Class args*/
         public string brainPath = null;
         public static string peopleFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/BrainResult/Resource/people";
