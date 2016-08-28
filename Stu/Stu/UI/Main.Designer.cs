@@ -250,6 +250,7 @@
             this.radioEn.TabStop = true;
             this.radioEn.Text = "英文模式";
             this.radioEn.UseVisualStyleBackColor = true;
+            this.radioEn.Visible = false;
             this.radioEn.CheckedChanged += new System.EventHandler(this.radioEn_CheckedChanged);
             // 
             // radioTest
