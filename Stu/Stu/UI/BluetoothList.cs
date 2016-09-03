@@ -23,11 +23,14 @@ namespace Stu.UI
         private ArrayList resultList;
         private BrainListCallback aCallback = null;
         private BrainOnClickListCallback aOnClickCallback = null;
+        private ArrayList formList = null;
         public BluetoothList()
         {
             InitializeComponent();
             /*ListView UI*/
             this.resultList = new ArrayList();
+            this.formList = new ArrayList();
+
             this.bluetoothList = bluetoothListView;
             bluetoothList.BeginUpdate();
             bluetoothList.View = View.Details;
@@ -35,30 +38,30 @@ namespace Stu.UI
             loadListTitle();
             bluetoothList.EndUpdate();
             /*搜尋很久放在BackgroundWorker*/
+            outputText.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             runSearchDevice();
         }
-        public BluetoothList(BrainListCallback acb , BrainOnClickListCallback onCb)
-        {
-            InitializeComponent();
-            this.aCallback = acb;
-            this.aOnClickCallback = onCb;
-            /*ListView UI*/
-            this.resultList = new ArrayList();
-            this.bluetoothList = bluetoothListView;
-            bluetoothList.BeginUpdate();
-            bluetoothList.View = View.Details;
-            bluetoothList.ItemChecked += new ItemCheckedEventHandler(CheckedState);
-            loadListTitle();
-            bluetoothList.EndUpdate();
-            /*搜尋很久放在BackgroundWorker*/
-            runSearchDevice();
-        }
+        //public BluetoothList(BrainListCallback acb , BrainOnClickListCallback onCb)
+        //{
+        //    InitializeComponent();
+        //    this.aCallback = acb;
+        //    this.aOnClickCallback = onCb;
+        //    /*ListView UI*/
+        //    this.resultList = new ArrayList();
+        //    this.bluetoothList = bluetoothListView;
+        //    bluetoothList.BeginUpdate();
+        //    bluetoothList.View = View.Details;
+        //    bluetoothList.ItemChecked += new ItemCheckedEventHandler(CheckedState);
+        //    loadListTitle();
+        //    bluetoothList.EndUpdate();
+        //    /*搜尋很久放在BackgroundWorker*/
+        //    runSearchDevice();
+        //}
 
         private void runSearchDevice()
         {
             bluetoothList.Clear();
             loaderImage.Show();
-            btnSearchDevice.Enabled = false;
             bgBluetooth = new BackgroundWorker();
             bgBluetooth.WorkerReportsProgress = true;
             bgBluetooth.WorkerSupportsCancellation = true;
@@ -75,7 +78,6 @@ namespace Stu.UI
 
         private void background_Finish(object sender, RunWorkerCompletedEventArgs e)
         {
-            btnSearchDevice.Enabled = true;
             loaderImage.Hide();
             resultList = bluetoothController.getBluetoothList();
             if (bgBluetooth != null)
@@ -114,7 +116,38 @@ namespace Stu.UI
 
         private void connectBtn_Click(object sender, EventArgs e)
         {
-            if (aCallback != null) aCallback(getResult());
+
+            foreach (TestForm form in formList)
+            {
+                form.Close();
+            }
+            formList.Clear();
+
+            //if (aCallback != null) aCallback(getResult());
+            if (outputText.Text.Length == 0)
+            {
+                FolderBrowserDialog path = new FolderBrowserDialog();
+                path.ShowDialog();
+                outputText.Text = path.SelectedPath;
+            }
+
+            if (outputText.Text.Length == 0)
+            {
+                MessageBox.Show("尚未選擇輸出路徑!");
+                return;
+            }
+            ArrayList list = getResult();
+            if (list.Count == 0)
+            {
+                MessageBox.Show("尚未選擇Device!");
+                return;
+            }
+            foreach (BluetoothDeviceManager manager in list)
+            {
+                TesterForm testForm = new TesterForm(manager, outputText.Text);
+                formList.Add(testForm);
+                testForm.Show();
+            }
         }
         private void CheckedState(object sender, System.Windows.Forms.ItemCheckedEventArgs e)
         {
@@ -130,7 +163,6 @@ namespace Stu.UI
         public void hideButton()
         {
             connectBtn.Hide();
-            btnSearchDevice.Width = 278;
         }
 
         public ArrayList getResult()
@@ -144,6 +176,13 @@ namespace Stu.UI
                 }
             }
             return result_list;
+        }
+
+        private void chooseFolderBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog path = new FolderBrowserDialog();
+            path.ShowDialog();
+            outputText.Text = path.SelectedPath;
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Stu.Class
 
         private Boolean tryConnect(string COM)
         {
-            Console.WriteLine(COM);
+            //Console.WriteLine(COM);
             try
             {
                 SerialPort BluetoothConnection = new SerialPort();

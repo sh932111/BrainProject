@@ -157,6 +157,12 @@
     <Compile Include="UI\ShowExDialog.Designer.cs">
       <DependentUpon>ShowExDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\testerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\testerForm.Designer.cs">
+      <DependentUpon>testerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FileListUtils.cs" />
     <Compile Include="Utils\OpenFileDialogUtils.cs" />
     <Compile Include="Utils\RangeDefinition.cs" />
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ShowExDialog.resx">
       <DependentUpon>ShowExDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\testerForm.resx">
+      <DependentUpon>testerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitDialog.resx">
       <DependentUpon>WaitDialog.cs</DependentUpon>

@@ -26,7 +26,7 @@ namespace Stu.UI
         private int serviceTime;
         private string runPath = null;
         private ArrayList rootFrom = null;
-        private ChartDraw chartDraw = null;
+        //private ChartDraw chartDraw = null;
 
         public Memory(ConfigManager manager, ArrayList root_f)
         {
@@ -44,9 +44,9 @@ namespace Stu.UI
             folder.createRoot();
             this.runPath = folder.createDeviceFolder(deviceManager.getDeviceAddress(), manager.getOrderID());
             this.brainReceiver = new BrainReceiver(deviceManager.getCOM(), brainReiverCallback, sectionReciver, abrainCallback);
-            this.chartDraw = new ChartDraw(runPath);
-            chartDraw.Show();
-            chartDraw.Location = new Point(0,120);
+            //this.chartDraw = new ChartDraw(runPath);
+            //chartDraw.Show();
+            //chartDraw.Location = new Point(0,120);
             labelDeviceName.Text = deviceManager.getDeviceName() + "(" + deviceManager.getCOM() + ")";
             labelMac.Text = deviceManager.getDeviceAddress();
             serviceTime = -1;
@@ -208,13 +208,13 @@ namespace Stu.UI
 
         private void abrainCallback(ArrayList brainList)
         {
-            chartDraw.setList(brainList);
+           // chartDraw.setList(brainList);
             this.Invoke(new ChartUIHabdler(drawChart));
         }
 
         private void drawChart()
         {
-            chartDraw.showChart();
+           // chartDraw.showChart();
         }
 
         private ArrayList brashTitleItem()

@@ -84,3 +84,4 @@ C:\Users\sh932_000\Desktop\BrainProject\Stu\Stu\obj\x86\Debug\Stu.csproj.Resolve
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Interop.WMPLib.dll
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.csproj.ResolveComReference.cache
 C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.ChartDraw.resources
+C:\Users\God\Desktop\Stu\Stu\obj\x86\Debug\Stu.UI.TesterForm.resources
