@@ -32,7 +32,7 @@ namespace Stu.UI
         {
             InitializeComponent();
             this.configManager = manager;
-            this.TopMost = true;
+           // this.TopMost = true;
             this.rootFrom = root_f;
             if (!manager.getIsTest())
             {
@@ -139,7 +139,6 @@ namespace Stu.UI
             else
             {
                 this.Show();
-                this.Location = new Point(0, 0);
                 if (rootFrom != null)
                 {
                     foreach (Form f in rootFrom) f.WindowState = FormWindowState.Minimized;

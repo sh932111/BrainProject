@@ -15,11 +15,13 @@ namespace Stu.UI
     {
         BluetoothDeviceManager bluetoothDeviceManager = null;
         string outputPath  = null;
-        public TesterForm(BluetoothDeviceManager manager , string path)
+        int devIndex = 0;
+        public TesterForm(BluetoothDeviceManager manager , string path , int index)
         {
             InitializeComponent();
             this.bluetoothDeviceManager = manager;
             this.outputPath = path;
+            this.devIndex = index;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
@@ -34,7 +36,9 @@ namespace Stu.UI
             MessageBox.Show("準備好了?確定後開始測試");
             ArrayList formList = new ArrayList();
             formList.Add(this);
-            new Memory(config_manager, formList);
+            Memory m = new Memory(config_manager, formList);
+            m.Location = new Point(0, this.devIndex * 256);
+            this.Close();
         }
     }
 }

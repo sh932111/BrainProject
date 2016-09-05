@@ -23,13 +23,11 @@ namespace Stu.UI
         private ArrayList resultList;
         private BrainListCallback aCallback = null;
         private BrainOnClickListCallback aOnClickCallback = null;
-        private ArrayList formList = null;
         public BluetoothList()
         {
             InitializeComponent();
             /*ListView UI*/
             this.resultList = new ArrayList();
-            this.formList = new ArrayList();
 
             this.bluetoothList = bluetoothListView;
             bluetoothList.BeginUpdate();
@@ -116,13 +114,6 @@ namespace Stu.UI
 
         private void connectBtn_Click(object sender, EventArgs e)
         {
-
-            foreach (TestForm form in formList)
-            {
-                form.Close();
-            }
-            formList.Clear();
-
             //if (aCallback != null) aCallback(getResult());
             if (outputText.Text.Length == 0)
             {
@@ -142,11 +133,13 @@ namespace Stu.UI
                 MessageBox.Show("尚未選擇Device!");
                 return;
             }
+            int index = 0;
             foreach (BluetoothDeviceManager manager in list)
             {
-                TesterForm testForm = new TesterForm(manager, outputText.Text);
-                formList.Add(testForm);
+                TesterForm testForm = new TesterForm(manager, outputText.Text, index);
                 testForm.Show();
+                testForm.Location = new Point( 0 ,index * 256);
+                index++;
             }
         }
         private void CheckedState(object sender, System.Windows.Forms.ItemCheckedEventArgs e)
